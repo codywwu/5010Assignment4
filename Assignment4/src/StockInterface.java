@@ -1,2 +1,2 @@
-public interface Stock {
+public interface StockInterface {
 }

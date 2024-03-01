@@ -1,2 +1,2 @@
-public interface Company {
+public interface CompanyInterface {
 }

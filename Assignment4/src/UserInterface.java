@@ -1,2 +1,3 @@
-public interface User {
+public interface UserInterface {
+  
 }
