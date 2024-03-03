@@ -1,5 +1,6 @@
 public class Stock implements StockInterface{
   private String companyName;
+
   private long volume;
   private long localHigh;
   private long localLow;
@@ -81,5 +82,25 @@ public class Stock implements StockInterface{
   @Override
   public double getCloseByDate(String date) {
     return 0;
+  }
+
+  public void setCompanyName(String companyName) {
+    this.companyName = companyName;
+  }
+
+  public void setVolume(long volume) {
+    this.volume = volume;
+  }
+
+  public void setLocalHigh(long localHigh) {
+    this.localHigh = localHigh;
+  }
+
+  public void setLocalLow(long localLow) {
+    this.localLow = localLow;
+  }
+
+  public void setTimeStamp(String timeStamp) {
+    this.timeStamp = timeStamp;
   }
 }
