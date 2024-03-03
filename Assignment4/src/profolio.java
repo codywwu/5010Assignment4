@@ -1,22 +1,37 @@
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Using Hashset as the data structure of profolio to store stocks.
+ */
 public class profolio {
   public HashSet<Stock> stockSet;
   int quantity;
-  public profolio(){
+
+  /**
+   * Quantity of the whole stock.
+   * @param quantity
+   */
+  public profolio(int quantity){
+    this.quantity = quantity;
   }
 
   /**
-   * Add by quantity.
+   * Add new Stock by quantity.
    * @param newStock the new stock that will be added into the profoilo.
    * @param quantity integer number.
    */
-  public void add(Stock newStock, int quantity){
+  public void addStock(Stock newStock, int quantity){
+    // if stock name has already been added.
+    // Then add the stock into the original pile.
+    //TODO
+
+    //Add the stock by quantity
     for(int i=0; i<=quantity ;i++) {
       stockSet.add(newStock);
+      // Also update the constructor.
+      this.quantity++;
     }
   }
-
 
 }
