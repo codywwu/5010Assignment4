@@ -18,6 +18,14 @@ public class User implements UserInterface{
     return userName;
   }
 
+  public void setBuyingPower(double buyingPower){
+    this.buyingPower = buyingPower;
+  }
+  public void setPassWord(String passWord){
+    this.passWord = passWord;
+  }
+
+  public void setUserName(String userName){ this.userName = userName;}
   /**
    * @return
    */

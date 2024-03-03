@@ -19,6 +19,9 @@ public class Company implements CompanyInterface{
   }
 
 
+  public void setSymbol(String symbol){
+    //TODO Set the symbol from API.
+  }
   public Stock getStockInfo(){
     return stockInfo;
   }

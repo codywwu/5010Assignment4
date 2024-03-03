@@ -6,7 +6,7 @@ public class view {
     System.out.println("Welcome To Our App");
     System.out.println("Please enter a user name");
 
-    
+
 
 
   }
