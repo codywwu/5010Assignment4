@@ -18,6 +18,7 @@ public class Company implements CompanyInterface{
     return symbol;
   }
 
+
   public Stock getStockInfo(){
     return stockInfo;
   }
