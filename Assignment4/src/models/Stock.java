@@ -1,4 +1,6 @@
-public class Stock implements StockInterface{
+package models;
+
+public class Stock implements StockInterface {
   private String companyName;
 
   private long volume;

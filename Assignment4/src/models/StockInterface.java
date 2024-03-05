@@ -1,3 +1,5 @@
+package models;
+
 public interface StockInterface {
   /**
    * Get companies name.

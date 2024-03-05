@@ -1,4 +1,4 @@
-package View;
+package views;
 
 public class StockView {
   public void printView(String CompanyName,long volume){
