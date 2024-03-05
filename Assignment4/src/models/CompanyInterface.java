@@ -1,3 +1,5 @@
+package models;
+
 public interface CompanyInterface {
   /**
    * Get the company symbol.

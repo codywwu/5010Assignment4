@@ -1,10 +1,14 @@
+package controller;
+
+import models.Stock;
+
 public class StockController {
   private Stock model;
   private Stock view;
 
-  public StockController(Stock model, Stock view) {
-    this.model = model;
-    this.view = view;
+  public StockController() {
+    this.model = this.model;
+    this.view = this.view;
   }
 
   public void setStockCompanyName(String name ){
@@ -26,4 +30,6 @@ public class StockController {
   public void setStockTimeStamp(String timeStamp){
     model.setTimeStamp(timeStamp);
   }
+
+  public double getStockLocalHigh(){return model.getLocalHigh();}
 }
