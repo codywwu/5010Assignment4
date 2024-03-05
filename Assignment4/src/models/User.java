@@ -1,4 +1,8 @@
-public class User implements UserInterface{
+package models;
+
+import models.UserInterface;
+
+public class User implements UserInterface {
   String userName;
 
   String passWord;

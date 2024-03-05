@@ -1,8 +1,10 @@
+package models;
+
 import java.util.HashSet;
-import java.util.Set;
+import models.Stock;
 
 /**
- * Using Hashset as the data structure of profolio to store stocks.
+ * Using Hashset as the data structure of models.profolio to store stocks.
  */
 public class profolio {
   public HashSet<Stock> stockSet;
@@ -17,7 +19,7 @@ public class profolio {
   }
 
   /**
-   * Add new Stock by quantity.
+   * Add new models.Stock by quantity.
    * @param newStock the new stock that will be added into the profoilo.
    * @param quantity integer number.
    */

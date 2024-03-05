@@ -1,4 +1,6 @@
-public class Company implements CompanyInterface{
+package models;
+
+public class Company implements CompanyInterface {
   String symbol;
 
   Stock stockInfo;
