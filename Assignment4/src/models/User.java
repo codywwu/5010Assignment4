@@ -9,6 +9,8 @@ public class User implements UserInterface {
 
   double buyingPower;
 
+
+
   public User(String userName, String passWord, double buyingPower){
     this.userName = userName;
     this.passWord = passWord;

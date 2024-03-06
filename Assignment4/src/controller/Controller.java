@@ -10,7 +10,6 @@ public class Controller {
   private Model model;
   private View view;
 
-  private Scanner sc;
   public Controller(Model model, View view) {
     this.model = model;
     this.view = view;
@@ -96,7 +95,7 @@ public class Controller {
           }
         }
         System.out.println("You have chosen to purchase " + quantity + " shares of " + companySymbol + ".");
-        
+
         // Proceed with further processing here
       } else {
         // if not valid, prompt again for a valid company symbol.
@@ -105,6 +104,27 @@ public class Controller {
       }
     }
 
+    System.out.println("Add another company with shares or select done for done creating this profolio");
+
+    menuSelection=0;
+    while (validMenuSelection(menuSelection, 2)) {
+      view.addMoreProfoiloOrDone();
+      menuSelection = input.nextInt();
+    }
+
+    switch (menuSelection){
+      case 1:
+        FillForm();
+        break;
+      case 2:
+        doneCreatProfoil();
+    }
+
+
+  }
+
+  private void doneCreatProfoil() {
+    //TODO Add profolio into the user's profolio pile.
   }
 
   private boolean CheckValidCompanySymbol(String companySymbol) {
