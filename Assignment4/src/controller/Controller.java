@@ -1,14 +1,20 @@
 package controller;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import models.Model;
 import views.View;
+import models.profolio;
 import java.util.Scanner;
+
 public class Controller {
   private Scanner input = new Scanner(System.in);
   private int menuSelection = 0;
   private Model model;
   private View view;
+
+  profolio profolio;
 
   public Controller(Model model, View view) {
     this.model = model;
@@ -19,7 +25,7 @@ public class Controller {
   public void intro() {
     String username = null;
     // Prompt user for username\
-    while (username ==null){
+    while (username == null) {
       System.out.println("Please enter a username: ");
       username = input.nextLine();
     }
@@ -27,13 +33,13 @@ public class Controller {
     mainMenu();
   }
 
-  public void mainMenu(){
-    menuSelection=0;
+  public void mainMenu() {
+    menuSelection = 0;
     while (validMenuSelection(menuSelection, 3)) {
       view.mainMenu();
       menuSelection = input.nextInt();
     }
-    switch (menuSelection){
+    switch (menuSelection) {
       case 2:
         setPortfolio();
         break;
@@ -43,21 +49,21 @@ public class Controller {
     }
   }
 
-  public boolean validMenuSelection(int input, int range){
+  public boolean validMenuSelection(int input, int range) {
     return input <= 0 || input > range;
   }
 
-  public void exitProgram(){
+  public void exitProgram() {
     System.exit(0);
   }
 
-  public void setPortfolio(){
-    menuSelection=0;
+  public void setPortfolio() {
+    menuSelection = 0;
     while (validMenuSelection(menuSelection, 4)) {
       view.createPortfolio();
       menuSelection = input.nextInt();
     }
-    switch (menuSelection){
+    switch (menuSelection) {
       case 2:
         FillForm();
         break;
@@ -95,8 +101,11 @@ public class Controller {
           }
         }
         System.out.println("You have chosen to purchase " + quantity + " shares of " + companySymbol + ".");
-
+        //TODO add stock and the corresponding shares into the profolio.
         // Proceed with further processing here
+
+       // profolio.addStock();
+
       } else {
         // if not valid, prompt again for a valid company symbol.
         System.out.println("Please enter a valid company symbol.");
@@ -106,13 +115,13 @@ public class Controller {
 
     System.out.println("Add another company with shares or select done for done creating this profolio");
 
-    menuSelection=0;
+    menuSelection = 0;
     while (validMenuSelection(menuSelection, 2)) {
       view.addMoreProfoiloOrDone();
       menuSelection = input.nextInt();
     }
 
-    switch (menuSelection){
+    switch (menuSelection) {
       case 1:
         FillForm();
         break;
@@ -124,7 +133,7 @@ public class Controller {
   }
 
   private void doneCreatProfoil() {
-    //TODO Add profolio into the user's profolio pile.
+    //TODO Add profolio into the user's profolioList.
   }
 
   private boolean CheckValidCompanySymbol(String companySymbol) {
