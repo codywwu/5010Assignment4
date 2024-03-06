@@ -4,8 +4,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import models.Model;
+import models.Portfolio;
 import views.View;
-import models.Profolio;
 import java.util.Scanner;
 
 public class Controller {
@@ -14,7 +14,7 @@ public class Controller {
   private Model model;
   private View view;
 
-  Profolio profolio;
+  Portfolio protfolio;
 
   public Controller(Model model, View view) {
     this.model = model;
@@ -79,7 +79,7 @@ public class Controller {
 
   private void FillForm() {
     String companySymbol = null;
-    String profolioName = null;
+    String portName = null;
     System.out.println("Please enter a company's symbol ");
     System.out.println("eg,GooG for google");
     int quantity = -1; // Initialize to an invalid value to enter the loop
@@ -102,10 +102,10 @@ public class Controller {
           }
         }
         System.out.println("You have chosen to purchase " + quantity + " shares of " + companySymbol + ".");
-        //TODO add stock and the corresponding shares into the profolio.
+        //TODO add stock and the corresponding shares into the port.
         // Proceed with further processing here
 
-       // profolio.addStock();
+       // port.addStock();
 
       } else {
         // if not valid, prompt again for a valid company symbol.
@@ -114,7 +114,7 @@ public class Controller {
       }
     }
 
-    System.out.println("Add another company with shares or select done for done creating this profolio");
+    System.out.println("Add another company with shares or select done for done creating this port");
 
     menuSelection = 0;
     while (validMenuSelection(menuSelection, 2)) {
@@ -134,7 +134,7 @@ public class Controller {
   }
 
   private void doneCreatProfoil() {
-    //TODO Add profolio into the user's profolioList.
+    //TODO Add port into the user's portList.
   }
 
   private boolean CheckValidCompanySymbol(String companySymbol) {

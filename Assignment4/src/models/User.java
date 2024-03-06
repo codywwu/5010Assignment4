@@ -11,7 +11,7 @@ public class User implements UserInterface {
 
   double buyingPower;
 
-  ArrayList<Profolio> profolioList = new ArrayList<>();
+  ArrayList<Portfolio> protfolioList = new ArrayList<>();
 
   public User(String userName, String passWord, double buyingPower){
     this.userName = userName;
@@ -56,7 +56,7 @@ public class User implements UserInterface {
    * @return the added this profolio list into user's current list.
    */
   @Override
-  public ArrayList<Profolio> addProfolio(Profolio newProfolio) {
+  public ArrayList<Portfolio> addPortfolio(Portfolio newProfolio) {
     return null;
   }
 
@@ -67,7 +67,7 @@ public class User implements UserInterface {
    * @return return the profolio by requested index.
    */
   @Override
-  public Profolio getProfolio(int i) {
+  public Portfolio getPortfolio(int i) {
     return null;
   }
 }
