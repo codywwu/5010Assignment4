@@ -8,14 +8,14 @@ public interface UserInterface {
   public double getBuyingPower();
 
   /**
-   * add a profolio into the user's profolio list.
-   * @return the added this profolio list into user's current list.
+   * add a portfolio into the user's portfolio list.
+   * @return the added this portfolio list into user's current list.
    */
-  public ArrayList<Portfolio> addPortfolio(Portfolio newProfolio);
+  public ArrayList<Portfolio> addPortfolio(Portfolio newPortfolio);
 
   /**
-   * get the profolio by idex.
-   * @return return the profolio by requested index.
+   * get the portfolio by index.
+   * @return return the portfolio by requested index.
    */
   public Portfolio getPortfolio(int i);
 }

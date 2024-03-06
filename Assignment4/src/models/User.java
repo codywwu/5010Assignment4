@@ -13,9 +13,9 @@ public class User implements UserInterface {
 
   ArrayList<Portfolio> portfolioList = new ArrayList<>();
 
-  public User(String userName, String passWord, double buyingPower){
+  public User(String userName, double buyingPower){
     this.userName = userName;
-    this.passWord = passWord;
+    //this.passWord = passWord;
     this.buyingPower = buyingPower;
   }
   /**
