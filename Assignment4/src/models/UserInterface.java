@@ -11,11 +11,11 @@ public interface UserInterface {
    * add a profolio into the user's profolio list.
    * @return the added this profolio list into user's current list.
    */
-  public ArrayList<profolio> addProfolio(profolio newProfolio);
+  public ArrayList<Profolio> addProfolio(Profolio newProfolio);
 
   /**
    * get the profolio by idex.
    * @return return the profolio by requested index.
    */
-  public profolio getProfolio(int i);
+  public Profolio getProfolio(int i);
 }

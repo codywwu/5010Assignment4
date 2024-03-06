@@ -6,16 +6,17 @@ import models.Stock;
 /**
  * Using Hashset as the data structure of models.profolio to store stocks.
  */
-public class profolio {
+public class Profolio {
   public HashSet<Stock> stockSet;
   int quantity;
 
+  String name;
   /**
    * Quantity of the whole stock.
    * @param quantity
    */
-  public profolio(int quantity){
-    this.quantity = quantity;
+  public Profolio(String name,int quantity){
+    this.name =name,this.quantity = quantity;
   }
 
   /**
