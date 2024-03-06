@@ -16,7 +16,7 @@ public class Profolio {
    * @param quantity
    */
   public Profolio(String name,int quantity){
-    this.name =name,this.quantity = quantity;
+    this.name =name;this.quantity = quantity;
   }
 
   /**
