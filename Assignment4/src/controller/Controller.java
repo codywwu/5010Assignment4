@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import models.Model;
 import views.View;
-import models.profolio;
+import models.Profolio;
 import java.util.Scanner;
 
 public class Controller {
@@ -14,7 +14,7 @@ public class Controller {
   private Model model;
   private View view;
 
-  profolio profolio;
+  Profolio profolio;
 
   public Controller(Model model, View view) {
     this.model = model;
@@ -79,6 +79,7 @@ public class Controller {
 
   private void FillForm() {
     String companySymbol = null;
+    String profolioName = null;
     System.out.println("Please enter a company's symbol ");
     System.out.println("eg,GooG for google");
     int quantity = -1; // Initialize to an invalid value to enter the loop
