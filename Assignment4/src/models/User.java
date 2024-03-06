@@ -1,5 +1,7 @@
 package models;
 
+import java.util.ArrayList;
+
 import models.UserInterface;
 
 public class User implements UserInterface {
@@ -9,7 +11,7 @@ public class User implements UserInterface {
 
   double buyingPower;
 
-
+  ArrayList<profolio> profolioList = new ArrayList<>();
 
   public User(String userName, String passWord, double buyingPower){
     this.userName = userName;
@@ -46,5 +48,26 @@ public class User implements UserInterface {
   @Override
   public double getBuyingPower() {
     return buyingPower;
+  }
+
+  /**
+   * add a profolio into the user's profolio list.
+   *
+   * @return the added this profolio list into user's current list.
+   */
+  @Override
+  public ArrayList<profolio> addProfolio(profolio newProfolio) {
+    return null;
+  }
+
+  /**
+   * get the profolio by idex.
+   *
+   * @param i
+   * @return return the profolio by requested index.
+   */
+  @Override
+  public profolio getProfolio(int i) {
+    return null;
   }
 }
