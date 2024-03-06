@@ -59,9 +59,6 @@ public class User implements UserInterface {
   public ArrayList<Portfolio> addPortfolio(Portfolio newPortfolio) {
     return null;
   }
-  public Portfolio getPortfolios() {
-    return null;
-  }
 
   /**
    * get the portfolio by index.
