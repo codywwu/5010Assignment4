@@ -25,7 +25,7 @@ public class Controller {
     String username = null;
     // Prompt user for username\
     while (username == null) {
-      System.out.println("Please enter a username: ");
+     view.promptUserName();
       username = input.nextLine();
     }
     view.displayWelcomeMessage(username);
@@ -44,7 +44,7 @@ public class Controller {
         }
         break; // Break out of the loop if input is valid
       }catch (java.util.InputMismatchException e) {
-        System.out.println("Invalid input. Please enter a number.");
+        view.NumberInvalidInput();
         input.nextLine(); // Consume the invalid input
       }
     }
@@ -60,7 +60,7 @@ public class Controller {
 
   public boolean validMenuSelection(int input, int range) {
     if ((input <= 0 || input > range)) {
-      System.out.println("Invalid input. Please enter a number between 1 and " + range);
+      view.menuSelectInvalid(range);
     }
     return input <= 0 || input > range;
   }
@@ -81,7 +81,7 @@ public class Controller {
         }
         break; // Break out of the loop if input is valid
       }catch (java.util.InputMismatchException e) {
-        System.out.println("Invalid input. Please enter a number.");
+       view.NumberInvalidInput();
         input.nextLine(); // Consume the invalid input
       }
     }
@@ -102,28 +102,27 @@ public class Controller {
   private void FillForm() {
     String companySymbol = null;
     String portName = null;
-    System.out.println("Please enter a company's symbol ");
-    System.out.println("eg,GooG for google");
+    view.fillFormIntro();
     int quantity = -1; // Initialize to an invalid value to enter the loop
 
     while (companySymbol == null) {
-      System.out.println("Please enter the company symbol:");
+
       companySymbol = input.next();
       if (CheckValidCompanySymbol(companySymbol)) {
         // if valid, prompt for the quantity of purchase.
-        System.out.println("Please enter the quantity of purchase, the number must be larger than 0:");
-        while (quantity <= 0) {
+       view.promptQuantityOfPurchase();
+         while (quantity <= 0) {
           try {
             quantity = input.nextInt();
             if (quantity <= 0) {
-              System.out.println("The number must be larger than 0. Please try again:");
+            view.InvalidInputGreaterThanZero();
             }
           } catch (InputMismatchException e) {
-            System.out.println("That's not a number. Please enter a valid quantity:");
+           view.NumberInvalidInput();
             input.next(); // Consume the invalid input and prompt again
           }
         }
-        System.out.println("You have chosen to purchase " + quantity + " shares of " + companySymbol + ".");
+        view.successPurchase(quantity,companySymbol);
         //TODO add stock and the corresponding shares into the port.
         // Proceed with further processing here
 
@@ -131,13 +130,12 @@ public class Controller {
 
       } else {
         // if not valid, prompt again for a valid company symbol.
-        System.out.println("Please enter a valid company symbol.");
+       view.invalidCompanySymbol();
         companySymbol = null; // Reset for re-validation
       }
     }
 
-    System.out.println("Add another company with shares or select done for done creating this port");
-
+   view.addCompanyOrDone();
     menuSelection = 0;
     while (validMenuSelection(menuSelection, 2)) {
       view.addMoreProfoiloOrDone();

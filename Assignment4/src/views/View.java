@@ -37,8 +37,41 @@ public void addMoreProfoiloOrDone(){
   System.out.println("2. Done");
 
 }
+public void fillFormIntro(){
+  System.out.println("Please enter a company's symbol ");
+  System.out.println("eg,GooG for google");
+}
 
+public void promptUserName(){
+  System.out.println("Please enter a username: ");
+}
 
+public void NumberInvalidInput(){
+  System.out.println("Invalid input. Please enter a number.");
+}
 
+public void menuSelectInvalid(int range){
+  System.out.println("Invalid input. Please enter a number between 1 and " + range);
+}
 
+public void promptQuantityOfPurchase(){
+  System.out.println("Please enter the quantity of purchase, the number must be larger than 0:");
+}
+
+public void InvalidInputGreaterThanZero(){
+  System.out.println("The number must be larger than 0. Please try again:");
+}
+
+public void successPurchase(int quantity, String companySymbol){
+  System.out.println("You have chosen to purchase " + quantity + " shares of " + companySymbol + ".");
+}
+
+public void invalidCompanySymbol(){
+  System.out.println("Please enter a valid company symbol.");
+}
+
+public void addCompanyOrDone(){
+  System.out.println("Add another company with shares or select done for done creating this port");
+
+}
 }
