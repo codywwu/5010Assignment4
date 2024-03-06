@@ -96,6 +96,7 @@ public class Controller {
           }
         }
         System.out.println("You have chosen to purchase " + quantity + " shares of " + companySymbol + ".");
+        
         // Proceed with further processing here
       } else {
         // if not valid, prompt again for a valid company symbol.
