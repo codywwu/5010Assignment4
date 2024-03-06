@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 import models.Model;
 import models.Portfolio;
+import models.Stock;
+import models.User;
+import models.UserInterface;
 import views.View;
 
 public class Controller {
@@ -13,7 +16,9 @@ public class Controller {
   private Model model;
   private View view;
 
-  Portfolio portfolio;
+  //TODO currentDate depending on API.
+  private String currentDate;
+
 
   public Controller(Model model, View view) {
     this.model = model;
@@ -43,7 +48,7 @@ public class Controller {
           continue; // Restart the loop to prompt for input again
         }
         break; // Break out of the loop if input is valid
-      }catch (java.util.InputMismatchException e) {
+      }catch (InputMismatchException e) {
         view.NumberInvalidInput();
         input.nextLine(); // Consume the invalid input
       }
@@ -80,7 +85,7 @@ public class Controller {
           continue; // Restart the loop to prompt for input again
         }
         break; // Break out of the loop if input is valid
-      }catch (java.util.InputMismatchException e) {
+      }catch (InputMismatchException e) {
        view.NumberInvalidInput();
         input.nextLine(); // Consume the invalid input
       }
@@ -99,9 +104,12 @@ public class Controller {
 
   }
 
+  int portfolioNumber = 1;
   private void FillForm() {
+
+    String portfolioName = "Portfolio"+portfolioNumber;
+    Portfolio portfolio = new Portfolio(portfolioName,0);
     String companySymbol = null;
-    String portName = null;
     view.fillFormIntro();
     int quantity = -1; // Initialize to an invalid value to enter the loop
 
@@ -123,10 +131,12 @@ public class Controller {
           }
         }
         view.successPurchase(quantity,companySymbol);
-        //TODO add stock and the corresponding shares into the port.
+
+        //TODO add stock and the corresponding shares into the list.
         // Proceed with further processing here
 
-       // port.addStock();
+        Stock stock = new Stock(companySymbol,currentDate);
+        portfolio.addStock(stock,quantity);
 
       } else {
         // if not valid, prompt again for a valid company symbol.
@@ -144,6 +154,7 @@ public class Controller {
 
     switch (menuSelection) {
       case 1:
+        portfolioNumber++;
         FillForm();
         break;
       case 2:
@@ -155,6 +166,8 @@ public class Controller {
 
   private void doneCreatPortfolio() {
     //TODO Add port into the user's portList.
+
+
   }
 
   private boolean CheckValidCompanySymbol(String companySymbol) {

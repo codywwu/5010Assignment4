@@ -57,7 +57,8 @@ public class User implements UserInterface {
    */
   @Override
   public ArrayList<Portfolio> addPortfolio(Portfolio newPortfolio) {
-    return null;
+    portfolioList.add(newPortfolio);
+    return portfolioList;
   }
 
   /**
@@ -68,6 +69,6 @@ public class User implements UserInterface {
    */
   @Override
   public Portfolio getPortfolio(int i) {
-    return null;
+    return portfolioList.get(i);
   }
 }

@@ -6,7 +6,7 @@ import java.util.HashSet;
  * Using Hashset as the data structure of models.Portfolio to store stocks.
  */
 public class Portfolio {
-  public HashSet<Stock> stockSet;
+  public HashSet<Stock> stockSet = new HashSet<>();
   int quantity;
 
   String name;
