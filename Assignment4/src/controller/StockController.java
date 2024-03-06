@@ -15,7 +15,7 @@ public class StockController {
     model.setCompanyName(name);
   }
 
-  public void setStockVolum(long volume){
+  public void setStockVolume(long volume){
     model.setVolume(volume);
   }
 

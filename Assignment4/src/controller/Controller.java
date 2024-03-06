@@ -6,7 +6,6 @@ import java.util.Scanner;
 import models.Model;
 import models.Portfolio;
 import views.View;
-import java.util.Scanner;
 
 public class Controller {
   private Scanner input = new Scanner(System.in);
@@ -14,7 +13,7 @@ public class Controller {
   private Model model;
   private View view;
 
-  Portfolio protfolio;
+  Portfolio portfolio;
 
   public Controller(Model model, View view) {
     this.model = model;
@@ -35,9 +34,19 @@ public class Controller {
 
   public void mainMenu() {
     menuSelection = 0;
-    while (validMenuSelection(menuSelection, 3)) {
+    while (true) {
       view.mainMenu();
-      menuSelection = input.nextInt();
+      try {
+        menuSelection = input.nextInt();
+        if (validMenuSelection(menuSelection, 3)) {
+          input.nextLine(); // Consume the invalid input
+          continue; // Restart the loop to prompt for input again
+        }
+        break; // Break out of the loop if input is valid
+      }catch (java.util.InputMismatchException e) {
+        System.out.println("Invalid input. Please enter a number.");
+        input.nextLine(); // Consume the invalid input
+      }
     }
     switch (menuSelection) {
       case 2:
@@ -50,6 +59,9 @@ public class Controller {
   }
 
   public boolean validMenuSelection(int input, int range) {
+    if ((input <= 0 || input > range)) {
+      System.out.println("Invalid input. Please enter a number between 1 and " + range);
+    }
     return input <= 0 || input > range;
   }
 
@@ -59,9 +71,19 @@ public class Controller {
 
   public void setPortfolio() {
     menuSelection = 0;
-    while (validMenuSelection(menuSelection, 4)) {
+    while (true) {
       view.createPortfolio();
-      menuSelection = input.nextInt();
+      try {
+        menuSelection = input.nextInt();
+        if (validMenuSelection(menuSelection, 4)) {
+          input.nextLine(); // Consume the invalid input
+          continue; // Restart the loop to prompt for input again
+        }
+        break; // Break out of the loop if input is valid
+      }catch (java.util.InputMismatchException e) {
+        System.out.println("Invalid input. Please enter a number.");
+        input.nextLine(); // Consume the invalid input
+      }
     }
     switch (menuSelection) {
       case 2:
@@ -127,13 +149,13 @@ public class Controller {
         FillForm();
         break;
       case 2:
-        doneCreatProfoil();
+        doneCreatPortfolio();
     }
 
 
   }
 
-  private void doneCreatProfoil() {
+  private void doneCreatPortfolio() {
     //TODO Add port into the user's portList.
   }
 

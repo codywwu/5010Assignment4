@@ -11,11 +11,11 @@ public class User implements UserInterface {
 
   double buyingPower;
 
-  ArrayList<Portfolio> protfolioList = new ArrayList<>();
+  ArrayList<Portfolio> portfolioList = new ArrayList<>();
 
-  public User(String userName, String passWord, double buyingPower){
+  public User(String userName, double buyingPower){
     this.userName = userName;
-    this.passWord = passWord;
+    //this.passWord = passWord;
     this.buyingPower = buyingPower;
   }
   /**
@@ -51,20 +51,23 @@ public class User implements UserInterface {
   }
 
   /**
-   * add a profolio into the user's profolio list.
+   * add a portfolio into the user's portfolio list.
    *
-   * @return the added this profolio list into user's current list.
+   * @return the added this portfolio list into user's current list.
    */
   @Override
-  public ArrayList<Portfolio> addPortfolio(Portfolio newProfolio) {
+  public ArrayList<Portfolio> addPortfolio(Portfolio newPortfolio) {
+    return null;
+  }
+  public Portfolio getPortfolios() {
     return null;
   }
 
   /**
-   * get the profolio by idex.
+   * get the portfolio by index.
    *
    * @param i
-   * @return return the profolio by requested index.
+   * @return return the portfolio by requested index.
    */
   @Override
   public Portfolio getPortfolio(int i) {
