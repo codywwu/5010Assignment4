@@ -7,11 +7,11 @@ public class Stock implements StockInterface {
   private long localHigh;
   private long localLow;
   private String timeStamp;
-  public Stock(String companyName, long volume, long localHigh, long localLow, String timeStamp){
+  public Stock(String companyName, /** long volume, long localHigh, long localLow,**/ String timeStamp){
     this.companyName= companyName;
-    this.volume = volume;
-    this.localHigh = localHigh;
-    this.localLow = localLow;
+//    this.volume = volume;
+//    this.localHigh = localHigh;
+//    this.localLow = localLow;
     this.timeStamp = timeStamp;
   }
   /**
