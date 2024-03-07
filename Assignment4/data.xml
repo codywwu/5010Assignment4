@@ -1,0 +1,17 @@
+<Users>
+  <user name="Dell">
+    <price value="50000" />
+    <ram value="8GB"/>
+    <ssd value="250GB"/>
+  </user>
+  <user name="Lenovo">
+    <price value="38000" />
+    <ram value="250GB"/>
+    <hardDrive value="8GB"/>
+  </user>
+  <user name="Apple">
+    <price value="80000" />
+    <ram value="8GB"/>
+    <hardDrive value="560GB"/>
+  </user>
+</Users>
