@@ -148,14 +148,14 @@ public class XMLDatabase {
     }
     System.out.println(xmlDatabase.checkName("aaa"));
 
-    XMLDatabase xmlDatabase = new XMLDatabase();
-    List<Portfolio> portfolios = xmlDatabase.setPortfoliosByUsername("aaa");
-    for (Portfolio portfolio : portfolios) {
-      System.out.println("Portfolio Name: " + portfolio.getName());
-      for (Stock stock : portfolio.getStocks()) {
-        System.out.println("  Stock Name: " + stock.getName());
-        System.out.println("  Stock Value: " + stock.getValue());
-        System.out.println("  Stock Time: " + stock.getTime());
-      }
+//    XMLDatabase xmlDatabase = new XMLDatabase();
+//    List<Portfolio> portfolios = xmlDatabase.setPortfoliosByUsername("aaa");
+//    for (Portfolio portfolio : portfolios) {
+//      System.out.println("Portfolio Name: " + portfolio.getName());
+//      for (Stock stock : portfolio.getStocks()) {
+//        System.out.println("  Stock Name: " + stock.getName());
+//        System.out.println("  Stock Value: " + stock.getValue());
+//        System.out.println("  Stock Time: " + stock.getTime());
+//      }
   }
 }
