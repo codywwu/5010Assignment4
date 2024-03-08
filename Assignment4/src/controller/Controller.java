@@ -85,9 +85,14 @@ public class Controller {
     System.exit(0);
   }
 
+
+  int portfolioNumber = 1;
   public void setPortfolio() {
     menuSelection = 0;
     while (true) {
+      //Creating new portforlio here.
+      String portfolioName = "Portfolio"+portfolioNumber;
+      portfolio = new Portfolio(portfolioName,0);
       view.createPortfolio();
       try {
         menuSelection = input.nextInt();
@@ -115,11 +120,8 @@ public class Controller {
 
   }
 
-  int portfolioNumber = 1;
   private void FillForm() {
 
-    String portfolioName = "Portfolio"+portfolioNumber;
-    portfolio = new Portfolio(portfolioName,0);
     String companySymbol = null;
     view.fillFormIntro();
     int quantity = -1; // Initialize to an invalid value to enter the loop

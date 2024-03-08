@@ -1,7 +1,6 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 /**
  * Using Hashset as the data structure of models.Portfolio to store stocks.
@@ -29,9 +28,9 @@ public class Portfolio {
     // if stock name has already been added.
     // Then add the stock into the original pile.
     //TODO
-
+    int num = quantity;
     //Add the stock by quantity
-    for(int i=0; i<=quantity ;i++) {
+    for(int i=0; i<num ;i++) {
       stockArrayList.add(newStock);
       // Also update the constructor.
       this.quantity++;
