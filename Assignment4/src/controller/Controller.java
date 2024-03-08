@@ -139,6 +139,7 @@ public class Controller {
         //TODO add stock and the corresponding shares into the list.
         // Proceed with further processing here
 
+        //
         Stock stock = new Stock(companySymbol,currentDate);
         portfolio.addStock(stock,quantity);
 
