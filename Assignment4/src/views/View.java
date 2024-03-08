@@ -3,7 +3,9 @@ import controller.StockController;
 import models.Stock;
 
 public class View {
-
+  public void displayNewWelcomeMessage(String username) {
+    System.out.println("Hello, new user: " + username + ", Welcome To Money For US");
+  }
 
   public void displayWelcomeMessage(String username) {
     System.out.println("Hello " + username + ", Welcome To Money For US");

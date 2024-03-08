@@ -11,5 +11,8 @@ public class Model {
     this.data = new ArrayList<>();
   }
 
-
+  public Boolean checkInputName(String name){
+    XMLDatabase xmlDatabase = new XMLDatabase();
+    return xmlDatabase.checkName(name);
+  }
 }
