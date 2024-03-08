@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Model {
   private List<String> data; // Example: Storing user input data
+  XMLDatabase xmlDatabase = new XMLDatabase();
 
   // Constructor
   public Model() {
@@ -12,7 +13,6 @@ public class Model {
   }
 
   public Boolean checkInputName(String name){
-    XMLDatabase xmlDatabase = new XMLDatabase();
     return xmlDatabase.checkName(name);
   }
 }

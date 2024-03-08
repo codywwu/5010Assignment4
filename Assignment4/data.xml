@@ -34,7 +34,6 @@
     <portfolios>
             
       <portfolio name="portfolio1">
-                
         <stock name="GOOG" value="250"/>
         <time value="2024-03-05 10:10:00"/>
       </portfolio>
