@@ -11,7 +11,7 @@ public interface UserInterface {
    * add a portfolio into the user's portfolio list.
    * @return the added this portfolio list into user's current list.
    */
-  public ArrayList<Portfolio> addPortfolio(Portfolio newPortfolio);
+  public void addPortfolio(Portfolio newPortfolio);
 
   /**
    * get the portfolio by index.
