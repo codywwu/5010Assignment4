@@ -1,5 +1,8 @@
 package views;
+import java.util.ArrayList;
+
 import controller.StockController;
+import models.Portfolio;
 import models.Stock;
 
 public class View {
@@ -33,7 +36,7 @@ public class View {
 //
 //    System.out.println(stockController.getStockLocalHigh());
 public void addMoreProfoiloOrDone(){
-  System.out.println("1. Add more profoil");
+  System.out.println("1. Add more stock");
   System.out.println("2. Done");
 
 }
@@ -74,4 +77,12 @@ public void addCompanyOrDone(){
   System.out.println("Add another company with shares or select done for done creating this port");
 
 }
+
+  public void donePortfolioInfo(ArrayList<Portfolio> portfolioList) {
+    System.out.println("Size:"+portfolioList.size());
+    for (int i=0; i<= portfolioList.size()-1;i++){
+      String companyName = portfolioList.get(i).stockArrayList.get(i).getCompanyName();
+      System.out.println("You have "+companyName);
+    }
+  }
 }

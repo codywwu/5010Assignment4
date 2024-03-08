@@ -71,4 +71,9 @@ public class User implements UserInterface {
   public Portfolio getPortfolio(int i) {
     return portfolioList.get(i);
   }
+
+  public ArrayList<Portfolio> getPortfolioList(){
+    return portfolioList;
+  }
 }
+

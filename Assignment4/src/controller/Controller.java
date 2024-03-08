@@ -18,7 +18,9 @@ public class Controller {
 
   //TODO currentDate depending on API.
   private String currentDate;
+  private User user;
 
+  private Portfolio portfolio;
 
   public Controller(Model model, View view) {
     this.model = model;
@@ -32,6 +34,8 @@ public class Controller {
     while (username == null) {
      view.promptUserName();
       username = input.nextLine();
+      // User have 1000 buying power for now, indented for future use.
+      user = new User(username,1000);
     }
     view.displayWelcomeMessage(username);
     mainMenu();
@@ -54,6 +58,9 @@ public class Controller {
       }
     }
     switch (menuSelection) {
+      case 1:
+        showUserPortfolio();
+        break;
       case 2:
         setPortfolio();
         break;
@@ -61,6 +68,10 @@ public class Controller {
         exitProgram();
         break;
     }
+  }
+
+  private void showUserPortfolio() {
+    // Date ?
   }
 
   public boolean validMenuSelection(int input, int range) {
@@ -108,7 +119,7 @@ public class Controller {
   private void FillForm() {
 
     String portfolioName = "Portfolio"+portfolioNumber;
-    Portfolio portfolio = new Portfolio(portfolioName,0);
+    portfolio = new Portfolio(portfolioName,0);
     String companySymbol = null;
     view.fillFormIntro();
     int quantity = -1; // Initialize to an invalid value to enter the loop
@@ -137,7 +148,6 @@ public class Controller {
 
         Stock stock = new Stock(companySymbol,currentDate);
         portfolio.addStock(stock,quantity);
-
       } else {
         // if not valid, prompt again for a valid company symbol.
        view.invalidCompanySymbol();
@@ -166,8 +176,8 @@ public class Controller {
 
   private void doneCreatPortfolio() {
     //TODO Add port into the user's portList.
-
-
+  user.addPortfolio(portfolio);
+  view.donePortfolioInfo(user.getPortfolioList());
   }
 
   private boolean CheckValidCompanySymbol(String companySymbol) {
