@@ -6,8 +6,7 @@ import java.util.Scanner;
 import models.Model;
 import models.Portfolio;
 import models.Stock;
-import models.User;
-import models.UserInterface;
+
 import views.View;
 
 public class Controller {
@@ -33,7 +32,12 @@ public class Controller {
      view.promptUserName();
       username = input.nextLine();
     }
-    view.displayWelcomeMessage(username);
+    if (model.checkInputName(username)){
+      view.displayWelcomeMessage(username);
+    }else {
+      view.displayNewWelcomeMessage(username);
+    }
+
     mainMenu();
   }
 

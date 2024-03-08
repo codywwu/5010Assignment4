@@ -21,7 +21,7 @@ import org.xml.sax.SAXException;
 
 public class XMLDatabase {
 
-  private Document document;
+  private static Document document;
   private String fileName;
 
   //Get the Document Builder
@@ -40,15 +40,15 @@ public class XMLDatabase {
     }
   }
 
-  public NodeList getUsersFromDocument() {
+  public static NodeList getUsersFromDocument() {
     return getUsersFromDocument(document);
   }
 
-  private NodeList getUsersFromDocument(Document newDocument) {
+  private static NodeList getUsersFromDocument(Document newDocument) {
     return newDocument.getElementsByTagName("user");
   }
 
-  public Boolean checkName(String inputName) {
+  public static Boolean checkName(String inputName) {
     NodeList usernames = getUsersFromDocument();
     for (int i = 0; i < usernames.getLength(); i++) {
       Node laptop = usernames.item(i);
@@ -146,7 +146,7 @@ public class XMLDatabase {
         System.out.println(laptopName);
       }
     }
-    System.out.println(xmlDatabase.checkName("aaa"));
+    System.out.println(xmlDatabase.checkName("Ahri"));
 
 //    XMLDatabase xmlDatabase = new XMLDatabase();
 //    List<Portfolio> portfolios = xmlDatabase.setPortfoliosByUsername("aaa");
