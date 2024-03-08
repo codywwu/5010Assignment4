@@ -56,9 +56,8 @@ public class User implements UserInterface {
    * @return the added this portfolio list into user's current list.
    */
   @Override
-  public ArrayList<Portfolio> addPortfolio(Portfolio newPortfolio) {
+  public void addPortfolio(Portfolio newPortfolio) {
     portfolioList.add(newPortfolio);
-    return portfolioList;
   }
 
   /**
@@ -71,4 +70,9 @@ public class User implements UserInterface {
   public Portfolio getPortfolio(int i) {
     return portfolioList.get(i);
   }
+
+  public ArrayList<Portfolio> getPortfolioList(){
+    return portfolioList;
+  }
 }
+
