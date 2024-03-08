@@ -104,9 +104,11 @@ public class XMLDatabase {
                   String stockName = stockElement.getAttribute("name");
                   int stockValue = Integer.parseInt(stockElement.getAttribute("value"));
                   String stockTime = stockElement.getElementsByTagName("time").item(0).getAttributes().getNamedItem("value").getNodeValue();
+                  //new Stock
                   stocksList.add(new Stock(stockName /*stockValue*/, stockTime));
                 }
               }
+              //new portfolio
               portfoliosList.add(new Portfolio(portfolioName,0/*stocksList*/));
             }
           }
@@ -137,7 +139,7 @@ public class XMLDatabase {
   public static void main(String[] args) {
     XMLDatabase xmlDatabase = new XMLDatabase();
     NodeList laptops = xmlDatabase.getUsersFromDocument();
-    System.out.println("Laptop Names:");
+    System.out.println("UserNames:");
     for (int i = 0; i < laptops.getLength(); i++) {
       Node laptop = laptops.item(i);
       if (laptop.getNodeType() == Node.ELEMENT_NODE) {
