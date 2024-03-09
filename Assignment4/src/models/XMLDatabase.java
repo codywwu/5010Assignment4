@@ -1,7 +1,12 @@
 package models;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
@@ -164,49 +169,81 @@ public class XMLDatabase {
 //      }
     //TODO create new XML by company name.
     XMLDatabase xmlDatabase = new XMLDatabase();
-    xmlDatabase.createXMLbyCompanyInfo("GOOG");
+    xmlDatabase.createXMLbyCompanyInfo("APPL");
   }
 
   public void createXMLbyCompanyInfo(String companyName) {
-    try {
-      // Define the file path and name
-      File file = new File(companyName + "_Info.xml");
+    String apiKey = "W0M1JOKC82EZEQA8";
+    String stockSymbol = companyName; // ticker symbol for Google
+    URL url = null;
+    String fileName = stockSymbol + "_StockData.xml";
+    File file = new File(fileName);
 
-      // Check if the file already exists
-      if (file.exists()) {
-        System.out.println("XML file for " + companyName + " already exists. No new file created.");
-        return; // Exit the method if file exists
-      }
+    if (file.exists()) {
+      System.out.println("XML file for " + stockSymbol + " already exists. No new file created.");
+      return; // Exit the program if the file exists
+    }
+
+    try {
+      url = new URL("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY"
+              + "&outputsize=full" + "&symbol=" + stockSymbol + "&apikey=" + apiKey + "&datatype=csv");
+    } catch (MalformedURLException e) {
+      throw new RuntimeException("the alphavantage API has either changed or no longer works");
+    }
+
+    try (InputStream in = url.openStream();
+         BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
+      String line;
+      reader.readLine(); // Skip the header line
 
       DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
       DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-
-      // Create a new document
       Document document = documentBuilder.newDocument();
+      Element rootElement = document.createElement("StockData");
+      document.appendChild(rootElement);
 
-      // Create root element, e.g., <CompanyInfo>
-      Element root = document.createElement("CompanyInfo");
-      document.appendChild(root);
+      while ((line = reader.readLine()) != null) {
+        String[] data = line.split(",");
 
-      // Create company element with text content
-      Element company = document.createElement("CompanyName");
-      company.appendChild(document.createTextNode(companyName));
-      root.appendChild(company);
+        // Assuming data follows the format: timestamp,open,high,low,close,volume
+        if (data.length >= 6) {
+          Element record = document.createElement("Record");
+          rootElement.appendChild(record);
 
-      // Create TransformerFactory and Transformer to write to file
+          Element date = document.createElement("Date");
+          date.appendChild(document.createTextNode(data[0]));
+          record.appendChild(date);
+
+          Element open = document.createElement("Open");
+          open.appendChild(document.createTextNode(data[1]));
+          record.appendChild(open);
+
+          Element high = document.createElement("High");
+          high.appendChild(document.createTextNode(data[2]));
+          record.appendChild(high);
+
+          Element low = document.createElement("Low");
+          low.appendChild(document.createTextNode(data[3]));
+          record.appendChild(low);
+
+          Element close = document.createElement("Close");
+          close.appendChild(document.createTextNode(data[4]));
+          record.appendChild(close);
+
+          Element volume = document.createElement("Volume");
+          volume.appendChild(document.createTextNode(data[5]));
+          record.appendChild(volume);
+        }
+      }
+
       TransformerFactory transformerFactory = TransformerFactory.newInstance();
       Transformer transformer = transformerFactory.newTransformer();
       DOMSource domSource = new DOMSource(document);
-
-      // StreamResult with the file object
-      StreamResult streamResult = new StreamResult(file);
-
-      // Transform the DOM Object to an XML File
+      StreamResult streamResult = new StreamResult(new File(fileName));
       transformer.transform(domSource, streamResult);
 
-      System.out.println("XML file created successfully for company: " + companyName);
-
-    } catch (Exception e) {
+      System.out.println("XML file created successfully for stock: " + stockSymbol);
+    } catch (IOException | TransformerException | ParserConfigurationException e) {
       e.printStackTrace();
     }
   }
