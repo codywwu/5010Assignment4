@@ -2,7 +2,7 @@ package controller;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+import models.User;
 import models.Model;
 import models.Portfolio;
 import models.Stock;
@@ -16,7 +16,7 @@ public class Controller {
   private View view;
 
   //TODO currentDate depending on API.
-  private String currentDate;
+  private String currentDate="";
   private User user;
 
   private Portfolio portfolio;
@@ -34,7 +34,7 @@ public class Controller {
      view.promptUserName();
       username = input.nextLine();
       // User have 1000 buying power for now, indented for future use.
-      user = new User(username,1000);
+      user = model.creatUser(username,1000);
     }
     if (model.checkInputName(username)){
       view.displayWelcomeMessage(username);
@@ -96,7 +96,7 @@ public class Controller {
     while (true) {
       //Creating new portforlio here.
       String portfolioName = "Portfolio"+portfolioNumber;
-      portfolio = new Portfolio(portfolioName,0);
+      portfolio=model.createPortfolio(portfolioName,0);
       view.createPortfolio();
       try {
         menuSelection = input.nextInt();
@@ -153,7 +153,8 @@ public class Controller {
         // Proceed with further processing here
 
         //
-        Stock stock = new Stock(companySymbol,currentDate);
+        Stock stock = model.createStock(companySymbol,currentDate);
+
         portfolio.addStock(stock,quantity);
       } else {
         // if not valid, prompt again for a valid company symbol.

@@ -15,4 +15,21 @@ public class Model {
   public Boolean checkInputName(String name){
     return xmlDatabase.checkName(name);
   }
+
+  public Stock createStock(String companySymbol, String currentDate) {
+     Stock stock = new Stock(companySymbol,currentDate);
+            return stock;
+  }
+
+  public User creatUser(String username,float buyingPower){
+    User user = new User(username,buyingPower);
+
+    return user;
+  }
+
+  public Portfolio createPortfolio(String name,int shares){
+
+   Portfolio portfolio = new Portfolio(name,0);
+   return portfolio;
+  }
 }
