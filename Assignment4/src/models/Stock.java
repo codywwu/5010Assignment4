@@ -7,11 +7,10 @@ public class Stock implements StockInterface {
   private long localHigh;
   private long localLow;
   private String timeStamp;
-  public Stock(String companyName, /** long volume, long localHigh, long localLow,**/ String timeStamp){
+  private long userShared;
+  public Stock(String companyName,long userShared,String timeStamp){
     this.companyName= companyName;
-//    this.volume = volume;
-//    this.localHigh = localHigh;
-//    this.localLow = localLow;
+    this.userShared=userShared;
     this.timeStamp = timeStamp;
   }
   /**
@@ -23,6 +22,9 @@ public class Stock implements StockInterface {
   public String getCompanyName() {
     return companyName;
   }
+
+
+  public long getUserShared(){return userShared;}
 
   /**
    * The total share of the company.

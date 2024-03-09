@@ -9,7 +9,7 @@ public class Portfolio {
   public ArrayList<Stock> stockArrayList = new ArrayList<>();
   int quantity;
 
-  String name;
+  public String name;
   /**
    * Quantity of the whole stock.
    * @param quantity
@@ -24,21 +24,21 @@ public class Portfolio {
    * @param newStock the new stock that will be added into the portfolio.
    * @param quantity integer number.
    */
-  public void addStock(Stock newStock, int quantity){
+  public void addStock(Stock newStock){
     // if stock name has already been added.
     // Then add the stock into the original pile.
     //TODO
-    int num = quantity;
+    quantity+=1;
     //Add the stock by quantity
-    for(int i=0; i<num ;i++) {
+    for(int i=0; i<quantity ;i++) {
       stockArrayList.add(newStock);
       // Also update the constructor.
       this.quantity++;
     }
   }
 
-  public Stock getStock(int i){
-    return stockArrayList.get(i);
+  public ArrayList<Stock> getStocks(){
+    return stockArrayList;
   }
 
 }

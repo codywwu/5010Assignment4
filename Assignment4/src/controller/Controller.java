@@ -75,7 +75,7 @@ public class Controller {
   }
 
   private void showUserPortfolio() {
-    // Date ?
+    view.displayPortfolios(model.getUserPortfolios());
   }
 
   public boolean validMenuSelection(int input, int range) {
@@ -153,9 +153,9 @@ public class Controller {
         // Proceed with further processing here
 
         //
-        Stock stock = model.createStock(companySymbol,currentDate);
+        Stock stock = model.createStock(companySymbol,50,currentDate);
 
-        portfolio.addStock(stock,quantity);
+        portfolio.addStock(stock);
       } else {
         // if not valid, prompt again for a valid company symbol.
        view.invalidCompanySymbol();

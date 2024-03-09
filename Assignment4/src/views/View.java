@@ -2,6 +2,7 @@ package views;
 import java.util.ArrayList;
 
 import controller.StockController;
+import java.util.List;
 import models.Portfolio;
 import models.Stock;
 
@@ -95,4 +96,17 @@ public void addCompanyOrDone(){
       System.out.println();
     }
   }
+
+  public void displayPortfolios(List<Portfolio> portfolios) {
+    for (Portfolio portfolio : portfolios) {
+      System.out.println("Portfolio Name: " + portfolio.name);
+      for (Stock stock : portfolio.getStocks()) {
+        System.out.println("  Stock Name: " + stock.getCompanyName());
+        System.out.println("  Stock Value: " + stock.getUserShared());
+        System.out.println("  Stock Time: " + stock.getTimeStamp());
+      }
+    }
+  }
+
+
 }
