@@ -157,7 +157,7 @@ public class XMLDatabase {
 //      }
 //    }
 //    System.out.println(xmlDatabase.checkName("Ahri"));
-
+    //TODO
 //    XMLDatabase xmlDatabase = new XMLDatabase();
 //    List<Portfolio> portfolios = xmlDatabase.setPortfoliosByUsername("aaa");
 //    for (Portfolio portfolio : portfolios) {
@@ -169,7 +169,7 @@ public class XMLDatabase {
 //      }
     //TODO create new XML by company name.
     XMLDatabase xmlDatabase = new XMLDatabase();
-    xmlDatabase.createXMLbyCompanyInfo("APPL");
+    xmlDatabase.createXMLbyCompanyInfo("KO");
   }
 
   public void createXMLbyCompanyInfo(String companyName) {
@@ -183,6 +183,12 @@ public class XMLDatabase {
       System.out.println("XML file for " + stockSymbol + " already exists. No new file created.");
       return; // Exit the program if the file exists
     }
+
+    if (companySymbolExists(apiKey, stockSymbol)) {
+      System.out.println("Company symbol " + stockSymbol + " does not exist or no data available.");
+      return;
+    }
+
 
     try {
       url = new URL("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY"
@@ -245,6 +251,21 @@ public class XMLDatabase {
       System.out.println("XML file created successfully for stock: " + stockSymbol);
     } catch (IOException | TransformerException | ParserConfigurationException e) {
       e.printStackTrace();
+    }
+  }
+
+  private static boolean companySymbolExists(String apiKey, String stockSymbol) {
+    String urlTemplate = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=%s&apikey=%s";
+    String queryUrl = String.format(urlTemplate, stockSymbol, apiKey);
+
+    try (InputStream in = new URL(queryUrl).openStream();
+         BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
+      String response = reader.readLine(); // Read the first line of the response
+      // Simple check to see if response contains "Global Quote" which indicates valid data
+      return response != null && response.contains("Global Quote");
+    } catch (IOException e) {
+      e.printStackTrace();
+      return false;
     }
   }
 
