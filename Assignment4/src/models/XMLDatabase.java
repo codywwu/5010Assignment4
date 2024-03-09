@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -39,6 +40,7 @@ public class XMLDatabase {
       e.printStackTrace();
     }
   }
+
 
   public static NodeList getUsersFromDocument() {
     return getUsersFromDocument(document);
@@ -136,19 +138,20 @@ public class XMLDatabase {
   // add portfolio
   // implement each method to the program
 
-  public static void main(String[] args) {
-    XMLDatabase xmlDatabase = new XMLDatabase();
-    NodeList laptops = xmlDatabase.getUsersFromDocument();
-    System.out.println("UserNames:");
-    for (int i = 0; i < laptops.getLength(); i++) {
-      Node laptop = laptops.item(i);
-      if (laptop.getNodeType() == Node.ELEMENT_NODE) {
-        Element laptopElement = (Element) laptop;
-        String laptopName = laptopElement.getAttribute("name");
-        System.out.println(laptopName);
-      }
-    }
-    System.out.println(xmlDatabase.checkName("Ahri"));
+  public static void main(String[] args) throws TransformerConfigurationException {
+    //TODO GetName from XML
+//    XMLDatabase xmlDatabase = new XMLDatabase();
+//    NodeList laptops = xmlDatabase.getUsersFromDocument();
+//    System.out.println("UserNames:");
+//    for (int i = 0; i < laptops.getLength(); i++) {
+//      Node laptop = laptops.item(i);
+//      if (laptop.getNodeType() == Node.ELEMENT_NODE) {
+//        Element laptopElement = (Element) laptop;
+//        String laptopName = laptopElement.getAttribute("name");
+//        System.out.println(laptopName);
+//      }
+//    }
+//    System.out.println(xmlDatabase.checkName("Ahri"));
 
 //    XMLDatabase xmlDatabase = new XMLDatabase();
 //    List<Portfolio> portfolios = xmlDatabase.setPortfoliosByUsername("aaa");
@@ -159,5 +162,53 @@ public class XMLDatabase {
 //        System.out.println("  Stock Value: " + stock.getValue());
 //        System.out.println("  Stock Time: " + stock.getTime());
 //      }
+    //TODO create new XML by company name.
+    XMLDatabase xmlDatabase = new XMLDatabase();
+    xmlDatabase.createXMLbyCompanyInfo("GOOG");
   }
+
+  public void createXMLbyCompanyInfo(String companyName) {
+    try {
+      // Define the file path and name
+      File file = new File(companyName + "_Info.xml");
+
+      // Check if the file already exists
+      if (file.exists()) {
+        System.out.println("XML file for " + companyName + " already exists. No new file created.");
+        return; // Exit the method if file exists
+      }
+
+      DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+
+      // Create a new document
+      Document document = documentBuilder.newDocument();
+
+      // Create root element, e.g., <CompanyInfo>
+      Element root = document.createElement("CompanyInfo");
+      document.appendChild(root);
+
+      // Create company element with text content
+      Element company = document.createElement("CompanyName");
+      company.appendChild(document.createTextNode(companyName));
+      root.appendChild(company);
+
+      // Create TransformerFactory and Transformer to write to file
+      TransformerFactory transformerFactory = TransformerFactory.newInstance();
+      Transformer transformer = transformerFactory.newTransformer();
+      DOMSource domSource = new DOMSource(document);
+
+      // StreamResult with the file object
+      StreamResult streamResult = new StreamResult(file);
+
+      // Transform the DOM Object to an XML File
+      transformer.transform(domSource, streamResult);
+
+      System.out.println("XML file created successfully for company: " + companyName);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
 }

@@ -23,7 +23,7 @@ public class Model {
 
   public User creatUser(String username,float buyingPower){
     User user = new User(username,buyingPower);
-
+    xmlDatabase.addUser(username);
     return user;
   }
 
