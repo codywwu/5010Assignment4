@@ -75,35 +75,27 @@ public class Controller {
   }
 
   private void showUserPortfolio() {
-    Scanner input = new Scanner(System.in);
-    view.displayPortfolios(model.getUserPortfolios());
-    view.portfolioMenu();
-    String portfolioAction=input.nextLine();
-    while (!validPortfolioSelection(portfolioAction)) {
-      portfolioAction = input.nextLine();
-    }
-    switch (portfolioAction){
-      case "1":
+    Scanner newInput = new Scanner(System.in);
+
+    while (true) {
+      view.displayPortfolios(model.getUserPortfolios());
+      view.portfolioMenu();
+      String portfolioAction = newInput.nextLine();
+
+      if (portfolioAction.equals("1")) {
         mainMenu();
         break;
-      case "2":
+      } else if (portfolioAction.equals("2")) {
         exitProgram();
         break;
-      default:
-        view.displayStocks(model.getUserPortfolios(),portfolioAction);
+      } else if (model.checkPortfolioName(portfolioAction)) {
+        view.displayStocks(model.getUserPortfolios(), portfolioAction);
         view.stockMenu();
+        break;
+      } else {
+        view.invalidInput();
+      }
     }
-  }
-
-  public boolean validPortfolioSelection(String portfolioAction ) {
-   if (portfolioAction.length()==1 && (!portfolioAction.equals("1") || !portfolioAction.equals("2"))){
-      view.invalidInput();
-      return false;
-    }else if (!model.checkPortfolioName(portfolioAction)){
-      view.invalidPortfolioUsernameInput();
-      return false;
-    }
-    return true;
   }
 
   public boolean validMenuSelection(int input, int range) {

@@ -45,11 +45,7 @@
        
       </portfolio>
 
-    <portfolio name="portfolio3">
-      <stock name="GOOG" value="50"/>
-      <stock name="STOCK" value="50"/>
-    </portfolio>
-  <portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio></portfolios>
+   </portfolios>
         
   </user>
   <user name="wwq">
