@@ -34,11 +34,20 @@ public class Model {
     return userPortfolios;
   }
 
+  public boolean checkPortfolioName (String input){
+    List<Portfolio> portfolios = getUserPortfolios();
+    for (Portfolio portfolio : portfolios) {
+      if (portfolio.name.equalsIgnoreCase(input)) {
+        return true; // Portfolio name found
+      }
+    }
+    return false; // Portfolio name not found
+  }
+
 
 
 
   public Portfolio createPortfolio(String name,int shares){
-   Portfolio portfolio = new Portfolio(name,0);
-   return portfolio;
+    return new Portfolio(name);
   }
 }

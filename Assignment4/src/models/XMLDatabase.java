@@ -102,7 +102,7 @@ public class XMLDatabase {
             if (portfolioNode.getNodeType() == Node.ELEMENT_NODE) {
               Element portfolioElement = (Element) portfolioNode;
               String portfolioName = portfolioElement.getAttribute("name");
-              Portfolio portfolio = new Portfolio(portfolioName,0);
+              Portfolio portfolio = new Portfolio(portfolioName);
 
               NodeList stocks = portfolioElement.getElementsByTagName("stock");
               for (int k = 0; k < stocks.getLength(); k++) {

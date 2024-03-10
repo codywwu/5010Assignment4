@@ -68,6 +68,15 @@ public void InvalidInputGreaterThanZero(){
   System.out.println("The number must be larger than 0. Please try again:");
 }
 
+
+  public void invalidInput(){
+    System.out.println("The number must be between 1 and 2. Please try again:");
+  }
+
+  public void invalidPortfolioUsernameInput(){
+    System.out.println("The Username is not found, please try again or exit to main menu to add portfolio: ");
+  }
+
 public void successPurchase(int quantity, String companySymbol){
   System.out.println("You have chosen to purchase " + quantity + " shares of " + companySymbol + ".");
 }
@@ -100,12 +109,27 @@ public void addCompanyOrDone(){
   public void displayPortfolios(List<Portfolio> portfolios) {
     for (Portfolio portfolio : portfolios) {
       System.out.println("Portfolio Name: " + portfolio.name);
-      for (Stock stock : portfolio.getStocks()) {
-        System.out.println("  Stock Name: " + stock.getCompanyName());
-        System.out.println("  Stock Value: " + stock.getUserShared());
-        System.out.println("  Stock Time: " + stock.getTimeStamp());
+      System.out.println("  Stock quantity: "+ portfolio.getQuantity());
+    }
+  }
+
+  public void displayStocks(List<Portfolio> portfolios, String inputPortfolios) {
+    for (Portfolio portfolio : portfolios) {
+      if (portfolio.name.equals(inputPortfolios)) {
+        System.out.println("Portfolio Name: " + portfolio.name);
+        for (Stock stock : portfolio.getStocks()) {
+          System.out.println("  Stock Name: " + stock.getCompanyName());
+          System.out.println("    Shared Value: " + stock.getUserShared());
+          System.out.println("    Stock Time: " + stock.getTimeStamp());
+        }
       }
     }
+  }
+
+  public void portfolioMenu(){
+    System.out.println("1, Exit to Main menu");
+    System.out.println("2, Exit the program");
+    System.out.println("Enter the name of portfolio to view more details:");
   }
 
 
