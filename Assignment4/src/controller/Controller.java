@@ -34,12 +34,12 @@ public class Controller {
      view.promptUserName();
       username = input.nextLine();
       // User have 1000 buying power for now, indented for future use.
-      user = model.creatUser(username,1000);
     }
     if (model.checkInputName(username)){
       view.displayWelcomeMessage(username);
     }else {
       view.displayNewWelcomeMessage(username);
+      user = model.creatUser(username,1000);
     }
 
     mainMenu();
@@ -75,9 +75,10 @@ public class Controller {
   }
 
   private void showUserPortfolio() {
+    Scanner input = new Scanner(System.in);
     view.displayPortfolios(model.getUserPortfolios());
     view.portfolioMenu();
-    String portfolioAction = input.nextLine();
+    String portfolioAction=input.nextLine();
     while (!validPortfolioSelection(portfolioAction)) {
       portfolioAction = input.nextLine();
     }
@@ -90,13 +91,12 @@ public class Controller {
         break;
       default:
         view.displayStocks(model.getUserPortfolios(),portfolioAction);
+        view.stockMenu();
     }
   }
 
   public boolean validPortfolioSelection(String portfolioAction ) {
-    if (portfolioAction.equals("x")){
-      return false;
-    }else if (portfolioAction.length()==1 && (!portfolioAction.equals("1") || !portfolioAction.equals("2"))){
+   if (portfolioAction.length()==1 && (!portfolioAction.equals("1") || !portfolioAction.equals("2"))){
       view.invalidInput();
       return false;
     }else if (!model.checkPortfolioName(portfolioAction)){

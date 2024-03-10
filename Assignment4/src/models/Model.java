@@ -35,8 +35,7 @@ public class Model {
   }
 
   public boolean checkPortfolioName (String input){
-    List<Portfolio> portfolios = getUserPortfolios();
-    for (Portfolio portfolio : portfolios) {
+    for (Portfolio portfolio : userPortfolios) {
       if (portfolio.name.equalsIgnoreCase(input)) {
         return true; // Portfolio name found
       }
