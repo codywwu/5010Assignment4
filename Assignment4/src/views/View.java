@@ -74,7 +74,7 @@ public void InvalidInputGreaterThanZero(){
   }
 
   public void invalidPortfolioUsernameInput(){
-    System.out.println("The Username is not found, please try again or exit to main menu to add portfolio: ");
+    System.out.println("The Portfolio name is not found, please try again or exit to main menu to add portfolio: ");
   }
 
 public void successPurchase(int quantity, String companySymbol){
@@ -107,9 +107,13 @@ public void addCompanyOrDone(){
   }
 
   public void displayPortfolios(List<Portfolio> portfolios) {
-    for (Portfolio portfolio : portfolios) {
-      System.out.println("Portfolio Name: " + portfolio.name);
-      System.out.println("  Stock quantity: "+ portfolio.getQuantity());
+    if (portfolios.isEmpty()){
+      System.out.println("No portfolio had been created");
+    } else {
+      for (Portfolio portfolio : portfolios) {
+        System.out.println("Portfolio Name: " + portfolio.name);
+        System.out.println("  Stock quantity: " + portfolio.getQuantity());
+      }
     }
   }
 
