@@ -120,16 +120,22 @@ public void addCompanyOrDone(){
         for (Stock stock : portfolio.getStocks()) {
           System.out.println("  Stock Name: " + stock.getCompanyName());
           System.out.println("    Shared Value: " + stock.getUserShared());
-          System.out.println("    Stock Time: " + stock.getTimeStamp());
+          System.out.println("    Create Time: " + stock.getTimeStamp());
         }
       }
     }
   }
 
+  public void stockMenu(){
+    System.out.println("1, Exit to Main menu");
+    System.out.println("2, Exit the program");
+    System.out.println("Enter the number corresponding to the action, or date to view the stock's profit on that date: ");
+  }
+
   public void portfolioMenu(){
     System.out.println("1, Exit to Main menu");
     System.out.println("2, Exit the program");
-    System.out.println("Enter the name of portfolio to view more details:");
+    System.out.println("Enter the number corresponding to the action, or the name of a portfolio to view more details:");
   }
 
 

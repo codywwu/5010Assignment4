@@ -86,6 +86,8 @@ public class XMLDatabase {
     saveChanges();
   }
 
+
+
   public List<Portfolio> getPortfoliosByUsername(String username) {
     List<Portfolio> portfoliosList = new ArrayList<>();
 
@@ -134,6 +136,40 @@ public class XMLDatabase {
     return portfoliosList;
   }
 
+  public void addPortfolio(String username, String portfolioName, Portfolio portfolio) {
+    NodeList userList = document.getElementsByTagName("user");
+    List<Stock> stocks= portfolio.stockArrayList;
+    for (int i = 0; i < userList.getLength(); i++) {
+      Node userNode = userList.item(i);
+      if (userNode.getNodeType() == Node.ELEMENT_NODE) {
+        Element userElement = (Element) userNode;
+        String name = userElement.getAttribute("name");
+        if (name.equals(username)) {
+          Element portfolios = (Element) userElement.getElementsByTagName("portfolios").item(0);
+
+          Element portfolioElement = document.createElement("portfolio");
+          portfolioElement.setAttribute("name", portfolioName);
+
+          for (Stock stock : stocks) {
+            Element stockElement = document.createElement("stock");
+            stockElement.setAttribute("name", stock.getCompanyName());
+            stockElement.setAttribute("value", String.valueOf(stock.getUserShared()));
+            // Optionally, you can also add time information for each stock here if required
+            // For example:
+            // Element timeElement = document.createElement("time");
+            // timeElement.setAttribute("value", stock.getTime());
+            // stockElement.appendChild(timeElement);
+
+            portfolioElement.appendChild(stockElement);
+          }
+          portfolios.appendChild(portfolioElement);
+          saveChanges();
+          break;
+        }
+      }
+    }
+  }
+
   private void saveChanges() {
     try {
       Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -153,18 +189,16 @@ public class XMLDatabase {
 
   public static void main(String[] args) throws TransformerConfigurationException {
     XMLDatabase xmlDatabase = new XMLDatabase();
-    List<Portfolio> portfolios = xmlDatabase.getPortfoliosByUsername("aaa");
-    for (Portfolio portfolio : portfolios) {
-      System.out.println("Portfolio Name: " + portfolio.name);
-      for (Stock stock : portfolio.getStocks()) {
-        System.out.println("  Stock Name: " + stock.getCompanyName());
-        System.out.println("  Stock Value: " + stock.getUserShared());
-        System.out.println("  Stock Time: " + stock.getTimeStamp());
-      }
+    Portfolio portfolio3 =new Portfolio("portfolio3");
+    Stock stock= new Stock("GOOG",50,"2024-03-09");
+    Stock stock1= new Stock("STOCK",50,"2024-03-09");
+    portfolio3.addStock(stock);
+    portfolio3.addStock(stock1);
+    xmlDatabase.addPortfolio("aaa","portfolio3",portfolio3);
 //    //TODO create new XML by company name.
 //    XMLDatabase xmlDatabase = new XMLDatabase();
 //    xmlDatabase.createXMLbyCompanyInfo("KO");
-    }
+
   }
 
   public void createXMLbyCompanyInfo(String companyName) {
