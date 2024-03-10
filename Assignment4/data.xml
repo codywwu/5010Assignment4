@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <users>
-                                
+                                              
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -16,7 +23,14 @@
   
   
   <user name="Dell">
-                                                                
+                                                                                            
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -32,7 +46,14 @@
     
     
     <password value=""/>
-                                                                
+                                                                                            
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -48,7 +69,14 @@
     
     
     <portfolios>
-                                                                                                
+                                                                                                                                          
+      
+      
+      
+      
+      
+      
+      
       
       
       
@@ -64,7 +92,14 @@
       
       
       <portfolio name="portfolio1">
-                                                                                                                                
+                                                                                                                                                                                        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -80,7 +115,14 @@
         
         
         <stock name="GOOG" value="250"/>
-                                                                                                                                
+                                                                                                                                                                                        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -96,7 +138,14 @@
         
         
         <time value="2024-03-05"/>
-                                                                                                                              
+                                                                                                                                                                                      
+      
+      
+      
+      
+      
+      
+      
       
       
       
@@ -112,7 +161,14 @@
       
       
       </portfolio>
-                                                                                              
+                                                                                                                                        
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -128,7 +184,14 @@
     
     
     </portfolios>
-                                                              
+                                                                                          
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -144,7 +207,14 @@
   
   
   </user>
-                                
+                                              
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -160,7 +230,14 @@
   
   
   <user name="John">
-                                                                
+                                                                                            
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -176,7 +253,14 @@
     
     
     <password value=""/>
-                                                                
+                                                                                            
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -193,7 +277,14 @@
     
     <portfolios>
     </portfolios>
-                                                              
+                                                                                          
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -209,7 +300,14 @@
   
   
   </user>
-                                
+                                              
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -225,7 +323,14 @@
   
   
   <user name="aaa">
-                                                                
+                                                                                            
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -241,7 +346,14 @@
     
     
     <password value=""/>
-                                                                
+                                                                                            
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -257,7 +369,14 @@
     
     
     <portfolios>
-                                                                                                
+                                                                                                                                          
+      
+      
+      
+      
+      
+      
+      
       
       
       
@@ -273,7 +392,14 @@
       
       
       <portfolio name="portfolio1">
-                                                                                                                                
+                                                                                                                                                                                        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -289,7 +415,14 @@
         
         
         <stock name="GOOG" value="250"/>
-                                                                                                                                
+                                                                                                                                                                                        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -305,7 +438,14 @@
         
         
         <time value="2024-03-05"/>
-                                                                                                                              
+                                                                                                                                                                                      
+      
+      
+      
+      
+      
+      
+      
       
       
       
@@ -321,7 +461,14 @@
       
       
       </portfolio>
-                                                                                                
+                                                                                                                                          
+      
+      
+      
+      
+      
+      
+      
       
       
       
@@ -337,7 +484,14 @@
       
       
       <portfolio name="portfolio2">
-                                                                                                                                
+                                                                                                                                                                                        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -353,7 +507,14 @@
         
         
         <stock name="GOOG" value="250"/>
-                                                                                                                                
+                                                                                                                                                                                        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -369,7 +530,14 @@
         
         
         <stock name="ADD" value="150"/>
-                                                                                                                                
+                                                                                                                                                                                        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -385,7 +553,14 @@
         
         
         <time value="2024-03-05"/>
-                                                                                                                              
+                                                                                                                                                                                      
+      
+      
+      
+      
+      
+      
+      
       
       
       
@@ -401,7 +576,14 @@
       
       
       </portfolio>
-                                                                                              
+                                                                                                                                        
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -417,7 +599,580 @@
     
     
     </portfolios>
-                                                              
+                                                                                          
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </user>
+                                              
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <user name="wwq">
+                                                                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <password value=""/>
+                                                                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <portfolios/>
+                                                                                          
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </user>
+                                            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <user name="aaa">
+                                                                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <password value=""/>
+                                                                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <portfolios/>
+                                                                                      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </user>
+                                          
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <user name="aaa">
+                                                                                    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <password value=""/>
+                                                                                    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <portfolios/>
+                                                                                  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </user>
+                                        
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <user name="aaa">
+                                                                                
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <password value=""/>
+                                                                                
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <portfolios/>
+                                                                              
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </user>
+                                      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <user name="aaa">
+                                                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <password value=""/>
+                                                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <portfolios/>
+                                                                          
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </user>
+                                    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <user name="aaa">
+                                                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <password value=""/>
+                                                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <portfolios/>
+                                                                      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </user>
+                                  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <user name="aaa">
+                                                                    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <password value=""/>
+                                                                    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <portfolios/>
+                                                                  
+  
   
   
   
@@ -448,7 +1203,8 @@
   
   
   
-  <user name="wwq">
+  
+  <user name="aaa">
                                                                 
     
     
@@ -880,7 +1636,7 @@
   
   
   
-  <user name="aaa">
+  <user name="wwq">
                             
     
     
@@ -908,7 +1664,7 @@
   
   
   
-  <user name="aaa">
+  <user name="bbb">
                         
     
     
@@ -952,7 +1708,7 @@
   
   
   
-  <user name="aaa">
+  <user name="wwq">
                 
     
     
@@ -968,7 +1724,7 @@
       
   
   
-  <user name="aaa">
+  <user name="wwq">
             
     
     <password value=""/>
@@ -980,7 +1736,7 @@
   </user>
     
   
-  <user name="aaa">
+  <user name="wwq">
         
     <password value=""/>
         
@@ -988,7 +1744,7 @@
       
   </user>
   
-  <user name="aaa">
+  <user name="wwq">
     <password value=""/>
     <portfolios/>
   </user>
