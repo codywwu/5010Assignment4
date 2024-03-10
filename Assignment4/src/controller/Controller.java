@@ -181,7 +181,7 @@ public class Controller {
         // Proceed with further processing here
 
         //
-        Stock stock = model.createStock(companySymbol,50,currentDate);
+        Stock stock = model.createStock(companySymbol,quantity,currentDate);
 
         portfolio.addStock(stock);
       } else {
@@ -211,9 +211,36 @@ public class Controller {
   }
 
   private void doneCreatPortfolio() {
-    //TODO Add port into the user's portList.
   user.addPortfolio(portfolio);
   view.donePortfolioInfo(user.getPortfolioList());
+
+
+    while (true) {
+      view.mainMenu();
+      try {
+        menuSelection = input.nextInt();
+        if (validMenuSelection(menuSelection, 3)) {
+          input.nextLine(); // Consume the invalid input
+          continue; // Restart the loop to prompt for input again
+        }
+        break; // Break out of the loop if input is valid
+      }catch (InputMismatchException e) {
+        view.NumberInvalidInput();
+        input.nextLine(); // Consume the invalid input
+      }
+    }
+    switch (menuSelection) {
+      case 1:
+        showUserPortfolio();
+        break;
+      case 2:
+        setPortfolio();
+        break;
+      case 3:
+        mainMenu();
+        break;
+    }
+
   }
 
   private boolean CheckValidCompanySymbol(String companySymbol) {
