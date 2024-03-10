@@ -37,6 +37,7 @@ public class Controller {
     }
     if (model.checkInputName(username)){
       view.displayWelcomeMessage(username);
+      user = new User(username,1000);
     }else {
       view.displayNewWelcomeMessage(username);
       user = model.creatUser(username,1000);
