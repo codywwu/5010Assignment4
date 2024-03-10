@@ -76,6 +76,34 @@ public class Controller {
 
   private void showUserPortfolio() {
     view.displayPortfolios(model.getUserPortfolios());
+    view.portfolioMenu();
+    String portfolioAction = input.nextLine();
+    while (!validPortfolioSelection(portfolioAction)) {
+      portfolioAction = input.nextLine();
+    }
+    switch (portfolioAction){
+      case "1":
+        mainMenu();
+        break;
+      case "2":
+        exitProgram();
+        break;
+      default:
+        view.displayStocks(model.getUserPortfolios(),portfolioAction);
+    }
+  }
+
+  public boolean validPortfolioSelection(String portfolioAction ) {
+    if (portfolioAction.equals("x")){
+      return false;
+    }else if (portfolioAction.length()==1 && (!portfolioAction.equals("1") || !portfolioAction.equals("2"))){
+      view.invalidInput();
+      return false;
+    }else if (!model.checkPortfolioName(portfolioAction)){
+      view.invalidPortfolioUsernameInput();
+      return false;
+    }
+    return true;
   }
 
   public boolean validMenuSelection(int input, int range) {
