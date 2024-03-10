@@ -159,7 +159,6 @@ public class XMLDatabase {
             // Element timeElement = document.createElement("time");
             // timeElement.setAttribute("value", stock.getTime());
             // stockElement.appendChild(timeElement);
-
             portfolioElement.appendChild(stockElement);
           }
           portfolios.appendChild(portfolioElement);
