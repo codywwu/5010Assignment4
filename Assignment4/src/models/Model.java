@@ -1,24 +1,26 @@
 package models;
-
-import java.util.ArrayList;
 import java.util.List;
 
+
 public class Model {
-  private List<String> data; // Example: Storing user input data
-  XMLDatabase xmlDatabase = new XMLDatabase();
+  private final XMLDatabase xmlDatabase;
+  private List<Portfolio> userPortfolios;
+  private User user;
 
   // Constructor
   public Model() {
-    this.data = new ArrayList<>();
+
+    xmlDatabase = new XMLDatabase();
   }
 
   public Boolean checkInputName(String name){
-    return xmlDatabase.checkName(name);
+    user = new User(name,0);
+    return XMLDatabase.checkName(name);
   }
 
-  public Stock createStock(String companySymbol, String currentDate) {
-     Stock stock = new Stock(companySymbol,currentDate);
-            return stock;
+
+  public Stock createStock(String companySymbol,long userShared, String currentDate) {
+    return new Stock(companySymbol,userShared,currentDate);
   }
 
   public User creatUser(String username,float buyingPower){
@@ -27,9 +29,25 @@ public class Model {
     return user;
   }
 
-  public Portfolio createPortfolio(String name,int shares){
+  public List<Portfolio> getUserPortfolios() {
+    userPortfolios=xmlDatabase.getPortfoliosByUsername(user.userName);
+    return userPortfolios;
+  }
 
-   Portfolio portfolio = new Portfolio(name,0);
-   return portfolio;
+  public boolean checkPortfolioName (String input){
+    List<Portfolio> portfolios = getUserPortfolios();
+    for (Portfolio portfolio : portfolios) {
+      if (portfolio.name.equalsIgnoreCase(input)) {
+        return true; // Portfolio name found
+      }
+    }
+    return false; // Portfolio name not found
+  }
+
+
+
+
+  public Portfolio createPortfolio(String name,int shares){
+    return new Portfolio(name);
   }
 }

@@ -75,7 +75,35 @@ public class Controller {
   }
 
   private void showUserPortfolio() {
-    // Date ?
+    view.displayPortfolios(model.getUserPortfolios());
+    view.portfolioMenu();
+    String portfolioAction = input.nextLine();
+    while (!validPortfolioSelection(portfolioAction)) {
+      portfolioAction = input.nextLine();
+    }
+    switch (portfolioAction){
+      case "1":
+        mainMenu();
+        break;
+      case "2":
+        exitProgram();
+        break;
+      default:
+        view.displayStocks(model.getUserPortfolios(),portfolioAction);
+    }
+  }
+
+  public boolean validPortfolioSelection(String portfolioAction ) {
+    if (portfolioAction.equals("x")){
+      return false;
+    }else if (portfolioAction.length()==1 && (!portfolioAction.equals("1") || !portfolioAction.equals("2"))){
+      view.invalidInput();
+      return false;
+    }else if (!model.checkPortfolioName(portfolioAction)){
+      view.invalidPortfolioUsernameInput();
+      return false;
+    }
+    return true;
   }
 
   public boolean validMenuSelection(int input, int range) {
@@ -153,9 +181,9 @@ public class Controller {
         // Proceed with further processing here
 
         //
-        Stock stock = model.createStock(companySymbol,currentDate);
+        Stock stock = model.createStock(companySymbol,50,currentDate);
 
-        portfolio.addStock(stock,quantity);
+        portfolio.addStock(stock);
       } else {
         // if not valid, prompt again for a valid company symbol.
        view.invalidCompanySymbol();

@@ -86,7 +86,7 @@ public class XMLDatabase {
     saveChanges();
   }
 
-  public List<Portfolio> setPortfoliosByUsername(String username) {
+  public List<Portfolio> getPortfoliosByUsername(String username) {
     List<Portfolio> portfoliosList = new ArrayList<>();
 
     NodeList userList = document.getElementsByTagName("user");
@@ -102,7 +102,8 @@ public class XMLDatabase {
             if (portfolioNode.getNodeType() == Node.ELEMENT_NODE) {
               Element portfolioElement = (Element) portfolioNode;
               String portfolioName = portfolioElement.getAttribute("name");
-              List<Stock> stocksList = new ArrayList<>();
+              Portfolio portfolio = new Portfolio(portfolioName);
+
               NodeList stocks = portfolioElement.getElementsByTagName("stock");
               for (int k = 0; k < stocks.getLength(); k++) {
                 Node stockNode = stocks.item(k);
@@ -110,13 +111,20 @@ public class XMLDatabase {
                   Element stockElement = (Element) stockNode;
                   String stockName = stockElement.getAttribute("name");
                   int stockValue = Integer.parseInt(stockElement.getAttribute("value"));
-                  String stockTime = stockElement.getElementsByTagName("time").item(0).getAttributes().getNamedItem("value").getNodeValue();
-                  //new Stock
-                  stocksList.add(new Stock(stockName /*stockValue*/, stockTime));
+
+                  String stockTime = null;
+                  NodeList timeList = portfolioElement.getElementsByTagName("time");
+                  if (timeList.getLength() > 0) {
+                    Element timeElement = (Element) timeList.item(0);
+                    stockTime = timeElement.getAttribute("value");
+                  }
+
+                  Stock stock = new Stock(stockName, stockValue, stockTime);
+                  portfolio.stockArrayList.add(stock); // Add to existing list
                 }
               }
-              //new portfolio
-              portfoliosList.add(new Portfolio(portfolioName,0/*stocksList*/));
+
+              portfoliosList.add(portfolio);
             }
           }
           break;
@@ -144,32 +152,19 @@ public class XMLDatabase {
   // implement each method to the program
 
   public static void main(String[] args) throws TransformerConfigurationException {
-    //TODO GetName from XML
-//    XMLDatabase xmlDatabase = new XMLDatabase();
-//    NodeList laptops = xmlDatabase.getUsersFromDocument();
-//    System.out.println("UserNames:");
-//    for (int i = 0; i < laptops.getLength(); i++) {
-//      Node laptop = laptops.item(i);
-//      if (laptop.getNodeType() == Node.ELEMENT_NODE) {
-//        Element laptopElement = (Element) laptop;
-//        String laptopName = laptopElement.getAttribute("name");
-//        System.out.println(laptopName);
-//      }
-//    }
-//    System.out.println(xmlDatabase.checkName("Ahri"));
-    //TODO
-//    XMLDatabase xmlDatabase = new XMLDatabase();
-//    List<Portfolio> portfolios = xmlDatabase.setPortfoliosByUsername("aaa");
-//    for (Portfolio portfolio : portfolios) {
-//      System.out.println("Portfolio Name: " + portfolio.getName());
-//      for (Stock stock : portfolio.getStocks()) {
-//        System.out.println("  Stock Name: " + stock.getName());
-//        System.out.println("  Stock Value: " + stock.getValue());
-//        System.out.println("  Stock Time: " + stock.getTime());
-//      }
-    //TODO create new XML by company name.
     XMLDatabase xmlDatabase = new XMLDatabase();
-    xmlDatabase.createXMLbyCompanyInfo("KO");
+    List<Portfolio> portfolios = xmlDatabase.getPortfoliosByUsername("aaa");
+    for (Portfolio portfolio : portfolios) {
+      System.out.println("Portfolio Name: " + portfolio.name);
+      for (Stock stock : portfolio.getStocks()) {
+        System.out.println("  Stock Name: " + stock.getCompanyName());
+        System.out.println("  Stock Value: " + stock.getUserShared());
+        System.out.println("  Stock Time: " + stock.getTimeStamp());
+      }
+//    //TODO create new XML by company name.
+//    XMLDatabase xmlDatabase = new XMLDatabase();
+//    xmlDatabase.createXMLbyCompanyInfo("KO");
+    }
   }
 
   public void createXMLbyCompanyInfo(String companyName) {
