@@ -7,6 +7,7 @@ import models.Model;
 import models.Portfolio;
 import models.Stock;
 
+import models.XMLDatabase;
 import views.View;
 
 public class Controller {
@@ -237,10 +238,8 @@ public class Controller {
   }
 
   private boolean CheckValidCompanySymbol(String companySymbol) {
-    //TODO Always return true for now.
-    //TODO Where should this method at ?
-
-    return true;
+    XMLDatabase database = new XMLDatabase();
+    return database.companySymbolExists(companySymbol);
   }
 
 }

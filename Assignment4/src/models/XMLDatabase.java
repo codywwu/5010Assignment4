@@ -214,7 +214,7 @@ public class XMLDatabase {
       return; // Exit the program if the file exists
     }
 
-    if (companySymbolExists(apiKey, stockSymbol)) {
+    if (companySymbolExists(stockSymbol)) {
       System.out.println("Company symbol " + stockSymbol + " does not exist or no data available.");
       return;
     }
@@ -284,19 +284,65 @@ public class XMLDatabase {
     }
   }
 
-  private static boolean companySymbolExists(String apiKey, String stockSymbol) {
+  public static boolean companySymbolExists( String stockSymbol) {
+    String apiKey = "W0M1JOKC82EZEQA8";
     String urlTemplate = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=%s&apikey=%s";
     String queryUrl = String.format(urlTemplate, stockSymbol, apiKey);
+    URL url = null;
 
-    try (InputStream in = new URL(queryUrl).openStream();
-         BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
-      String response = reader.readLine(); // Read the first line of the response
-      // Simple check to see if response contains "Global Quote" which indicates valid data
-      return response != null && response.contains("Global Quote");
-    } catch (IOException e) {
-      e.printStackTrace();
-      return false;
+    try {
+      // Attempt to create the URL
+      url = new URL("https://www.alphavantage"
+              + ".co/query?function=TIME_SERIES_DAILY"
+              + "&outputsize=full"
+              + "&symbol"
+              + "=" + stockSymbol + "&apikey="+apiKey+"&datatype=csv");
+      // Assuming additional code here for HTTP request and processing the response
+      // This is where you'd typically use the 'url' object
+
+      // If everything above succeeds, return true
+    } catch (MalformedURLException e) {
+      // Log the exception or handle it as deemed appropriate
+      System.err.println("the alphavantage API has either changed or no longer works");
+
+      // Return false if an exception is caught
     }
+
+    InputStream in = null;
+    StringBuilder output = new StringBuilder();
+
+    try {
+      /*
+      Execute this query. This returns an InputStream object.
+      In the csv format, it returns several lines, each line being separated
+      by commas. Each line contains the date, price at opening time, highest
+      price for that date, lowest price for that date, price at closing time
+      and the volume of trade (no. of shares bought/sold) on that date.
+
+      This is printed below.
+       */
+      in = url.openStream();
+      int b;
+
+      while ((b=in.read())!=-1) {
+        output.append((char)b);
+      }
+    }
+    catch (IOException e) {
+      throw new IllegalArgumentException("No price data found for "+stockSymbol);
+    }
+
+    return !output.toString().contains("Error Message");
+
+//    try (InputStream in = new URL(queryUrl).openStream();
+//         BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
+//      String response = reader.readLine(); // Read the first line of the response
+//      // Simple check to see if response contains "Global Quote" which indicates valid data
+//      return response != null && response.contains("Global Quote");
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//      return false;
+//    }
   }
 
 }
