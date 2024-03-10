@@ -122,7 +122,7 @@ public class Controller {
   public void setPortfolio() {
     menuSelection = 0;
     while (true) {
-      //Creating new portforlio here.
+      //Creating new portfolio here.
       String portfolioName = "Portfolio"+portfolioNumber;
       portfolio=model.createPortfolio(portfolioName,0);
       view.createPortfolio();
