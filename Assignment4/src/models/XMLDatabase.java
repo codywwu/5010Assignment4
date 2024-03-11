@@ -14,7 +14,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -47,6 +46,36 @@ public class XMLDatabase {
       e.printStackTrace();
     }
   }
+
+  public Portfolio readImportedFile(String fileName) {
+    try {
+      DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder builder = factory.newDocumentBuilder();
+      document = builder.parse(new File("InputData/"+fileName+".xml"));
+      document.getDocumentElement().normalize();
+    } catch (ParserConfigurationException | SAXException | IOException e) {
+      e.printStackTrace();
+    } Element portfolioElement = (Element) document.getElementsByTagName("portfolio").item(0);
+    String portfolioName = portfolioElement.getAttribute("name");
+    //creat portfolio
+    Portfolio portfolio = new Portfolio(portfolioName);
+    NodeList stockList = portfolioElement.getElementsByTagName("stock");
+
+    for (int i = 0; i < stockList.getLength(); i++) {
+      Element stockElement = (Element) stockList.item(i);
+      Stock stock = getStock(stockElement, portfolioElement);
+      portfolio.stockArrayList.add(stock);
+    }
+//    NodeList timeList = portfolioElement.getElementsByTagName("time");
+//    if (timeList.getLength() > 0) {
+//      Element timeElement = (Element) timeList.item(0);
+//      String timeValue = timeElement.getAttribute("value");
+//      System.out.println("Time: " + timeValue);
+//    }
+
+    return portfolio;
+  }
+
 
 
   public static NodeList getUsersFromDocument() {
@@ -110,22 +139,10 @@ public class XMLDatabase {
               for (int k = 0; k < stocks.getLength(); k++) {
                 Node stockNode = stocks.item(k);
                 if (stockNode.getNodeType() == Node.ELEMENT_NODE) {
-                  Element stockElement = (Element) stockNode;
-                  String stockName = stockElement.getAttribute("name");
-                  int stockValue = Integer.parseInt(stockElement.getAttribute("value"));
-
-                  String stockTime = null;
-                  NodeList timeList = portfolioElement.getElementsByTagName("time");
-                  if (timeList.getLength() > 0) {
-                    Element timeElement = (Element) timeList.item(0);
-                    stockTime = timeElement.getAttribute("value");
-                  }
-
-                  Stock stock = new Stock(stockName, stockValue, stockTime);
+                  Stock stock = getStock((Element) stockNode, portfolioElement);
                   portfolio.stockArrayList.add(stock); // Add to existing list
                 }
               }
-
               portfoliosList.add(portfolio);
             }
           }
@@ -134,6 +151,21 @@ public class XMLDatabase {
       }
     }
     return portfoliosList;
+  }
+
+  private static Stock getStock(Element stockNode, Element portfolioElement) {
+    String stockName = stockNode.getAttribute("name");
+    int stockValue = Integer.parseInt(stockNode.getAttribute("value"));
+
+    String stockTime = null;
+    NodeList timeList = portfolioElement.getElementsByTagName("time");
+    if (timeList.getLength() > 0) {
+      Element timeElement = (Element) timeList.item(0);
+      stockTime = timeElement.getAttribute("value");
+    }
+
+    Stock stock = new Stock(stockName, stockValue, stockTime);
+    return stock;
   }
 
   public void addPortfolioXML(String username, String portfolioName, Portfolio portfolio) {
@@ -188,15 +220,9 @@ public class XMLDatabase {
   // add portfolio
   // implement each method to the program
 
-  public static void main(String[] args) throws TransformerConfigurationException {
+  public static void main(String[] args)  {
     XMLDatabase xmlDatabase = new XMLDatabase();
-    Portfolio portfolio3 =new Portfolio("portfolio3");
-    Stock stock= new Stock("GOOG",50,"2024-03-09");
-    Stock stock1= new Stock("STOCK",50,"2024-03-09");
-    portfolio3.addStock(stock);
-    portfolio3.addStock(stock1);
-    xmlDatabase.addPortfolioXML("aaa","portfolio3",portfolio3);
-    xmlDatabase.stockValueByGivenDate("2024-03-01","KO");
+    xmlDatabase.readImportedFile("NewUser");
 //    //TODO create new XML by company name.
 //    XMLDatabase xmlDatabase = new XMLDatabase();
 //    xmlDatabase.createXMLbyCompanyInfo("KO");
@@ -309,7 +335,7 @@ public class XMLDatabase {
       // Return false if an exception is caught
     }
 
-    InputStream in = null;
+    InputStream in;
     StringBuilder output = new StringBuilder();
 
     try {
