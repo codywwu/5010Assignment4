@@ -84,12 +84,12 @@ public class Controller {
   }
 
   private void showUserPortfolio() {
-    view.displayPortfolios(model.getUserPortfolios());
-    view.portfolioMenu();
     int portfolioAction = 0;
 
     while (true) {
+      view.displayPortfolios(model.getUserPortfolios());
       view.portfolioMenu();
+
       try {
         portfolioAction = input.nextInt();
         if (validMenuSelection(portfolioAction, 3)) {
@@ -120,8 +120,8 @@ public class Controller {
         input.nextLine();
       }
     }
-
   }
+
 
   private void viewStocks() {
     input = new Scanner(System.in);
@@ -217,6 +217,13 @@ public class Controller {
         break;
     }
 
+  }
+
+  private void importFile(){
+    input=new Scanner(System.in);
+    view.promptForFileName();
+    String fileName=input.nextLine();
+    model.readImport(fileName);
   }
 
   private void FillForm() {
