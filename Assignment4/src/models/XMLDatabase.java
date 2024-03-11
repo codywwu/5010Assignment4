@@ -30,6 +30,9 @@ public class XMLDatabase {
   private static Document document;
   private String fileName;
 
+  static String highStock;
+  static String lowStock;
+
   //Get the Document Builder
   public XMLDatabase() {
     readLocalFile();
@@ -196,7 +199,7 @@ public class XMLDatabase {
     portfolio3.addStock(stock);
     portfolio3.addStock(stock1);
     xmlDatabase.addPortfolioXML("aaa","portfolio3",portfolio3);
-    xmlDatabase.calculateTotoalValueByGivenDate("2024-03-01","KO");
+    xmlDatabase.stockValueByGivenDate("2024-03-01","KO");
 //    //TODO create new XML by company name.
 //    XMLDatabase xmlDatabase = new XMLDatabase();
 //    xmlDatabase.createXMLbyCompanyInfo("KO");
@@ -337,7 +340,7 @@ public class XMLDatabase {
 
   }
 
-  public static void calculateTotoalValueByGivenDate(String givenDate, String filePath) {
+  public static void stockValueByGivenDate(String givenDate, String filePath) {
     try {
       filePath = "../5010Assignment4/"+filePath+"_StockData.xml";
       File xmlFile = new File(filePath);
@@ -361,6 +364,8 @@ public class XMLDatabase {
             String high = eElement.getElementsByTagName("High").item(0).getTextContent();
             String low = eElement.getElementsByTagName("Low").item(0).getTextContent();
 
+            highStock = high;
+            lowStock = low;
             System.out.println("Date: " + date + "\nHigh: " + high + "\nLow: " + low);
             return;
           }
@@ -373,4 +378,5 @@ public class XMLDatabase {
       e.printStackTrace();
     }
   }
+
 }

@@ -106,6 +106,10 @@ public void addCompanyOrDone(){
     }
   }
 
+  /**
+   * Display the stocks info inside the portfolio.
+   * @param portfolios
+   */
   public void displayPortfolios(List<Portfolio> portfolios) {
     if (portfolios.isEmpty()){
       System.out.println("No portfolio had been created");

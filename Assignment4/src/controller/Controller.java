@@ -105,7 +105,7 @@ public class Controller {
         view.stockMenu();
 
         String givenDate = newInput.nextLine();
-        database.calculateTotoalValueByGivenDate(givenDate,portfolioAction);
+        Model.displayPortfolioValueByGivenDate(model.getUserPortfolios(),givenDate,portfolioAction);
         break;
       } else {
         view.invalidInput();
