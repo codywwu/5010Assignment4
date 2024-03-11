@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><users>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<users>
 
   <user name="Dell">
     <password value=""/>
     <portfolios>
-
-
       <portfolio name="portfolio1">
-
         <stock name="GOOG" value="250"/>
-
         <time value="2024-03-05"/>
-
       </portfolio>
     </portfolios>
 
@@ -64,4 +60,8 @@
     </portfolios>
 
   </user>
-<user name="aa"><password value=""/><portfolios/></user></users>
+  <user name="aa">
+    <password value=""/>
+    <portfolios/>
+  </user>
+</users>

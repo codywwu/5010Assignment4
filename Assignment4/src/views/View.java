@@ -73,6 +73,10 @@ public class View {
     System.out.println("Please enter the name of the portfolio you would like to access:");
   }
 
+  public void promptForFileName() {
+    System.out.println("Please enter the name of the file you would like to access (no .xml is necessary):");
+  }
+
   public void promptDate() {
     System.out.println("Please enter in a date to view "
         + "the stock's profit on that date (Ex.2024-03-05):");
