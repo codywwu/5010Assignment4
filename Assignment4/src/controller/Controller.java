@@ -83,40 +83,65 @@ public class Controller {
     }
   }
 
-  private void showUserPortfolio(){
+  private void showUserPortfolio() {
     view.displayPortfolios(model.getUserPortfolios());
     view.portfolioMenu();
-    int portfolioAction = input.nextInt();
-    while (validMenuSelection(portfolioAction,3)){
-      portfolioAction = input.nextInt();
-    }
-    switch (portfolioAction) {
-      case 1:
-        mainMenu();
-        break;
-      case 2:
-        exitProgram();
-        break;
-      case 3:
-        viewStocks();
-        break;
+    int portfolioAction = 0;
+
+    while (true) {
+      view.portfolioMenu();
+      try {
+        portfolioAction = input.nextInt();
+        if (validMenuSelection(portfolioAction, 3)) {
+          input.nextLine(); // Consume the invalid input
+          continue;
+        } else {
+          // Process the valid input
+          switch (portfolioAction) {
+            case 1:
+              mainMenu();
+              break;
+            case 2:
+              exitProgram();
+              break;
+            case 3:
+              viewStocks();
+              break;
+            default:
+              // Handle invalid menu options
+              view.menuSelectInvalid(3);
+              break;
+          }
+          break; // Exit the loop if the input is valid
+        }
+      } catch (InputMismatchException e) {
+        view.menuSelectInvalid(3);
+        // Clear the invalid input
+        input.nextLine();
+      }
     }
 
   }
 
-  private void viewStocks(){
-    input=new Scanner(System.in);
+  private void viewStocks() {
+    input = new Scanner(System.in);
     view.promptForPortfolio();
-    String portfolioName=input.nextLine();
-    while (!model.checkPortfolioName(portfolioName)){
+    String portfolioName = input.nextLine();
+    while (!model.checkPortfolioName(portfolioName)) {
       view.invalidPortfolioUsernameInput();
-      portfolioName=input.nextLine();
+      portfolioName = input.nextLine();
     }
     view.displayStocks(model.getUserPortfolios(), portfolioName);
     view.stockMenu();
-    int optionSelection= input.nextInt();
-    while(validMenuSelection(optionSelection,3)){
-      optionSelection= input.nextInt();
+    int optionSelection;
+    try {
+      optionSelection = input.nextInt();
+      while (validMenuSelection(optionSelection, 3)) {
+        optionSelection = input.nextInt();
+      }
+    } catch (InputMismatchException e) {
+      optionSelection = input.nextInt();
+      view.menuSelectInvalid(3);
     }
     switch (optionSelection) {
       case 1:
@@ -126,12 +151,13 @@ public class Controller {
         exitProgram();
         break;
       case 3:
+        input = new Scanner(System.in);
         view.promptDate();
-        String date=input.nextLine();
-        while (!isValidDateFormat(date)){
-          date=input.nextLine();
+        String date = input.nextLine();
+        while (!isValidDateFormat(date)) {
+          date = input.nextLine();
         }
-        Model.displayPortfolioValueByGivenDate(model.getUserPortfolios(),date,portfolioName);
+        Model.displayPortfolioValueByGivenDate(model.getUserPortfolios(), date, portfolioName);
         break;
     }
   }
