@@ -64,4 +64,4 @@
     </portfolios>
 
   </user>
-<user name="aa"><password value=""/><portfolios/></user></users>
+<user name="aa"><password value=""/><portfolios/></user><user name="Cody"><password value=""/><portfolios><portfolio name="Portfolio1"><stock name="JPM" value="20"/></portfolio></portfolios></user></users>
