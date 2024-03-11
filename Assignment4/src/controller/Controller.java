@@ -1,12 +1,7 @@
 package controller;
 
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import javax.xml.parsers.ParserConfigurationException;
 
 import models.User;
 import models.Model;
@@ -27,7 +22,6 @@ public class Controller {
   //TODO currentDate depending on API.
   private String currentDate="";
   private User user;
-
   private Portfolio portfolio;
 
 
@@ -213,8 +207,6 @@ public class Controller {
       case 2:
         doneCreatPortfolio();
     }
-
-
   }
 
   private void doneCreatPortfolio() {
