@@ -157,7 +157,7 @@ public class Controller {
         while (!isValidDateFormat(date)) {
           date = input.nextLine();
         }
-        Model.displayPortfolioValueByGivenDate(model.getUserPortfolios(), date);
+        Model.displayPortfolioValueByGivenDate(model.getUserPortfolios(), date,portfolioName );
         break;
     }
     mainMenu();
