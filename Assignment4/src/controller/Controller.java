@@ -1,5 +1,8 @@
 package controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -16,7 +19,7 @@ public class Controller {
   private Scanner input = new Scanner(System.in);
   private int menuSelection = 0;
   private Model model;
-  private View view;
+  private static View view;
 
   private XMLDatabase database = new XMLDatabase();
   //TODO currentDate depending on API.
@@ -81,34 +84,67 @@ public class Controller {
   }
 
   private void showUserPortfolio(){
-    Scanner newInput = new Scanner(System.in);
-
-    while (true) {
-      view.displayPortfolios(model.getUserPortfolios());
-      view.portfolioMenu();
-      String portfolioAction = newInput.nextLine();
-
-      if (portfolioAction.equals("1")) {
+    view.displayPortfolios(model.getUserPortfolios());
+    view.portfolioMenu();
+    int portfolioAction = input.nextInt();
+    while (validMenuSelection(portfolioAction,3)){
+      portfolioAction = input.nextInt();
+    }
+    switch (portfolioAction) {
+      case 1:
         mainMenu();
         break;
-      } else if (portfolioAction.equals("2")) {
+      case 2:
         exitProgram();
         break;
-      } else if (model.checkPortfolioName(portfolioAction)) {
-        view.displayStocks(model.getUserPortfolios(), portfolioAction);
-        view.stockMenu();
-
-        String givenDate = newInput.nextLine();
-        Model.displayPortfolioValueByGivenDate(model.getUserPortfolios(),givenDate,portfolioAction);
+      case 3:
+        viewStocks();
         break;
-      } else {
-        view.invalidInput();
-      }
     }
 
-    mainMenu();
+  }
 
+  private void viewStocks(){
+    input=new Scanner(System.in);
+    view.promptForPortfolio();
+    String portfolioName=input.nextLine();
+    while (!model.checkPortfolioName(portfolioName)){
+      view.invalidPortfolioUsernameInput();
+      portfolioName=input.nextLine();
+    }
+    view.displayStocks(model.getUserPortfolios(), portfolioName);
+    view.stockMenu();
+    int optionSelection= input.nextInt();
+    while(validMenuSelection(optionSelection,3)){
+      optionSelection= input.nextInt();
+    }
+    switch (optionSelection) {
+      case 1:
+        mainMenu();
+        break;
+      case 2:
+        exitProgram();
+        break;
+      case 3:
+        view.promptDate();
+        String date=input.nextLine();
+        while (!isValidDateFormat(date)){
+          date=input.nextLine();
+        }
+        Model.displayPortfolioValueByGivenDate(model.getUserPortfolios(),date,portfolioName);
+        break;
+    }
+  }
 
+  public static boolean isValidDateFormat(String dateStr) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    try {
+      LocalDate.parse(dateStr, formatter);
+      return true;
+    } catch (DateTimeParseException e) {
+      view.invalidDate();
+      return false;
+    }
   }
 
   public boolean validMenuSelection(int input, int range) {
