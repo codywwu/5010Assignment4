@@ -28,7 +28,6 @@ import org.xml.sax.SAXException;
 public class XMLDatabase {
 
   private static Document document;
-  private String fileName;
 
   //Get the Document Builder
   public XMLDatabase() {
@@ -85,8 +84,6 @@ public class XMLDatabase {
 
     saveChanges();
   }
-
-
 
   public List<Portfolio> getPortfoliosByUsername(String username) {
     List<Portfolio> portfoliosList = new ArrayList<>();
