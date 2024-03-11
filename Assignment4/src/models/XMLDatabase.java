@@ -27,7 +27,6 @@ import org.xml.sax.SAXException;
 public class XMLDatabase {
 
   private static Document document;
-
   static String highStock;
   static String lowStock;
 
@@ -64,7 +63,7 @@ public class XMLDatabase {
     for (int i = 0; i < stockList.getLength(); i++) {
       Element stockElement = (Element) stockList.item(i);
       Stock stock = getStock(stockElement, portfolioElement);
-      portfolio.stockArrayList.add(stock);
+        portfolio.stockArrayList.add(stock);
     }
 //    NodeList timeList = portfolioElement.getElementsByTagName("time");
 //    if (timeList.getLength() > 0) {
@@ -140,7 +139,9 @@ public class XMLDatabase {
                 Node stockNode = stocks.item(k);
                 if (stockNode.getNodeType() == Node.ELEMENT_NODE) {
                   Stock stock = getStock((Element) stockNode, portfolioElement);
-                  portfolio.stockArrayList.add(stock); // Add to existing list
+                  if (stock!=null) {
+                    portfolio.stockArrayList.add(stock); // Add to existing list
+                  }
                 }
               }
               portfoliosList.add(portfolio);
@@ -156,16 +157,13 @@ public class XMLDatabase {
   private static Stock getStock(Element stockNode, Element portfolioElement) {
     String stockName = stockNode.getAttribute("name");
     int stockValue = Integer.parseInt(stockNode.getAttribute("value"));
-
     String stockTime = null;
     NodeList timeList = portfolioElement.getElementsByTagName("time");
     if (timeList.getLength() > 0) {
       Element timeElement = (Element) timeList.item(0);
       stockTime = timeElement.getAttribute("value");
     }
-
-    Stock stock = new Stock(stockName, stockValue, stockTime);
-    return stock;
+    return new Stock(stockName, stockValue, stockTime);
   }
 
   public void addPortfolioXML(String username, String portfolioName, Portfolio portfolio) {
