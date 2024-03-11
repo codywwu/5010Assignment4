@@ -221,11 +221,11 @@ public class XMLDatabase {
   // implement each method to the program
 
   public static void main(String[] args)  {
-    XMLDatabase xmlDatabase = new XMLDatabase();
-    xmlDatabase.readImportedFile("NewUser");
-//    //TODO create new XML by company name.
 //    XMLDatabase xmlDatabase = new XMLDatabase();
-//    xmlDatabase.createXMLbyCompanyInfo("KO");
+//    xmlDatabase.readImportedFile("NewUser");
+//    //TODO create new XML by company name.
+    XMLDatabase xmlDatabase = new XMLDatabase();
+    xmlDatabase.createXMLbyCompanyInfo("KO");
 
   }
 
@@ -240,11 +240,11 @@ public class XMLDatabase {
       System.out.println("XML file for " + stockSymbol + " already exists. No new file created.");
       return; // Exit the program if the file exists
     }
-
-    if (companySymbolExists(stockSymbol)) {
-      System.out.println("Company symbol " + stockSymbol + " does not exist or no data available.");
-      return;
-    }
+//
+//    if (companySymbolExists(stockSymbol)) {
+//      System.out.println("Company symbol " + stockSymbol + " does not exist or no data available.");
+//      return;
+//    }
 
 
     try {

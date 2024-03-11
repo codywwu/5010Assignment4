@@ -74,5 +74,11 @@ public class Model {
         }
       }
     }
+
+    System.out.println("\nEND OF YOUR PORTFOLIOS");
+  }
+
+  public static void  changeTotalValueByTimeStamp(List<Portfolio> portfolios, String givenDate, String portfolioAction){
+
   }
 }

@@ -38,7 +38,7 @@ public class View {
 //    stockController.setStockLocalHigh(50);
 //
 //    System.out.println(stockController.getStockLocalHigh());
-public void addMoreProfoiloOrDone(){
+public void addMorePorfoiloOrDone(){
   System.out.println("1. Add more stock");
   System.out.println("2. Done");
 
@@ -151,5 +151,9 @@ public void addCompanyOrDone(){
     System.out.println("End of your portfolios");
     System.out.println("1. Change another timestamp");
     System.out.println("2. Go back to main menu");
+  }
+
+  public void promptTimeStamp() {
+    System.out.println("Please enter the time stamp you want to check");
   }
 }

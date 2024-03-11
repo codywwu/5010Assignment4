@@ -106,19 +106,9 @@ public class Controller {
       }
     }
 
-    view.changeTimeStampOrMain();
-    int input = newInput.nextInt();
+    mainMenu();
 
-    while((input != 1 || input != 2)){
-     switch (input){
-       case 1:
-         //TODO change a time stamp.
-         break;
-       case 2:
-         mainMenu();
-         break;
-     }
-    }
+
   }
 
   public boolean validMenuSelection(int input, int range) {
@@ -177,6 +167,8 @@ public class Controller {
 
       companySymbol = input.next();
       if (CheckValidCompanySymbol(companySymbol)) {
+        // Creating the company file.
+        database.createXMLbyCompanyInfo(companySymbol);
         // if valid, prompt for the quantity of purchase.
        view.promptQuantityOfPurchase();
          while (quantity <= 0) {
@@ -192,10 +184,6 @@ public class Controller {
         }
         view.successPurchase(quantity,companySymbol);
 
-        //TODO add stock and the corresponding shares into the list.
-        // Proceed with further processing here
-
-        //
         Stock stock = model.createStock(companySymbol,quantity,currentDate);
 
         portfolio.addStock(stock);
@@ -209,7 +197,7 @@ public class Controller {
    view.addCompanyOrDone();
     menuSelection = 0;
     while (validMenuSelection(menuSelection, 2)) {
-      view.addMoreProfoiloOrDone();
+      view.addMorePorfoiloOrDone();
       menuSelection = input.nextInt();
     }
 

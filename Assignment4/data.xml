@@ -50,7 +50,7 @@
   </user>
   <user name="wwq">
     <password value=""/>
-    <portfolios><portfolio name="Portfolio1"><stock name="GOOG" value="12"/></portfolio><portfolio name="Portfolio1"><stock name="GOOG" value="21"/><stock name="KO" value="10"/></portfolio><portfolio name="Portfolio1"><stock name="GOOG" value="21"/></portfolio><portfolio name="Portfolio1"><stock name="GOOG" value="12"/></portfolio></portfolios>
+    <portfolios><portfolio name="Portfolio1"><stock name="GOOG" value="12"/></portfolio><portfolio name="Portfolio1"><stock name="GOOG" value="21"/><stock name="KO" value="10"/></portfolio><portfolio name="Portfolio1"><stock name="GOOG" value="21"/></portfolio><portfolio name="Portfolio1"><stock name="GOOG" value="12"/></portfolio><portfolio name="Portfolio1"><stock name="TSLA" value="13"/></portfolio></portfolios>
         
   </user>
     
