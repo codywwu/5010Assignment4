@@ -1,5 +1,6 @@
 package models;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Model {
@@ -60,31 +61,51 @@ public class Model {
 
   public static void displayPortfolioValueByGivenDate(List<Portfolio> portfolios, String givenDate){
     XMLDatabase database = new XMLDatabase();
-    if (portfolios.isEmpty()){
-      System.out.println("No portfolio had been created");
-    } else {
-      for (Portfolio portfolio : portfolios) {
-        System.out.println("Portfolio Name: " + portfolio.name);
-        //database.stockValueByGivenDate();
-        //HOW TO GET STOCK NAME FROM A LIST
-        for (Stock stock : portfolio.getStocks()) {
-          System.out.println("Each "+stock.getCompanyName()+" share worth following on: "+givenDate);
-          System.out.println("You have "+stock.getUserShared()+"shares on this company");
-          database.stockValueByGivenDate(givenDate,stock.getCompanyName());
+    double totalHighValue = 0;
+    double totalLowValue = 0;
+    Scanner scanner = new Scanner(System.in); // Create a scanner for user input
+    boolean validDate = false;
+    while (!validDate) {
+      if (portfolios.isEmpty()) {
+        System.out.println("No portfolio had been created");
+        return; // Exit if no portfolios
+      } else {
+        for (Portfolio portfolio : portfolios) {
+          System.out.println("Portfolio Name: " + portfolio.name);
+          for (Stock stock : portfolio.getStocks()) {
+            if (database.isDateExistInXML(stock.getCompanyName(), givenDate)) {
+              validDate = true; // Set validDate to true if at least one stock has the given date
+              System.out.println("Each " + stock.getCompanyName() + " share worth following on: " + givenDate);
+              System.out.println("You have " + stock.getUserShared() + " shares on this company");
+              database.stockValueByGivenDate(givenDate, stock.getCompanyName());
 
-          Double high = Double.parseDouble(database.highStock.trim()) * stock.getUserShared();
-          System.out.println("Maximum value: " +high);
+              Double high = Double.parseDouble(database.highStock.trim()) * stock.getUserShared();
+              System.out.println("Maximum value: " + high);
+              totalHighValue += high; // Add to total portfolio high value
 
-          Double low =  Double.parseDouble(database.lowStock.trim()) * stock.getUserShared();
-          System.out.println("Minimum value: " +low);
-          System.out.println("\n\n");
+              Double low = Double.parseDouble(database.lowStock.trim()) * stock.getUserShared();
+              System.out.println("Minimum value: " + low);
+              totalLowValue += low; // Add to total portfolio low value
+
+              System.out.println("\n\n");
+            }
+          }
         }
+      }
+
+      // If we get here and validDate is false, then the date was not found for any stock
+      if (!validDate) {
+        System.out.println("Invalid date or no data for this date. Please enter another date (YYYY-MM-DD):");
+        givenDate = scanner.nextLine(); // Read a new date from the user
+      } else {
+        // After validating date and calculating values, print total portfolio values
+        System.out.println("Total portfolio value based on highest stock prices: " + totalHighValue);
+        System.out.println("Total portfolio value based on lowest stock prices: " + totalLowValue);
       }
     }
 
     System.out.println("\nEND OF YOUR PORTFOLIOS");
   }
-
   public static void  changeTotalValueByTimeStamp(List<Portfolio> portfolios, String givenDate, String portfolioAction){
 
   }
