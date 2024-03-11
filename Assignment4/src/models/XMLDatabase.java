@@ -64,7 +64,7 @@ public class XMLDatabase {
       Element stockElement = (Element) stockList.item(i);
       Stock stock = getStock(stockElement, portfolioElement);
       if (!companySymbolExists(stock.getCompanyName()) && stock.getUserShared()<0){
-        return portfolio=null;
+        return null;
       }
       portfolio.stockArrayList.add(stock);
     }
@@ -142,9 +142,7 @@ public class XMLDatabase {
                 Node stockNode = stocks.item(k);
                 if (stockNode.getNodeType() == Node.ELEMENT_NODE) {
                   Stock stock = getStock((Element) stockNode, portfolioElement);
-                  if (stock!=null) {
                     portfolio.stockArrayList.add(stock); // Add to existing list
-                  }
                 }
               }
               portfoliosList.add(portfolio);

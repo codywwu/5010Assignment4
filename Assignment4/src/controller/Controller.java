@@ -224,7 +224,12 @@ public class Controller {
     input=new Scanner(System.in);
     view.promptForFileName();
     String fileName=input.nextLine();
-    model.readImport(fileName);
+    portfolio=model.readImport(fileName);
+    if (portfolio!=null){
+      user.addPortfolio(portfolio);
+      database.addPortfolioXML(user.getUserName(),portfolio.name,portfolio);
+
+    }
   }
 
   private void FillForm() {
