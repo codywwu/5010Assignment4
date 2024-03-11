@@ -43,11 +43,14 @@ public class Model {
     return false; // Portfolio name not found
   }
 
-  public void readImport(String fileName){
+  public Portfolio readImport(String fileName){
     Portfolio importP = xmlDatabase.readImportedFile(fileName);
-    if (checkPortfolioName(importP.name)){
+    if (importP==null){
+      System.out.println("Portfolio did not import correctly, please go back to import interface and try again");
+    }else if (checkPortfolioName(importP.name)){
       System.out.println("Portfolio name is Duplicated");
     }
+    return importP;
   }
 
   public Portfolio createPortfolio(String name,int shares){
