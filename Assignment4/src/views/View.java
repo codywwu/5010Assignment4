@@ -147,4 +147,9 @@ public void addCompanyOrDone(){
   }
 
 
+  public void changeTimeStampOrMain() {
+    System.out.println("End of your portfolios");
+    System.out.println("1. Change another timestamp");
+    System.out.println("2. Go back to main menu");
+  }
 }

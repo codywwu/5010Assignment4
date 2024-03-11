@@ -111,6 +111,20 @@ public class Controller {
         view.invalidInput();
       }
     }
+
+    view.changeTimeStampOrMain();
+    int input = newInput.nextInt();
+
+    while((input != 1 || input != 2)){
+     switch (input){
+       case 1:
+         //TODO change a time stamp.
+         break;
+       case 2:
+         mainMenu();
+         break;
+     }
+    }
   }
 
   public boolean validMenuSelection(int input, int range) {
