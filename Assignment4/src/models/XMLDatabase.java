@@ -63,6 +63,7 @@ public class XMLDatabase {
     for (int i = 0; i < stockList.getLength(); i++) {
       Element stockElement = (Element) stockList.item(i);
       Stock stock = getStock(stockElement, portfolioElement);
+      if (companySymbolExists(stock.getCompanyName()))
         portfolio.stockArrayList.add(stock);
     }
 //    NodeList timeList = portfolioElement.getElementsByTagName("time");
