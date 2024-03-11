@@ -1,67 +1,143 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <users>
 
-  <user name="Dell">
+    <user name="Dell">
+        <password value=""/>
+        <portfolios>
+
+
+            <portfolio name="portfolio1">
+
+                <stock name="GOOG" value="250"/>
+
+                <time value="2024-03-05"/>
+
+            </portfolio>
+        </portfolios>
+
+    </user>
+    <user name="John">
+        <password value=""/>
+        <portfolios>
+        </portfolios>
+
+    </user>
+    <user name="aaa">
+        <password value=""/>
+        <portfolios>
+
+
+            <portfolio name="portfolio1">
+
+                <stock name="GOOG" value="250"/>
+
+                <time value="2024-03-05"/>
+
+            </portfolio>
+
+
+            <portfolio name="portfolio2">
+
+                <stock name="GOOG" value="250"/>
+
+                <time value="2024-03-05"/>
+
+            </portfolio>
+            <portfolio name="portfolio3">
+                <stock name="GOOG" value="50"/>
+            </portfolio>
+        </portfolios>
+
+    </user>
+    <user name="wwq">
+        <password value=""/>
+        <portfolios>
+            <portfolio name="Portfolio1">
+                <stock name="GOOG" value="12"/>
+            </portfolio>
+            <portfolio name="Portfolio2">
+                <stock name="GOOG" value="21"/>
+                <stock name="KO" value="10"/>
+            </portfolio>
+            <portfolio name="Portfolio3">
+                <stock name="TSLA" value="13"/>
+            </portfolio>
+        </portfolios>
+
+    </user>
+    <user name="aa">
+        <password value=""/>
+        <portfolios/>
+    </user>
+    <user name="Cody">
+        <password value=""/>
+        <portfolios>
+            <portfolio name="Portfolio1">
+                <stock name="JPM" value="20"/>
+            </portfolio>
+        </portfolios>
+    </user>
+<user name="Dell">
     <password value=""/>
     <portfolios>
-      <portfolio name="portfolio1">
-        <stock name="GOOG" value="250"/>
-        <time value="2024-03-05"/>
-      </portfolio>
+        <portfolio name="portfolio1">
+            <stock name="GOOG" value="250"/>
+            <time value="2024-03-05"/>
+        </portfolio>
     </portfolios>
 
-  </user>
-  <user name="John">
+</user>
+<user name="John">
     <password value=""/>
     <portfolios>
     </portfolios>
 
-  </user>
-  <user name="aaa">
+</user>
+<user name="aaa">
     <password value=""/>
     <portfolios>
 
 
-      <portfolio name="portfolio1">
+        <portfolio name="portfolio1">
 
-        <stock name="GOOG" value="250"/>
+            <stock name="GOOG" value="250"/>
 
-        <time value="2024-03-05"/>
+            <time value="2024-03-05"/>
 
-      </portfolio>
+        </portfolio>
 
 
-      <portfolio name="portfolio2">
+        <portfolio name="portfolio2">
 
-        <stock name="GOOG" value="250"/>
+            <stock name="GOOG" value="250"/>
 
-        <time value="2024-03-05"/>
+            <time value="2024-03-05"/>
 
-      </portfolio>
-      <portfolio name="portfolio3">
-        <stock name="GOOG" value="50"/>
-      </portfolio>
+        </portfolio>
+        <portfolio name="portfolio3">
+            <stock name="GOOG" value="50"/>
+        </portfolio>
     </portfolios>
 
-  </user>
-  <user name="wwq">
+</user>
+<user name="wwq">
     <password value=""/>
     <portfolios>
-      <portfolio name="Portfolio1">
-        <stock name="GOOG" value="12"/>
-      </portfolio>
-      <portfolio name="Portfolio2">
-        <stock name="GOOG" value="21"/>
-        <stock name="KO" value="10"/>
-      </portfolio>
-      <portfolio name="Portfolio3">
-        <stock name="TSLA" value="13"/>
-      </portfolio>
+        <portfolio name="Portfolio1">
+            <stock name="GOOG" value="12"/>
+        </portfolio>
+        <portfolio name="Portfolio2">
+            <stock name="GOOG" value="21"/>
+            <stock name="KO" value="10"/>
+        </portfolio>
+        <portfolio name="Portfolio3">
+            <stock name="TSLA" value="13"/>
+        </portfolio>
     </portfolios>
 
-  </user>
-  <user name="aa">
+</user>
+<user name="aa">
     <password value=""/>
     <portfolios/>
-  </user>
+</user>
 </users>

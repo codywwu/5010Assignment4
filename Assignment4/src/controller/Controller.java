@@ -157,9 +157,10 @@ public class Controller {
         while (!isValidDateFormat(date)) {
           date = input.nextLine();
         }
-        Model.displayPortfolioValueByGivenDate(model.getUserPortfolios(), date, portfolioName);
+        Model.displayPortfolioValueByGivenDate(model.getUserPortfolios(), date);
         break;
     }
+    mainMenu();
   }
 
   public static boolean isValidDateFormat(String dateStr) {

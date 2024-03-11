@@ -224,7 +224,8 @@ public class XMLDatabase {
 //    xmlDatabase.readImportedFile("NewUser");
 //    //TODO create new XML by company name.
     XMLDatabase xmlDatabase = new XMLDatabase();
-    xmlDatabase.createXMLbyCompanyInfo("KO");
+  //  xmlDatabase.createXMLbyCompanyInfo("KO");
+    xmlDatabase.isDateExistInXML("GOOG","2024-02-03");
 
   }
 
@@ -400,5 +401,51 @@ public class XMLDatabase {
       e.printStackTrace();
     }
   }
+
+  /**
+   * Checks if the given date exists in the specified XML file.
+   *
+   * @param givenDate The date to search for in the XML file.
+   * @return true if the date exists, false otherwise.
+   */
+  /**
+   * Checks if the given date exists in the specified XML file.
+   *
+   * @param filePath The path to the XML file.
+   * @param givenDate The date to search for in the XML file.
+   * @return true if the date exists, false otherwise.
+   */
+  public boolean isDateExistInXML(String filePath, String givenDate) {
+    try {
+      filePath = "../5010Assignment4/"+filePath+"_StockData.xml";
+      File xmlFile = new File(filePath);
+      DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+      Document doc = dBuilder.parse(xmlFile);
+      doc.getDocumentElement().normalize();
+
+      // Assuming "Record" is the element name that contains date information
+      NodeList nList = doc.getElementsByTagName("Record");
+
+      for (int temp = 0; temp < nList.getLength(); temp++) {
+        Node nNode = nList.item(temp);
+
+        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+          Element eElement = (Element) nNode;
+          // Assuming "Date" is the sub-element name under "Record" that contains the date
+          String date = eElement.getElementsByTagName("Date").item(0).getTextContent();
+
+          if (date.equals(givenDate)) {
+            return true; // Given date found
+          }
+        }
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    System.out.printf("The date your provided was not a business day");
+    return false; // Given date not found
+  }
+
 
 }
