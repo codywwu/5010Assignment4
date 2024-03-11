@@ -45,14 +45,14 @@
        
       </portfolio>
 
-   </portfolios>
+   <portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio><portfolio name="portfolio3"><stock name="GOOG" value="50"/><stock name="STOCK" value="50"/></portfolio></portfolios>
         
   </user>
   <user name="wwq">
     <password value=""/>
-    <portfolios/>
+    <portfolios><portfolio name="Portfolio1"><stock name="GOOG" value="12"/></portfolio><portfolio name="Portfolio1"><stock name="GOOG" value="21"/><stock name="KO" value="10"/></portfolio><portfolio name="Portfolio1"><stock name="GOOG" value="21"/></portfolio><portfolio name="Portfolio1"><stock name="GOOG" value="12"/></portfolio></portfolios>
         
   </user>
     
 
-<user name="ndfjsnfjsnef"><password value=""/><portfolios/></user></users>
+<user name="ndfjsnfjsnef"><password value=""/><portfolios/></user><user name="BBB"><password value=""/><portfolios><portfolio name="Portfolio1"><stock name="GOOG" value="21"/><stock name="TSLA" value="70"/></portfolio></portfolios></user><user name="SOMEONE"><password value=""/><portfolios><portfolio name="Portfolio1"><stock name="GOOG" value="21"/><stock name="KO" value="10"/></portfolio></portfolios></user><user name="TESTUSER"><password value=""/><portfolios/></user><user name="NEWUSER"><password value=""/><portfolios><portfolio name="Portfolio1"><stock name="GOOG" value="21"/></portfolio></portfolios></user></users>

@@ -29,6 +29,9 @@ public class XMLDatabase {
 
   private static Document document;
 
+  static String highStock;
+  static String lowStock;
+
   //Get the Document Builder
   public XMLDatabase() {
     readLocalFile();
@@ -133,7 +136,7 @@ public class XMLDatabase {
     return portfoliosList;
   }
 
-  public void addPortfolio(String username, String portfolioName, Portfolio portfolio) {
+  public void addPortfolioXML(String username, String portfolioName, Portfolio portfolio) {
     NodeList userList = document.getElementsByTagName("user");
     List<Stock> stocks= portfolio.stockArrayList;
     for (int i = 0; i < userList.getLength(); i++) {
@@ -192,7 +195,8 @@ public class XMLDatabase {
     Stock stock1= new Stock("STOCK",50,"2024-03-09");
     portfolio3.addStock(stock);
     portfolio3.addStock(stock1);
-    xmlDatabase.addPortfolio("aaa","portfolio3",portfolio3);
+    xmlDatabase.addPortfolioXML("aaa","portfolio3",portfolio3);
+    xmlDatabase.stockValueByGivenDate("2024-03-01","KO");
 //    //TODO create new XML by company name.
 //    XMLDatabase xmlDatabase = new XMLDatabase();
 //    xmlDatabase.createXMLbyCompanyInfo("KO");
@@ -331,15 +335,45 @@ public class XMLDatabase {
 
     return !output.toString().contains("Error Message");
 
-//    try (InputStream in = new URL(queryUrl).openStream();
-//         BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
-//      String response = reader.readLine(); // Read the first line of the response
-//      // Simple check to see if response contains "Global Quote" which indicates valid data
-//      return response != null && response.contains("Global Quote");
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//      return false;
-//    }
+  }
+
+  public static void stockValueByGivenDate(String givenDate, String filePath) {
+    try {
+      filePath = "../5010Assignment4/"+filePath+"_StockData.xml";
+      File xmlFile = new File(filePath);
+
+      DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+      Document doc = dBuilder.parse(xmlFile);
+
+      doc.getDocumentElement().normalize();
+
+      NodeList nList = doc.getElementsByTagName("Record");
+
+      for (int temp = 0; temp < nList.getLength(); temp++) {
+        Node nNode = nList.item(temp);
+
+        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+          Element eElement = (Element) nNode;
+
+          String date = eElement.getElementsByTagName("Date").item(0).getTextContent();
+          if (date.equals(givenDate)) {
+            String high = eElement.getElementsByTagName("High").item(0).getTextContent();
+            String low = eElement.getElementsByTagName("Low").item(0).getTextContent();
+
+            highStock = high;
+            lowStock = low;
+            System.out.println("Date: " + date + "\nHigh: " + high + "\nLow: " + low);
+            return;
+          }
+        }
+      }
+
+      System.out.println("No data found for the given date: " + givenDate);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
 }

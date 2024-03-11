@@ -1,7 +1,13 @@
 package controller;
 
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import models.User;
 import models.Model;
 import models.Portfolio;
@@ -10,17 +16,21 @@ import models.Stock;
 import models.XMLDatabase;
 import views.View;
 
+
 public class Controller {
   private Scanner input = new Scanner(System.in);
   private int menuSelection = 0;
   private Model model;
   private View view;
 
+  private XMLDatabase database = new XMLDatabase();
   //TODO currentDate depending on API.
   private String currentDate="";
   private User user;
 
   private Portfolio portfolio;
+
+
 
   public Controller(Model model, View view) {
     this.model = model;
@@ -76,7 +86,7 @@ public class Controller {
     }
   }
 
-  private void showUserPortfolio() {
+  private void showUserPortfolio(){
     Scanner newInput = new Scanner(System.in);
 
     while (true) {
@@ -93,6 +103,9 @@ public class Controller {
       } else if (model.checkPortfolioName(portfolioAction)) {
         view.displayStocks(model.getUserPortfolios(), portfolioAction);
         view.stockMenu();
+
+        String givenDate = newInput.nextLine();
+        Model.displayPortfolioValueByGivenDate(model.getUserPortfolios(),givenDate,portfolioAction);
         break;
       } else {
         view.invalidInput();
@@ -206,8 +219,9 @@ public class Controller {
 
   private void doneCreatPortfolio() {
   user.addPortfolio(portfolio);
-  view.donePortfolioInfo(user.getPortfolioList());
+  database.addPortfolioXML(user.getUserName(),portfolio.name,portfolio);
 
+  view.donePortfolioInfo(user.getPortfolioList());
 
     while (true) {
       view.mainMenu();
@@ -238,7 +252,6 @@ public class Controller {
   }
 
   private boolean CheckValidCompanySymbol(String companySymbol) {
-    XMLDatabase database = new XMLDatabase();
     return database.companySymbolExists(companySymbol);
   }
 
