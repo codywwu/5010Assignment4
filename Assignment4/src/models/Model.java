@@ -45,7 +45,16 @@ public class Model {
   }
 
 
-  public Portfolio createPortfolio(String name, int shares) {
+
+
+  public void readImport(String fileName){
+    Portfolio importP = xmlDatabase.readImportedFile(fileName);
+    if (checkPortfolioName(importP.name)){
+      System.out.println("Portfolio name is Duplicated");
+    }
+  }
+
+  public Portfolio createPortfolio(String name,int shares){
     return new Portfolio(name);
   }
 
