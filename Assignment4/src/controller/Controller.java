@@ -159,6 +159,7 @@ public class Controller {
           date = input.nextLine();
         }
         Model.displayPortfolioValueByGivenDate(model.getUserPortfolios(), date,portfolioName );
+        viewStocks();
         break;
     }
     mainMenu();
@@ -239,6 +240,7 @@ public class Controller {
       user.addPortfolio(portfolio);
       database.addPortfolioXML(user.getUserName(),portfolio.name,portfolio);
       view.addedImportfile();
+      mainMenu();
     } else{
       view.invalidPortfolio();
       setPortfolio();
