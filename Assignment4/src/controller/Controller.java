@@ -228,6 +228,7 @@ public class Controller {
     if (portfolio!=null){
       user.addPortfolio(portfolio);
       database.addPortfolioXML(user.getUserName(),portfolio.name,portfolio);
+    } else{
 
     }
   }
