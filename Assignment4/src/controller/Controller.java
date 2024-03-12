@@ -301,7 +301,7 @@ public class Controller {
         setPortfolio();
         break;
       case 3:
-        mainMenu();
+        exitProgram();
         break;
     }
 
