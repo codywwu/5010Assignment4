@@ -2,7 +2,6 @@ package models;
 
 import java.util.ArrayList;
 
-import models.UserInterface;
 
 public class User implements UserInterface {
   String userName;

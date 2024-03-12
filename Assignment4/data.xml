@@ -3,44 +3,25 @@
   <user name="Dell">
     <password value=""/>
     <portfolios>
-
-
       <portfolio name="portfolio1">
-
         <stock name="GOOG" value="250"/>
-
         <time value="2024-03-05"/>
-
       </portfolio>
     </portfolios>
-
   </user>
   <user name="John">
     <password value=""/>
     <portfolios>
     </portfolios>
-
   </user>
   <user name="aaa">
     <password value=""/>
     <portfolios>
-
-
       <portfolio name="portfolio1">
-
         <stock name="GOOG" value="250"/>
-
-        <time value="2024-03-05"/>
-
       </portfolio>
-
-
       <portfolio name="portfolio2">
-
         <stock name="GOOG" value="250"/>
-
-        <time value="2024-03-05"/>
-
       </portfolio>
       <portfolio name="portfolio3">
         <stock name="GOOG" value="50"/>
@@ -81,37 +62,22 @@
     <portfolios>
       <portfolio name="portfolio1">
         <stock name="GOOG" value="250"/>
-        <time value="2024-03-05"/>
       </portfolio>
     </portfolios>
-
   </user>
   <user name="John">
     <password value=""/>
     <portfolios>
     </portfolios>
-
   </user>
   <user name="aaa">
     <password value=""/>
     <portfolios>
-
-
       <portfolio name="portfolio1">
-
         <stock name="GOOG" value="250"/>
-
-        <time value="2024-03-05"/>
-
       </portfolio>
-
-
       <portfolio name="portfolio2">
-
         <stock name="GOOG" value="250"/>
-
-        <time value="2024-03-05"/>
-
       </portfolio>
       <portfolio name="portfolio3">
         <stock name="GOOG" value="50"/>
@@ -135,5 +101,4 @@
     </portfolios>
 
   </user>
-
-<user name="ada"><password value=""/><portfolios><portfolio name="importedPortfolio"><stock name="GOOG" value="250"/></portfolio></portfolios></user><user name="ABA"><password value=""/><portfolios/></user></users>
+<user name="ada"><password value=""/><portfolios/></user></users>
