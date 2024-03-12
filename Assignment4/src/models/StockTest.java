@@ -11,7 +11,7 @@ public class StockTest {
 
     @Before
     public void setUp() {
-        stock = new Stock("Company Name", 1000, "2021-01-01");
+        stock = new Stock("Company Name", 1000);
         stock.setVolume(5000);
         stock.setLocalHigh(200);
         stock.setLocalLow(150);

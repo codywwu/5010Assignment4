@@ -38,7 +38,7 @@ public class View {
 //    stockController.setStockLocalHigh(50);
 //
 //    System.out.println(stockController.getStockLocalHigh());
-  public void addMorePorfoiloOrDone() {
+  public void addMorePortfoiloOrDone() {
     System.out.println("1. Add more stock");
     System.out.println("2. Done");
 

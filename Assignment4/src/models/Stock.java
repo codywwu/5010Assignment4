@@ -8,10 +8,10 @@ public class Stock implements StockInterface {
   private long localLow;
   private String timeStamp;
   private long userShared;
-  public Stock(String companyName,long userShared,String timeStamp){
+  public Stock(String companyName,long userShared){
     this.companyName= companyName;
     this.userShared=userShared;
-    this.timeStamp = timeStamp;
+
   }
   /**
    * Get companies name.

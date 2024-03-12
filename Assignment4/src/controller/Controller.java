@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -24,7 +23,6 @@ public class Controller {
 
   private XMLDatabase database = new XMLDatabase();
   //TODO currentDate depending on API.
-  private String currentDate="";
   private User user;
   private Portfolio portfolio;
 
@@ -57,20 +55,7 @@ public class Controller {
 
   public void mainMenu() {
     menuSelection = 0;
-    while (true) {
-      view.mainMenu();
-      try {
-        menuSelection = input.nextInt();
-        if (validMenuSelection(menuSelection, 3)) {
-          input.nextLine(); // Consume the invalid input
-          continue; // Restart the loop to prompt for input again
-        }
-        break; // Break out of the loop if input is valid
-      }catch (InputMismatchException e) {
-        view.NumberInvalidInput();
-        input.nextLine(); // Consume the invalid input
-      }
-    }
+    whitleTrue();
     switch (menuSelection) {
       case 1:
         showUserPortfolio();
@@ -95,7 +80,7 @@ public class Controller {
         portfolioAction = input.nextInt();
         if (validMenuSelection(portfolioAction, 3)) {
           input.nextLine(); // Consume the invalid input
-          continue;
+
         } else {
           // Process the valid input
           switch (portfolioAction) {
@@ -274,7 +259,7 @@ public class Controller {
         }
         view.successPurchase(quantity,companySymbol);
 
-        Stock stock = model.createStock(companySymbol,quantity,currentDate);
+        Stock stock = model.createStock(companySymbol,quantity);
 
         portfolio.addStock(stock);
       } else {
@@ -287,7 +272,7 @@ public class Controller {
    view.addCompanyOrDone();
     menuSelection = 0;
     while (validMenuSelection(menuSelection, 2)) {
-      view.addMorePorfoiloOrDone();
+      view.addMorePortfoiloOrDone();
       menuSelection = input.nextInt();
     }
 
@@ -307,20 +292,7 @@ public class Controller {
 
   view.donePortfolioInfo(user.getPortfolioList());
 
-    while (true) {
-      view.mainMenu();
-      try {
-        menuSelection = input.nextInt();
-        if (validMenuSelection(menuSelection, 3)) {
-          input.nextLine(); // Consume the invalid input
-          continue; // Restart the loop to prompt for input again
-        }
-        break; // Break out of the loop if input is valid
-      }catch (InputMismatchException e) {
-        view.NumberInvalidInput();
-        input.nextLine(); // Consume the invalid input
-      }
-    }
+    whitleTrue();
     switch (menuSelection) {
       case 1:
         showUserPortfolio();
@@ -335,8 +307,25 @@ public class Controller {
 
   }
 
+  private void whitleTrue() {
+    while (true) {
+      view.mainMenu();
+      try {
+        menuSelection = input.nextInt();
+        if (validMenuSelection(menuSelection, 3)) {
+          input.nextLine(); // Consume the invalid input
+          continue; // Restart the loop to prompt for input again
+        }
+        break; // Break out of the loop if input is valid
+      }catch (InputMismatchException e) {
+        view.NumberInvalidInput();
+        input.nextLine(); // Consume the invalid input
+      }
+    }
+  }
+
   private boolean CheckValidCompanySymbol(String companySymbol) {
-    return database.companySymbolExists(companySymbol);
+    return XMLDatabase.companySymbolExists(companySymbol);
   }
 
 }

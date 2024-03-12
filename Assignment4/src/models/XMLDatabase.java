@@ -62,19 +62,12 @@ public class XMLDatabase {
 
     for (int i = 0; i < stockList.getLength(); i++) {
       Element stockElement = (Element) stockList.item(i);
-      Stock stock = getStock(stockElement, portfolioElement);
+      Stock stock = getStock(stockElement);
       if (!companySymbolExists(stock.getCompanyName()) && stock.getUserShared()<0){
         return null;
       }
       portfolio.stockArrayList.add(stock);
     }
-//    NodeList timeList = portfolioElement.getElementsByTagName("time");
-//    if (timeList.getLength() > 0) {
-//      Element timeElement = (Element) timeList.item(0);
-//      String timeValue = timeElement.getAttribute("value");
-//      System.out.println("Time: " + timeValue);
-//    }
-
     return portfolio;
   }
 
@@ -141,7 +134,7 @@ public class XMLDatabase {
               for (int k = 0; k < stocks.getLength(); k++) {
                 Node stockNode = stocks.item(k);
                 if (stockNode.getNodeType() == Node.ELEMENT_NODE) {
-                  Stock stock = getStock((Element) stockNode, portfolioElement);
+                  Stock stock = getStock((Element) stockNode);
                     portfolio.stockArrayList.add(stock); // Add to existing list
                 }
               }
@@ -155,16 +148,10 @@ public class XMLDatabase {
     return portfoliosList;
   }
 
-  private static Stock getStock(Element stockNode, Element portfolioElement) {
+  private static Stock getStock(Element stockNode) {
     String stockName = stockNode.getAttribute("name");
     int stockValue = Integer.parseInt(stockNode.getAttribute("value"));
-    String stockTime = null;
-    NodeList timeList = portfolioElement.getElementsByTagName("time");
-    if (timeList.getLength() > 0) {
-      Element timeElement = (Element) timeList.item(0);
-      stockTime = timeElement.getAttribute("value");
-    }
-    return new Stock(stockName, stockValue, stockTime);
+    return new Stock(stockName, stockValue);
   }
 
   public void addPortfolioXML(String username, String portfolioName, Portfolio portfolio) {
@@ -185,11 +172,6 @@ public class XMLDatabase {
             Element stockElement = document.createElement("stock");
             stockElement.setAttribute("name", stock.getCompanyName());
             stockElement.setAttribute("value", String.valueOf(stock.getUserShared()));
-            // Optionally, you can also add time information for each stock here if required
-            // For example:
-            // Element timeElement = document.createElement("time");
-            // timeElement.setAttribute("value", stock.getTime());
-            // stockElement.appendChild(timeElement);
             portfolioElement.appendChild(stockElement);
           }
           portfolios.appendChild(portfolioElement);
@@ -234,13 +216,12 @@ public class XMLDatabase {
 
   public void createXMLbyCompanyInfo(String companyName) {
     String apiKey = "W0M1JOKC82EZEQA8";
-    String stockSymbol = companyName; // ticker symbol for Google
-    URL url = null;
-    String fileName = stockSymbol + "_StockData.xml";
+    URL url;
+    String fileName = companyName + "_StockData.xml";
     File file = new File(fileName);
 
     if (file.exists()) {
-      System.out.println("XML file for " + stockSymbol + " already exists. No new file created.");
+      System.out.println("XML file for " + companyName + " already exists. No new file created.");
       return; // Exit the program if the file exists
     }
 //
@@ -252,7 +233,7 @@ public class XMLDatabase {
 
     try {
       url = new URL("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY"
-              + "&outputsize=full" + "&symbol=" + stockSymbol + "&apikey=" + apiKey + "&datatype=csv");
+              + "&outputsize=full" + "&symbol=" + companyName + "&apikey=" + apiKey + "&datatype=csv");
     } catch (MalformedURLException e) {
       throw new RuntimeException("the alphavantage API has either changed or no longer works");
     }
@@ -308,7 +289,7 @@ public class XMLDatabase {
       StreamResult streamResult = new StreamResult(new File(fileName));
       transformer.transform(domSource, streamResult);
 
-      System.out.println("XML file created successfully for stock: " + stockSymbol);
+      System.out.println("XML file created successfully for stock: " + companyName);
     } catch (IOException | TransformerException | ParserConfigurationException e) {
       e.printStackTrace();
     }
@@ -446,7 +427,7 @@ public class XMLDatabase {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    System.out.printf("The date your provided was not a business day");
+    System.out.print("The date your provided was not a business day");
     return false; // Given date not found
   }
 

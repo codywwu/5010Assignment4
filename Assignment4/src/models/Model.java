@@ -23,8 +23,8 @@ public class Model {
   }
 
 
-  public Stock createStock(String companySymbol,long userShared, String currentDate) {
-    return new Stock(companySymbol,userShared,currentDate);
+  public Stock createStock(String companySymbol,long userShared) {
+    return new Stock(companySymbol,userShared);
   }
 
   public User creatUser(String username,float buyingPower){
