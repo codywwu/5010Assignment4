@@ -12,7 +12,7 @@ public class Portfolio {
   public String name;
   /**
    * Quantity of the whole stock.
-   * @param quantity
+   * @param name The name of the portfolio.
    */
   public Portfolio(String name){
     this.name =name;
