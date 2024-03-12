@@ -82,6 +82,13 @@ public class View {
         + "the stock's profit on that date (Ex.2024-03-05):");
   }
 
+  public void invalidPortfolio() {
+    System.out.println("Import file failed, please try again:");
+  }
+
+  public void addedImportfile(){
+    System.out.println("Import file success!");
+  }
 
   public void invalidDate() {
     System.out.println("Date must be in the format of yyyy-MM-dd, please try again:");

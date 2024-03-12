@@ -220,12 +220,15 @@ public class XMLDatabase {
   // implement each method to the program
 
   public static void main(String[] args)  {
-//    XMLDatabase xmlDatabase = new XMLDatabase();
+    XMLDatabase xmlDatabase = new XMLDatabase();
 //    xmlDatabase.readImportedFile("NewUser");
 //    //TODO create new XML by company name.
-    XMLDatabase xmlDatabase = new XMLDatabase();
-  //  xmlDatabase.createXMLbyCompanyInfo("KO");
-    xmlDatabase.isDateExistInXML("GOOG","2024-02-03");
+//    XMLDatabase xmlDatabase = new XMLDatabase();
+//    xmlDatabase.createXMLbyCompanyInfo("KO");
+//    xmlDatabase.isDateExistInXML("GOOG","2024-02-03");
+    Portfolio p = xmlDatabase.readImportedFile("NewUser");
+    xmlDatabase = new XMLDatabase();
+    xmlDatabase.addPortfolioXML("ada",p.name,p);
 
   }
 
