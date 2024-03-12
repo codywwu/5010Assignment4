@@ -39,11 +39,11 @@ public class Model {
   }
 
   public boolean checkPortfolioName (String input){
+    userPortfolios=getUserPortfolios();
     if (userPortfolios==null){
       return false;
     }
     for (Portfolio portfolio : userPortfolios) {
-      System.out.println(portfolio.name);
       if (portfolio.name.equals(input)) {
         return true; // Portfolio name found
       }
@@ -52,13 +52,7 @@ public class Model {
   }
 
   public Portfolio readImport(String fileName){
-    Portfolio importP = xmlDatabase.readImportedFile(fileName);
-    if (importP==null){
-      System.out.println("Portfolio did not import correctly, please go back to import interface and try again");
-    }else if (checkPortfolioName(importP.name)){
-      System.out.println("Portfolio name is Duplicated");
-    }
-    return importP;
+    return xmlDatabase.readImportedFile(fileName);
   }
 
   public Boolean checkFileExists(String inFile){
@@ -72,18 +66,18 @@ public class Model {
         }
       }
     } else {
-      System.out.println("Folder is empty or does not exist.");
+
       return false;
     }
     return false;
   }
 
-  public Portfolio createPortfolio(String name,int shares){
+  public Portfolio createPortfolio(String name){
     return new Portfolio(name);
   }
 
 
-  public static void displayPortfolioValueByGivenDate(List<Portfolio> portfolios, String givenDate,String portfilioName){
+  public static void displayPortfolioValueByGivenDate(List<Portfolio> portfolios, String givenDate,String portfolioName){
     XMLDatabase database = new XMLDatabase();
     double totalHighValue = 0;
     double totalLowValue = 0;
@@ -95,20 +89,20 @@ public class Model {
         return; // Exit if no portfolios
       } else {
         for (Portfolio portfolio : portfolios) {
-          if (portfolio.name.equals(portfilioName)) {
+          if (portfolio.name.equals(portfolioName)) {
             System.out.println("Portfolio Name: " + portfolio.name);
             for (Stock stock : portfolio.getStocks()) {
               if (database.isDateExistInXML(stock.getCompanyName(), givenDate)) {
                 validDate = true; // Set validDate to true if at least one stock has the given date
                 System.out.println("Each " + stock.getCompanyName() + " share worth following on: " + givenDate);
                 System.out.println("You have " + stock.getUserShared() + " shares on this company");
-                database.stockValueByGivenDate(givenDate, stock.getCompanyName());
+                XMLDatabase.stockValueByGivenDate(givenDate, stock.getCompanyName());
 
-                Double high = Double.parseDouble(database.highStock.trim()) * stock.getUserShared();
+                double high = Double.parseDouble(XMLDatabase.highStock.trim()) * stock.getUserShared();
                 System.out.println("Maximum value: " + high);
                 totalHighValue += high; // Add to total portfolio high value
 
-                Double low = Double.parseDouble(database.lowStock.trim()) * stock.getUserShared();
+                double low = Double.parseDouble(XMLDatabase.lowStock.trim()) * stock.getUserShared();
                 System.out.println("Minimum value: " + low);
                 totalLowValue += low; // Add to total portfolio low value
 
@@ -131,8 +125,5 @@ public class Model {
     }
 
     System.out.println("\nEND OF YOUR PORTFOLIOS");
-  }
-  public static void  changeTotalValueByTimeStamp(List<Portfolio> portfolios, String givenDate, String portfolioAction){
-
   }
 }

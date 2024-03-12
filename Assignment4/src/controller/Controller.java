@@ -18,7 +18,7 @@ import views.View;
 public class Controller {
   private Scanner input = new Scanner(System.in);
   private int menuSelection = 0;
-  private Model model;
+  private final Model model;
   private static View view;
 
   private XMLDatabase database = new XMLDatabase();
@@ -55,22 +55,12 @@ public class Controller {
 
   public void mainMenu() {
     menuSelection = 0;
-    whitleTrue();
-    switch (menuSelection) {
-      case 1:
-        showUserPortfolio();
-        break;
-      case 2:
-        setPortfolio();
-        break;
-      case 3:
-        exitProgram();
-        break;
-    }
+    whileTrue();
+
   }
 
   private void showUserPortfolio() {
-    int portfolioAction = 0;
+    int portfolioAction;
 
     while (true) {
       view.displayPortfolios(model.getUserPortfolios());
@@ -179,7 +169,7 @@ public class Controller {
     while (true) {
       //Creating new portfolio here.
       String portfolioName = "Portfolio"+portfolioNumber;
-      portfolio=model.createPortfolio(portfolioName,0);
+      portfolio=model.createPortfolio(portfolioName);
       view.createPortfolio();
       try {
         menuSelection = input.nextInt();
@@ -198,6 +188,7 @@ public class Controller {
         importFile();
         break;
       case 2:
+        setPortfolioName();
         FillForm();
         break;
       case 3:
@@ -207,19 +198,18 @@ public class Controller {
         exitProgram();
         break;
     }
-
   }
-
   private void importFile(){
     input=new Scanner(System.in);
     view.promptForFileName();
     String fileName=input.nextLine();
     if (!model.checkFileExists(fileName)) {
-      // Prompt for the file name again
+      view.invalidfile();
       view.promptForFileName();
       fileName = input.nextLine();
     }
     portfolio=model.readImport(fileName);
+
     if (portfolio!=null){
       database=model.newXML();
       user.addPortfolio(portfolio);
@@ -227,9 +217,20 @@ public class Controller {
       view.addedImportfile();
       mainMenu();
     } else{
-      view.invalidPortfolio();
+      view.invalidImportPortfolio();
       setPortfolio();
     }
+  }
+
+  private void setPortfolioName(){
+    input=new Scanner(System.in);
+    view.fillFormPortfolioName();
+    String portfolioName=input.nextLine();
+    while (model.checkPortfolioName(portfolioName)){
+      view.invalidPortfolio();
+      portfolioName=input.nextLine();
+    }
+    portfolio = model.createPortfolio(portfolioName);
   }
 
   private void FillForm() {
@@ -237,9 +238,7 @@ public class Controller {
     String companySymbol = null;
     view.fillFormIntro();
     int quantity = -1; // Initialize to an invalid value to enter the loop
-
     while (companySymbol == null) {
-
       companySymbol = input.next();
       if (CheckValidCompanySymbol(companySymbol)) {
         // Creating the company file.
@@ -258,9 +257,7 @@ public class Controller {
           }
         }
         view.successPurchase(quantity,companySymbol);
-
         Stock stock = model.createStock(companySymbol,quantity);
-
         portfolio.addStock(stock);
       } else {
         // if not valid, prompt again for a valid company symbol.
@@ -268,14 +265,12 @@ public class Controller {
         companySymbol = null; // Reset for re-validation
       }
     }
-
    view.addCompanyOrDone();
     menuSelection = 0;
     while (validMenuSelection(menuSelection, 2)) {
       view.addMorePortfoiloOrDone();
       menuSelection = input.nextInt();
     }
-
     switch (menuSelection) {
       case 1:
         portfolioNumber++;
@@ -289,25 +284,11 @@ public class Controller {
   private void doneCreatPortfolio() {
   user.addPortfolio(portfolio);
   database.addPortfolioXML(user.getUserName(),portfolio.name,portfolio);
-
   view.donePortfolioInfo(user.getPortfolioList());
-
-    whitleTrue();
-    switch (menuSelection) {
-      case 1:
-        showUserPortfolio();
-        break;
-      case 2:
-        setPortfolio();
-        break;
-      case 3:
-        exitProgram();
-        break;
-    }
-
+  whileTrue();
   }
 
-  private void whitleTrue() {
+  private void whileTrue() {
     while (true) {
       view.mainMenu();
       try {
@@ -321,6 +302,17 @@ public class Controller {
         view.NumberInvalidInput();
         input.nextLine(); // Consume the invalid input
       }
+    }
+    switch (menuSelection) {
+      case 1:
+        showUserPortfolio();
+        break;
+      case 2:
+        setPortfolio();
+        break;
+      case 3:
+        exitProgram();
+        break;
     }
   }
 

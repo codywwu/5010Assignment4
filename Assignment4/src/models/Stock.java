@@ -6,12 +6,10 @@ public class Stock implements StockInterface {
   private long volume;
   private long localHigh;
   private long localLow;
-  private String timeStamp;
   private long userShared;
   public Stock(String companyName,long userShared){
     this.companyName= companyName;
     this.userShared=userShared;
-
   }
   /**
    * Get companies name.
@@ -56,15 +54,6 @@ public class Stock implements StockInterface {
     return localLow;
   }
 
-  /**
-   * Get the time of the current stage.
-   *
-   * @return
-   */
-  @Override
-  public String getTimeStamp() {
-    return timeStamp;
-  }
 
   /**
    * Get the open value of given date.
@@ -104,7 +93,4 @@ public class Stock implements StockInterface {
     this.localLow = localLow;
   }
 
-  public void setTimeStamp(String timeStamp) {
-    this.timeStamp = timeStamp;
-  }
 }

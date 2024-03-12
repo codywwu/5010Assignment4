@@ -49,6 +49,10 @@ public class View {
     System.out.println("eg,GooG for google");
   }
 
+  public void fillFormPortfolioName() {
+    System.out.println("Please enter a portfolio name: ");
+  }
+
   public void promptUserName() {
     System.out.println("Please enter a username: ");
   }
@@ -69,6 +73,10 @@ public class View {
     System.out.println("The number must be larger than 0. Please try again:");
   }
 
+  public void InvalidInputPortfolioName() {
+    System.out.println("Portfolio name is Duplicated, please try again:");
+  }
+
   public void promptForPortfolio() {
     System.out.println("Please enter the name of the portfolio you would like to access:");
   }
@@ -83,8 +91,18 @@ public class View {
   }
 
   public void invalidPortfolio() {
-    System.out.println("Import file failed, please try again:");
+    System.out.println("Duplicate portfolio name please try again: ");
   }
+
+  public void invalidfile() {
+    System.out.println("Folder is empty or does not exist.");
+  }
+
+  public void invalidImportPortfolio() {
+    System.out.println("Portfolio did not import correctly, please go back to import interface and try again");
+  }
+
+
 
   public void addedImportfile(){
     System.out.println("Import file success!");
@@ -154,7 +172,6 @@ public class View {
         for (Stock stock : portfolio.getStocks()) {
           System.out.println("  Stock Name: " + stock.getCompanyName());
           System.out.println("    Shared Value: " + stock.getUserShared());
-          System.out.println("    Create Time: " + stock.getTimeStamp());
         }
       }
     }
