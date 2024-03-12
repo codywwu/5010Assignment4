@@ -91,8 +91,18 @@ public class View {
   }
 
   public void invalidPortfolio() {
-    System.out.println("Import file failed, please try again:");
+    System.out.println("Duplicate portfolio name please try again: ");
   }
+
+  public void invalidfile() {
+    System.out.println("Folder is empty or does not exist.");
+  }
+
+  public void invalidImportPortfolio() {
+    System.out.println("Portfolio did not import correctly, please go back to import interface and try again");
+  }
+
+
 
   public void addedImportfile(){
     System.out.println("Import file success!");

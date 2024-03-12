@@ -188,6 +188,7 @@ public class Controller {
         importFile();
         break;
       case 2:
+        setPortfolioName();
         FillForm();
         break;
       case 3:
@@ -197,19 +198,18 @@ public class Controller {
         exitProgram();
         break;
     }
-
   }
-
   private void importFile(){
     input=new Scanner(System.in);
     view.promptForFileName();
     String fileName=input.nextLine();
     if (!model.checkFileExists(fileName)) {
-      // Prompt for the file name again
+      view.invalidfile();
       view.promptForFileName();
       fileName = input.nextLine();
     }
     portfolio=model.readImport(fileName);
+
     if (portfolio!=null){
       database=model.newXML();
       user.addPortfolio(portfolio);
@@ -217,12 +217,12 @@ public class Controller {
       view.addedImportfile();
       mainMenu();
     } else{
-      view.invalidPortfolio();
+      view.invalidImportPortfolio();
       setPortfolio();
     }
   }
 
-  private void FillForm() {
+  private void setPortfolioName(){
     input=new Scanner(System.in);
     view.fillFormPortfolioName();
     String portfolioName=input.nextLine();
@@ -230,7 +230,11 @@ public class Controller {
       view.invalidPortfolio();
       portfolioName=input.nextLine();
     }
-  //  portfolio = model.createPortfolio();
+    portfolio = model.createPortfolio(portfolioName);
+  }
+
+  private void FillForm() {
+
     String companySymbol = null;
     view.fillFormIntro();
     int quantity = -1; // Initialize to an invalid value to enter the loop

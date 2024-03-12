@@ -52,13 +52,7 @@ public class Model {
   }
 
   public Portfolio readImport(String fileName){
-    Portfolio importP = xmlDatabase.readImportedFile(fileName);
-    if (importP==null){
-      System.out.println("Portfolio did not import correctly, please go back to import interface and try again");
-    }else if (checkPortfolioName(importP.name)){
-      System.out.println("Portfolio name is Duplicated");
-    }
-    return importP;
+    return xmlDatabase.readImportedFile(fileName);
   }
 
   public Boolean checkFileExists(String inFile){
@@ -72,7 +66,7 @@ public class Model {
         }
       }
     } else {
-      System.out.println("Folder is empty or does not exist.");
+
       return false;
     }
     return false;
