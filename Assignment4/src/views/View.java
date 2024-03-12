@@ -111,7 +111,6 @@ public class View {
   public void addCompanyOrDone() {
     System.out.println(
         "Add another company with shares or select done for done creating this port");
-
   }
 
   public void donePortfolioInfo(ArrayList<Portfolio> portfolioList) {
