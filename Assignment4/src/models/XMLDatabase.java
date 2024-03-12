@@ -66,6 +66,7 @@ public class XMLDatabase {
       if (!companySymbolExists(stock.getCompanyName()) && stock.getUserShared()<0){
         return null;
       }
+      createXMLbyCompanyInfo(stock.getCompanyName());
       portfolio.stockArrayList.add(stock);
     }
     return portfolio;
