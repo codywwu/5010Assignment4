@@ -27,8 +27,8 @@ import org.xml.sax.SAXException;
 public class XMLDatabase {
 
   private static Document document;
-  static String highStock;
-  static String lowStock;
+  public static String highStock;
+  public static String lowStock;
 
   //Get the Document Builder
   public XMLDatabase() {
@@ -216,16 +216,6 @@ public class XMLDatabase {
     String fileName = companyName + "_StockData.xml";
     File file = new File(fileName);
 
-    if (file.exists()) {
-      System.out.println("XML file for " + companyName + " already exists. No new file created.");
-      return; // Exit the program if the file exists
-    }
-//
-//    if (companySymbolExists(stockSymbol)) {
-//      System.out.println("Company symbol " + stockSymbol + " does not exist or no data available.");
-//      return;
-//    }
-
 
     try {
       url = new URL("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY"
@@ -285,7 +275,6 @@ public class XMLDatabase {
       StreamResult streamResult = new StreamResult(new File(fileName));
       transformer.transform(domSource, streamResult);
 
-      System.out.println("XML file created successfully for stock: " + companyName);
     } catch (IOException | TransformerException | ParserConfigurationException e) {
       e.printStackTrace();
     }

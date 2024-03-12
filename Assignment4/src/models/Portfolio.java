@@ -40,4 +40,11 @@ public class Portfolio {
     return stockArrayList;
   }
 
+  public int getTotalShares(){
+    int result = 0;
+    for(int i = 0 ; i<stockArrayList.size();i++){
+      result += (int)stockArrayList.get(i).getUserShared();
+    }
+    return result;
+  }
 }

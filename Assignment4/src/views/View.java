@@ -7,6 +7,49 @@ import models.Stock;
 
 public class View {
 
+    public static void userPortfolioEmpty() {
+      System.out.println("No portfolio had been created");
+    }
+
+  public static void printPortfolioName(String name) {
+    System.out.println("Portfolio Name: " + name);
+  }
+
+  public static void printStockValueByGivenDate(Stock stock, String date) {
+    System.out.println("Each " + stock.getCompanyName() + " share worth following on: " + date);
+    System.out.println("You have " + stock.getUserShared() + " shares on this company");
+
+  }
+
+  public static void printMaxValue(double high) {
+    System.out.println("Maximum value: " + high);
+  }
+
+  public static void printMinValue(double low) {
+    System.out.println("Maximum value: " + low);
+  }
+
+  public static void newLines() {
+    System.out.println("\n\n");
+  }
+
+  public static void printDateInValid() {
+    System.out.println("Invalid date or no data for this date. Please enter another date (YYYY-MM-DD):");
+  }
+
+  public static void printMaxTotalValue(double totalHighValue) {
+    System.out.println("Total portfolio value based on highest stock prices: " + totalHighValue);
+  }
+
+  public static void printMinTotalValue(double totalLowValue) {
+    System.out.println("Total portfolio value based on lowest stock prices: " + totalLowValue);
+  }
+
+  public static void endOfYourPortfolio() {
+    System.out.println("\nEND OF YOUR PORTFOLIOS");
+  }
+
+
   public void displayNewWelcomeMessage(String username) {
     System.out.println("Hello, new user: " + username + ", Welcome To Money For US");
   }
@@ -135,8 +178,9 @@ public class View {
     for (int p = 0; p < portfolioList.size(); p++) {
       Portfolio portfolio = portfolioList.get(p);
       // Print the portfolio index and size of its stock list
-      System.out.println("Portfolio " + (p + 1) + " - The share of your portfolio in total: "
-          + portfolio.stockArrayList.get(p).getUserShared());
+
+      System.out.println("Portfolio " + (p + 1) + " - The shares of your portfolio in total: "
+          + portfolio.getTotalShares());
 
       // Iterate through the stockArrayList of the current portfolio
       for (int i = 0; i < portfolio.stockArrayList.size(); i++) {
@@ -160,7 +204,7 @@ public class View {
     } else {
       for (Portfolio portfolio : portfolios) {
         System.out.println("Portfolio Name: " + portfolio.name);
-        System.out.println("  Stock quantity: " + portfolio.getQuantity());
+        System.out.println("  Company quantity: " + portfolio.getQuantity());
       }
     }
   }
@@ -200,5 +244,9 @@ public class View {
 
   public void promptTimeStamp() {
     System.out.println("Please enter the time stamp you want to check");
+  }
+
+  public void fileAlreadyExist(String companySymbol) {
+    System.out.println("XML file for " + companySymbol + " already exists. No new file created.");
   }
 }

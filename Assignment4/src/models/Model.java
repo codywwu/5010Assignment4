@@ -14,6 +14,10 @@ public class Model {
     xmlDatabase = new XMLDatabase();
   }
 
+  public static boolean checkIfPortfolioEmpty(List<Portfolio> userPortfolios) {
+    return userPortfolios.isEmpty();
+  }
+
   public XMLDatabase newXML(){
     return new XMLDatabase();
   }
