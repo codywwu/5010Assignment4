@@ -101,4 +101,4 @@
     </portfolios>
 
   </user>
-<user name="ada"><password value=""/><portfolios/></user></users>
+<user name="ada"><password value=""/><portfolios/></user><user name="abd"><password value=""/><portfolios><portfolio name="importedPortfolio"><stock name="AAPL" value="10"/></portfolio></portfolios></user></users>
