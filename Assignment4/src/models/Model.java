@@ -1,4 +1,5 @@
 package models;
+import java.io.File;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,10 +11,12 @@ public class Model {
 
   // Constructor
   public Model() {
-
     xmlDatabase = new XMLDatabase();
   }
 
+  public XMLDatabase newXML(){
+    return new XMLDatabase();
+  }
   public Boolean checkInputName(String name){
     user = new User(name,0);
     return XMLDatabase.checkName(name);
@@ -36,8 +39,12 @@ public class Model {
   }
 
   public boolean checkPortfolioName (String input){
+    if (userPortfolios==null){
+      return false;
+    }
     for (Portfolio portfolio : userPortfolios) {
-      if (portfolio.name.equalsIgnoreCase(input)) {
+      System.out.println(portfolio.name);
+      if (portfolio.name.equals(input)) {
         return true; // Portfolio name found
       }
     }
@@ -52,6 +59,23 @@ public class Model {
       System.out.println("Portfolio name is Duplicated");
     }
     return importP;
+  }
+
+  public Boolean checkFileExists(String inFile){
+    File folder = new File("InputData/");
+    File[] files = folder.listFiles();
+    if (files != null) {
+      // Iterate over each file and print its name
+      for (File file : files) {
+        if (file.getName().equals(inFile+".xml")) {
+          return true;
+        }
+      }
+    } else {
+      System.out.println("Folder is empty or does not exist.");
+      return false;
+    }
+    return false;
   }
 
   public Portfolio createPortfolio(String name,int shares){

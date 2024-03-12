@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -207,6 +208,9 @@ public class Controller {
       }
     }
     switch (menuSelection) {
+      case 1:
+        importFile();
+        break;
       case 2:
         FillForm();
         break;
@@ -224,12 +228,20 @@ public class Controller {
     input=new Scanner(System.in);
     view.promptForFileName();
     String fileName=input.nextLine();
+    if (!model.checkFileExists(fileName)) {
+      // Prompt for the file name again
+      view.promptForFileName();
+      fileName = input.nextLine();
+    }
     portfolio=model.readImport(fileName);
     if (portfolio!=null){
+      database=model.newXML();
       user.addPortfolio(portfolio);
       database.addPortfolioXML(user.getUserName(),portfolio.name,portfolio);
+      view.addedImportfile();
     } else{
-
+      view.invalidPortfolio();
+      setPortfolio();
     }
   }
 
