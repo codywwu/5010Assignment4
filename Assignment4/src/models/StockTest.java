@@ -42,10 +42,5 @@ public class StockTest {
         assertEquals(150, stock.getLocalLow(), 0.001);
     }
 
-    @Test
-    public void testGetTimeStamp() {
-        assertEquals("2021-01-01", stock.getTimeStamp());
-    }
-
     // Add more tests for remaining methods and edge cases
 }

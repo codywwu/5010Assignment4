@@ -25,11 +25,7 @@ public interface StockInterface {
    */
   public double getLocalLow();
 
-  /**
-   * Get the time of the current stage.
-   * @return
-   */
-  public String getTimeStamp();
+
 
   /**
    * Get the open value of given date.

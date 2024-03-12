@@ -49,6 +49,10 @@ public class View {
     System.out.println("eg,GooG for google");
   }
 
+  public void fillFormPortfolioName() {
+    System.out.println("Please enter a portfolio name: ");
+  }
+
   public void promptUserName() {
     System.out.println("Please enter a username: ");
   }
@@ -67,6 +71,10 @@ public class View {
 
   public void InvalidInputGreaterThanZero() {
     System.out.println("The number must be larger than 0. Please try again:");
+  }
+
+  public void InvalidInputPortfolioName() {
+    System.out.println("Portfolio name is Duplicated, please try again:");
   }
 
   public void promptForPortfolio() {
@@ -154,7 +162,6 @@ public class View {
         for (Stock stock : portfolio.getStocks()) {
           System.out.println("  Stock Name: " + stock.getCompanyName());
           System.out.println("    Shared Value: " + stock.getUserShared());
-          System.out.println("    Create Time: " + stock.getTimeStamp());
         }
       }
     }
