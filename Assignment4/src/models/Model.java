@@ -59,7 +59,7 @@ public class Model {
   }
 
 
-  public static void displayPortfolioValueByGivenDate(List<Portfolio> portfolios, String givenDate){
+  public static void displayPortfolioValueByGivenDate(List<Portfolio> portfolios, String givenDate,String portfilioName){
     XMLDatabase database = new XMLDatabase();
     double totalHighValue = 0;
     double totalLowValue = 0;
@@ -71,23 +71,25 @@ public class Model {
         return; // Exit if no portfolios
       } else {
         for (Portfolio portfolio : portfolios) {
-          System.out.println("Portfolio Name: " + portfolio.name);
-          for (Stock stock : portfolio.getStocks()) {
-            if (database.isDateExistInXML(stock.getCompanyName(), givenDate)) {
-              validDate = true; // Set validDate to true if at least one stock has the given date
-              System.out.println("Each " + stock.getCompanyName() + " share worth following on: " + givenDate);
-              System.out.println("You have " + stock.getUserShared() + " shares on this company");
-              database.stockValueByGivenDate(givenDate, stock.getCompanyName());
+          if (portfolio.name.equals(portfilioName)) {
+            System.out.println("Portfolio Name: " + portfolio.name);
+            for (Stock stock : portfolio.getStocks()) {
+              if (database.isDateExistInXML(stock.getCompanyName(), givenDate)) {
+                validDate = true; // Set validDate to true if at least one stock has the given date
+                System.out.println("Each " + stock.getCompanyName() + " share worth following on: " + givenDate);
+                System.out.println("You have " + stock.getUserShared() + " shares on this company");
+                database.stockValueByGivenDate(givenDate, stock.getCompanyName());
 
-              Double high = Double.parseDouble(database.highStock.trim()) * stock.getUserShared();
-              System.out.println("Maximum value: " + high);
-              totalHighValue += high; // Add to total portfolio high value
+                Double high = Double.parseDouble(database.highStock.trim()) * stock.getUserShared();
+                System.out.println("Maximum value: " + high);
+                totalHighValue += high; // Add to total portfolio high value
 
-              Double low = Double.parseDouble(database.lowStock.trim()) * stock.getUserShared();
-              System.out.println("Minimum value: " + low);
-              totalLowValue += low; // Add to total portfolio low value
+                Double low = Double.parseDouble(database.lowStock.trim()) * stock.getUserShared();
+                System.out.println("Minimum value: " + low);
+                totalLowValue += low; // Add to total portfolio low value
 
-              System.out.println("\n\n");
+                System.out.println("\n\n");
+              }
             }
           }
         }
