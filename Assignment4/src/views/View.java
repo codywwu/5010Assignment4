@@ -2,6 +2,8 @@ package views;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import models.Company;
 import models.Portfolio;
 import models.Stock;
 
@@ -47,6 +49,10 @@ public class View {
 
   public static void endOfYourPortfolio() {
     System.out.println("\nEND OF YOUR PORTFOLIOS");
+  }
+
+  public static void printHighLowOnGivenDate(String date,Company company) {
+    System.out.println("Date: " + date + "\nHigh: " + company.getHigh() + "\nLow: " + company.getLow());
   }
 
 

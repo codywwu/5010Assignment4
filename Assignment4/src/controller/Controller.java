@@ -7,12 +7,8 @@ import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import models.User;
-import models.Model;
-import models.Portfolio;
-import models.Stock;
+import models.*;
 
-import models.XMLDatabase;
 import views.View;
 
 
@@ -150,9 +146,13 @@ public class Controller {
                                     if (database.isDateExistInXML(stock.getCompanyName(), date)) {
                                         validDate = true;
                                         View.printStockValueByGivenDate(stock, date);
-                                        XMLDatabase.stockValueByGivenDate(date, stock.getCompanyName());
+                                        Company company = XMLDatabase.stockValueByGivenDate(date, stock.getCompanyName());
+                                        if(company.getHasValidDate()){
+                                            View.printHighLowOnGivenDate(date,company);
+//System.out.println("Date: " + date + "\nHigh: " + company.getHigh() + "\nLow: " + company.getLow());
+                                        }
 
-                                        double high = Double.parseDouble(XMLDatabase.highStock.trim()) * stock.getUserShared();
+                                        double high = Double.parseDouble(database.highStock.trim()) * stock.getUserShared();
                                         View.printMaxValue(high);
                                         totalHighValue += high; // Add to total portfolio high value
 

@@ -332,43 +332,51 @@ public class XMLDatabase {
 
   }
 
-  public static void stockValueByGivenDate(String givenDate, String filePath) {
-    try {
-      filePath = "../5010Assignment4/"+filePath+"_StockData.xml";
-      File xmlFile = new File(filePath);
+  public static Company stockValueByGivenDate(String givenDate, String filePath) {
+      Company company = null;
+      try {
+          filePath = "../5010Assignment4/" + filePath + "_StockData.xml";
+          File xmlFile = new File(filePath);
 
-      DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-      DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-      Document doc = dBuilder.parse(xmlFile);
+          DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+          DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+          Document doc = dBuilder.parse(xmlFile);
+          Boolean hasValidDate = false;
+          company = new Company(givenDate, highStock, lowStock, hasValidDate);
+          doc.getDocumentElement().normalize();
 
-      doc.getDocumentElement().normalize();
+          NodeList nList = doc.getElementsByTagName("Record");
 
-      NodeList nList = doc.getElementsByTagName("Record");
+          for (int temp = 0; temp < nList.getLength(); temp++) {
+              Node nNode = nList.item(temp);
 
-      for (int temp = 0; temp < nList.getLength(); temp++) {
-        Node nNode = nList.item(temp);
+              if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                  Element eElement = (Element) nNode;
 
-        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-          Element eElement = (Element) nNode;
+                  String date = eElement.getElementsByTagName("Date").item(0).getTextContent();
+                  if (date.equals(givenDate)) {
+                      String high = eElement.getElementsByTagName("High").item(0).getTextContent();
+                      String low = eElement.getElementsByTagName("Low").item(0).getTextContent();
+                      company.hasValidDate = true;
 
-          String date = eElement.getElementsByTagName("Date").item(0).getTextContent();
-          if (date.equals(givenDate)) {
-            String high = eElement.getElementsByTagName("High").item(0).getTextContent();
-            String low = eElement.getElementsByTagName("Low").item(0).getTextContent();
-
-            highStock = high;
-            lowStock = low;
-            System.out.println("Date: " + date + "\nHigh: " + high + "\nLow: " + low);
-            return;
+                      company.high = high;
+                      highStock = high;
+                      company.low = low;
+                      lowStock = low;
+                      //System.out.println("Date: " + date + "\nHigh: " + high + "\nLow: " + low);
+                      return company;
+                  }
+              }
           }
-        }
+
+         // System.out.println("No data found for the given date: " + givenDate);
+
+      } catch (Exception e) {
+          e.printStackTrace();
       }
 
-      System.out.println("No data found for the given date: " + givenDate);
+      return company;
 
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
   }
 
   /**
@@ -412,7 +420,7 @@ public class XMLDatabase {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    System.out.print("The date your provided was not a business day");
+   // System.out.print("The date your provided was not a business day");
     return false; // Given date not found
   }
 
