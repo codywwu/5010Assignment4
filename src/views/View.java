@@ -3,7 +3,6 @@ package views;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import models.Company;
 import models.Portfolio;
 import models.Stock;
@@ -12,23 +11,27 @@ import models.Stock;
  * View class that handle all the print statements.
  */
 public class View {
+
   static Appendable out = null;
 
   /**
    * Constructor for view class.
+   *
    * @param out system.out.
    */
   public View(Appendable out) {
     View.out = out;
   }
-    public static void userPortfolioEmpty () throws IOException {
-      View.out.append("\nNo portfolio had been created");
-    }
+
+  public static void userPortfolioEmpty() throws IOException {
+    View.out.append("\nNo portfolio had been created");
+  }
 
   /**
    * print the stock value by given date.
+   *
    * @param stock the stock needed to print.
-   * @param date the date that parsing by stock.
+   * @param date  the date that parsing by stock.
    * @throws IOException IO exception to catch unexpected error.
    */
   public static void printStockValueByGivenDate(Stock stock, String date) throws IOException {
@@ -40,7 +43,8 @@ public class View {
   }
 
   /**
-   *  print the maximum value of the stock.
+   * print the maximum value of the stock.
+   *
    * @param high maximum value.
    * @throws IOException IO exception to catch unexpected error.
    */
@@ -50,6 +54,7 @@ public class View {
 
   /**
    * print the minimul value of the stock.
+   *
    * @param low minimunl value.
    * @throws IOException IO exception to catch unexpected error.
    */
@@ -66,14 +71,17 @@ public class View {
 
   /**
    * print invalid date.
+   *
    * @throws IOException
    */
   public static void printDateInValid() throws IOException {
-    View.out.append("\nInvalid date or no data for this date. Please enter another date (YYYY-MM-DD):");
+    View.out.append(
+        "\nInvalid date or no data for this date. Please enter another date (YYYY-MM-DD):");
   }
 
   /**
    * print the maximum total value.
+   *
    * @param totalHighValue the value needed to be print.
    * @throws IOException IO exception to catch unexpected error.
    */
@@ -84,6 +92,7 @@ public class View {
 
   /**
    * print min total value.
+   *
    * @param totalLowValue min value that needed to be print.
    * @throws IOException IO exception to catch unexpected error.
    */
@@ -94,6 +103,7 @@ public class View {
 
   /**
    * end of portfolio.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public static void endOfYourPortfolio() throws IOException {
@@ -101,18 +111,20 @@ public class View {
   }
 
   /**
-   *  print the high and low vlaue by given date.
-   * @param date the date.
+   * print the high and low vlaue by given date.
+   *
+   * @param date    the date.
    * @param company the company.
    * @throws IOException IO exception to catch unexpected error.
    */
-  public static void printHighLowOnGivenDate(String date,Company company) throws IOException {
+  public static void printHighLowOnGivenDate(String date, Company company) throws IOException {
     View.out.append("\nDate: ").append(date).append("\nHigh: ").append(company.getHigh())
         .append("\nLow: ").append(company.getLow());
   }
 
   /**
    * diasplay new welcmone message for new user.
+   *
    * @param username username.
    * @throws IOException IO exception to catch unexpected error.
    */
@@ -122,6 +134,7 @@ public class View {
 
   /**
    * sho welecome message for old value.
+   *
    * @param username username.
    * @throws IOException IO exception to catch unexpected error.
    */
@@ -131,6 +144,7 @@ public class View {
 
   /**
    * main menu.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void mainMenu() throws IOException {
@@ -143,6 +157,7 @@ public class View {
 
   /**
    * prompt for creating portfolio.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void createPortfolio() throws IOException {
@@ -156,6 +171,7 @@ public class View {
 
   /**
    * prompt to see if portfolio or done.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void addMorePortfolioOrDone() throws IOException {
@@ -166,6 +182,7 @@ public class View {
 
   /**
    * prompt that user want to fill out the form.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void fillFormIntro() throws IOException {
@@ -175,6 +192,7 @@ public class View {
 
   /**
    * portfolio name fill out.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void fillFormPortfolioName() throws IOException {
@@ -183,6 +201,7 @@ public class View {
 
   /**
    * prompt user's name.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void promptUserName() throws IOException {
@@ -191,6 +210,7 @@ public class View {
 
   /**
    * number is invalid.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void NumberInvalidInput() throws IOException {
@@ -199,6 +219,7 @@ public class View {
 
   /**
    * selection of a menu is invalid.
+   *
    * @param range the range.
    * @throws IOException IO exception to catch unexpected error.
    */
@@ -209,6 +230,7 @@ public class View {
 
   /**
    * prompt the quantity of purhcase.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void promptQuantityOfPurchase() throws IOException {
@@ -217,6 +239,7 @@ public class View {
 
   /**
    * in valid input that great than 0.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void InvalidInputGreaterThanZero() throws IOException {
@@ -226,6 +249,7 @@ public class View {
 
   /**
    * prompt for portfolio.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void promptForPortfolio() throws IOException {
@@ -234,14 +258,17 @@ public class View {
 
   /**
    * prompt for a file name.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void promptForFileName() throws IOException {
-    View.out.append("\nPlease enter the name of the file you would like to access (no .xml is necessary):");
+    View.out.append(
+        "\nPlease enter the name of the file you would like to access (no .xml is necessary):");
   }
 
   /**
    * prompt user for date input.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void promptDate() throws IOException {
@@ -251,6 +278,7 @@ public class View {
 
   /**
    * invalid portfolio.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void invalidPortfolio() throws IOException {
@@ -259,6 +287,7 @@ public class View {
 
   /**
    * folder is invalid.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void invalidfile() throws IOException {
@@ -267,23 +296,27 @@ public class View {
 
   /**
    * not successfully import xml.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void invalidImportPortfolio() throws IOException {
-    View.out.append("\nPortfolio did not import correctly, please go back to import interface and try again");
+    View.out.append(
+        "\nPortfolio did not import correctly, please go back to import interface and try again");
   }
 
 
   /**
    * successfully imported a xml file.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
-  public void addedImportfile()throws IOException {
+  public void addedImportfile() throws IOException {
     View.out.append("\nImport file success!");
   }
 
   /**
    * invalid date.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void invalidDate() throws IOException {
@@ -292,15 +325,19 @@ public class View {
 
   /**
    * name is invalid.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void invalidPortfolioUsernameInput() throws IOException {
-    View.out.append("\nThe Portfolio name is not found, please try again or exit to main menu to add portfolio: ");
+    View.out.append(
+        "\nThe Portfolio name is not found,"
+            + " please try again or exit to main menu to add portfolio: ");
   }
 
   /**
    * tell user has successfuly purchase.
-   * @param quantity quantity of purchase.
+   *
+   * @param quantity      quantity of purchase.
    * @param companySymbol company symbol.
    * @throws IOException IO exception to catch unexpected error.
    */
@@ -311,6 +348,7 @@ public class View {
 
   /**
    * The company symbol is not valid.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void invalidCompanySymbol() throws IOException {
@@ -319,6 +357,7 @@ public class View {
 
   /**
    * print for add or done.
+   *
    * @throws IOException IO exception to catch unexpected error.
    */
   public void addCompanyOrDone() throws IOException {
@@ -328,6 +367,7 @@ public class View {
 
   /**
    * print all the porfolio infomation inside the portfolio.
+   *
    * @param portfolioList the portfolio list that needed to be print.
    * @throws IOException IO exception to catch unexpected error.
    */
@@ -353,7 +393,6 @@ public class View {
 
   /**
    * Display the stocks info inside the portfolio.
-   *
    */
   public void displayPortfolios(List<Portfolio> portfolios) throws IOException {
     if (portfolios.isEmpty()) {
@@ -367,8 +406,9 @@ public class View {
   }
 
   /**
-   *  display stock's infomation.
-   * @param portfolios portfolios.
+   * display stock's infomation.
+   *
+   * @param portfolios      portfolios.
    * @param inputPortfolios the input portfolios.
    * @throws IOException if there is an empty list.
    */
@@ -386,6 +426,7 @@ public class View {
 
   /**
    * stock menu.
+   *
    * @throws IOException
    */
   public void stockMenu() throws IOException {
@@ -397,6 +438,7 @@ public class View {
 
   /**
    * portfolio's menu.
+   *
    * @throws IOException
    */
   public void portfolioMenu() throws IOException {
@@ -409,7 +451,7 @@ public class View {
   /**
    * Saying good bey to user.
    */
-    public void goodBey() {
+  public void goodBey() {
     System.out.println("Good Bye");
-    }
+  }
 }
