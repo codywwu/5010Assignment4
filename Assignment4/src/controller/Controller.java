@@ -177,7 +177,7 @@ public class Controller {
             }
         }
         View.endOfYourPortfolio();
-        showUserPortfolio();
+        viewStocks();
     }
 
     public static boolean isValidDateFormat(String dateStr) {
