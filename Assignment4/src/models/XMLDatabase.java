@@ -63,7 +63,7 @@ public class XMLDatabase {
     for (int i = 0; i < stockList.getLength(); i++) {
       Element stockElement = (Element) stockList.item(i);
       Stock stock = getStock(stockElement);
-      if (!companySymbolExists(stock.getCompanyName()) && stock.getUserShared()<0){
+      if (!companySymbolExists(stock.getCompanyName()) && stock.getUserShared()<=0){
         return null;
       }
       createXMLbyCompanyInfo(stock.getCompanyName());
@@ -151,7 +151,13 @@ public class XMLDatabase {
 
   private static Stock getStock(Element stockNode) {
     String stockName = stockNode.getAttribute("name");
-    int stockValue = Integer.parseInt(stockNode.getAttribute("value"));
+    int stockValue;
+    try {
+      stockValue = Integer.parseInt(stockNode.getAttribute("value"));
+    } catch (NumberFormatException e) {
+      // Handle the case where the value attribute is not a valid integer
+      stockValue = 0; // Or any other default value you want to use
+    }
     return new Stock(stockName, stockValue);
   }
 
