@@ -24,17 +24,25 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+/**
+ * XML Database class, that will process all the xml related.
+ */
 public class XMLDatabase {
 
   private static Document document;
   public static String highStock;
   public static String lowStock;
 
-  //Get the Document Builder
+  /**
+   * Constructor for XML database, read a file.
+   */
   public XMLDatabase() {
     readLocalFile();
   }
 
+  /**
+   * read the local file of Userdata.
+   */
   private void readLocalFile() {
     try {
       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -46,6 +54,11 @@ public class XMLDatabase {
     }
   }
 
+  /**
+   * read from a XML file that would return a portfolio.
+   * @param fileName name of the file to be import.
+   * @return a portfolio imported.
+   */
   public Portfolio readImportedFile(String fileName) {
     try {
       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -73,15 +86,28 @@ public class XMLDatabase {
   }
 
 
-
+  /**
+   * help method for creating documents for users.
+   * @return NodeList for XML data.
+   */
   public static NodeList getUsersFromDocument() {
     return getUsersFromDocument(document);
   }
 
+  /**
+   * get the user element from the XML data.
+   * @param newDocument the document that need to be parsed.
+   * @return the NodeList
+   */
   private static NodeList getUsersFromDocument(Document newDocument) {
     return newDocument.getElementsByTagName("user");
   }
 
+  /**
+   * check if the name is valid.
+   * @param inputName company symbol
+   * @return true if name is valid.
+   */
   public static Boolean checkName(String inputName) {
     NodeList usernames = getUsersFromDocument();
     for (int i = 0; i < usernames.getLength(); i++) {
@@ -97,6 +123,10 @@ public class XMLDatabase {
     return false;
   }
 
+  /**
+   * ADd a user into the xml file.
+   * @param username username.
+   */
   public void addUser(String username) {
     Element newUser = document.createElement("user");
     newUser.setAttribute("name", username);
@@ -113,6 +143,11 @@ public class XMLDatabase {
     saveChanges();
   }
 
+  /**
+   * get the portfolio by a username
+   * @param username username.
+   * @return List of portfolio that this user holds.
+   */
   public List<Portfolio> getPortfoliosByUsername(String username) {
     List<Portfolio> portfoliosList = new ArrayList<>();
 
@@ -149,6 +184,11 @@ public class XMLDatabase {
     return portfoliosList;
   }
 
+  /**
+   * get the stock by username.
+   * @param stockNode stockNode.
+   * @return the stock.
+   */
   private static Stock getStock(Element stockNode) {
     String stockName = stockNode.getAttribute("name");
     int stockValue;
@@ -161,6 +201,12 @@ public class XMLDatabase {
     return new Stock(stockName, stockValue);
   }
 
+  /**
+   *  Add a portfolio by XML.
+   * @param username user name .
+   * @param portfolioName porfolioName needed to be add.
+   * @param portfolio porfolio that need to be add.
+   */
   public void addPortfolioXML(String username, String portfolioName, Portfolio portfolio) {
     NodeList userList = document.getElementsByTagName("user");
     List<Stock> stocks= portfolio.stockArrayList;
@@ -189,6 +235,9 @@ public class XMLDatabase {
     }
   }
 
+  /**
+   * Save all the changes to file.
+   */
   private void saveChanges() {
     try {
       Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -206,6 +255,10 @@ public class XMLDatabase {
   }
 
 
+  /**
+   * creat a XML file for a company.
+   * @param companyName
+   */
   public void createXMLbyCompanyInfo(String companyName) {
     String apiKey = "W0M1JOKC82EZEQA8";
     URL url;
@@ -274,6 +327,11 @@ public class XMLDatabase {
     }
   }
 
+  /**
+   * check if the companySymbol exist.
+   * @param stockSymbol
+   * @return
+   */
   public static boolean companySymbolExists( String stockSymbol) {
     String apiKey = "W0M1JOKC82EZEQA8";
     String urlTemplate = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=%s&apikey=%s";
@@ -325,6 +383,12 @@ public class XMLDatabase {
 
   }
 
+  /**
+   * calculate the stock value by given date.
+   * @param givenDate the date.
+   * @param filePath file's path that from
+   * @return a company that hold the infomation.
+   */
   public static Company stockValueByGivenDate(String givenDate, String filePath) {
       Company company = null;
       try {
