@@ -25,10 +25,9 @@ public class Model {
     user = new User(name,0);
     return XMLDatabase.checkName(name);
   }
-  public User creatUser(String username,float buyingPower){
-    User user = new User(username,buyingPower);
+  public void creatUser(String username,float buyingPower){
+    user = new User(username,buyingPower);
     xmlDatabase.addUser(username);
-    return user;
   }
 
   public void addPortfolioUser(){

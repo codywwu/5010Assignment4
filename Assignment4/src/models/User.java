@@ -32,7 +32,6 @@ public class User implements UserInterface {
     this.passWord = passWord;
   }
 
-  public void setUserName(String userName){ this.userName = userName;}
   /**
    * @return
    */

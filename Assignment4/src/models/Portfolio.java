@@ -42,8 +42,8 @@ public class Portfolio {
 
   public int getTotalShares(){
     int result = 0;
-    for(int i = 0 ; i<stockArrayList.size();i++){
-      result += (int)stockArrayList.get(i).getUserShared();
+    for (Stock stock : stockArrayList) {
+      result += (int) stock.getUserShared();
     }
     return result;
   }

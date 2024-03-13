@@ -13,9 +13,6 @@ public class View {
       System.out.println("No portfolio had been created");
     }
 
-  public static void printPortfolioName(String name) {
-    System.out.println("Portfolio Name: " + name);
-  }
 
   public static void printStockValueByGivenDate(Stock stock, String date) {
     System.out.println("Each " + stock.getCompanyName() + " share worth following on: " + date);
@@ -87,7 +84,7 @@ public class View {
 //    stockController.setStockLocalHigh(50);
 //
 //    System.out.println(stockController.getStockLocalHigh());
-  public void addMorePortfoiloOrDone() {
+  public void addMorePortfolioOrDone() {
     System.out.println("1. Add more stock");
     System.out.println("2. Done");
 
@@ -122,9 +119,6 @@ public class View {
     System.out.println("The number must be larger than 0. Please try again:");
   }
 
-  public void InvalidInputPortfolioName() {
-    System.out.println("Portfolio name is Duplicated, please try again:");
-  }
 
   public void promptForPortfolio() {
     System.out.println("Please enter the name of the portfolio you would like to access:");
@@ -202,7 +196,6 @@ public class View {
   /**
    * Display the stocks info inside the portfolio.
    *
-   * @param portfolios
    */
   public void displayPortfolios(List<Portfolio> portfolios) {
     if (portfolios.isEmpty()) {
@@ -239,20 +232,5 @@ public class View {
     System.out.println("2, Exit the program");
     System.out.println("3, View more details on one portfolio");
     System.out.println("Please enter the number corresponding to your choice: ");
-  }
-
-
-  public void changeTimeStampOrMain() {
-    System.out.println("End of your portfolios");
-    System.out.println("1. Change another timestamp");
-    System.out.println("2. Go back to main menu");
-  }
-
-  public void promptTimeStamp() {
-    System.out.println("Please enter the time stamp you want to check");
-  }
-
-  public void fileAlreadyExist(String companySymbol) {
-    System.out.println("XML file for " + companySymbol + " already exists. No new file created.");
   }
 }

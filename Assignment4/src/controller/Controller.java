@@ -116,13 +116,13 @@ public class Controller {
                 exitProgram();
                 break;
             case 3:
-                enterDateviewStock(portfolioName);
+                enterDateViewStock(portfolioName);
                 break;
         }
         mainMenu();
     }
 
-    public void enterDateviewStock(String portfolioName){
+    public void enterDateViewStock(String portfolioName){
         input = new Scanner(System.in);
         view.promptDate();
         String date = input.nextLine();
@@ -310,7 +310,7 @@ public class Controller {
         view.addCompanyOrDone();
         menuSelection = 0;
         while (validMenuSelection(menuSelection, 2)) {
-            view.addMorePortfoiloOrDone();
+            view.addMorePortfolioOrDone();
             menuSelection = input.nextInt();
         }
         switch (menuSelection) {
