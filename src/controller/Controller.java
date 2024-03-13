@@ -251,7 +251,8 @@ public class Controller {
         input = new Scanner(this.in);
         view.promptForFileName();
         String fileName = input.nextLine();
-        if (!model.checkFileExists(fileName)) {
+
+        while (!model.checkFileExists(fileName)) {
             view.invalidfile();
             view.promptForFileName();
             fileName = input.nextLine();

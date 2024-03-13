@@ -105,7 +105,9 @@ public class Model {
   }
 
   public Boolean checkFileExists(String inFile){
-    File folder = new File("InputData/");
+    File folder = new File("../InputData/");
+
+//    return folder.exists();
     File[] files = folder.listFiles();
     if (files != null) {
       // Iterate over each file and print its name

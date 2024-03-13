@@ -27,7 +27,7 @@
       <portfolio name="Portfolio3">
         <stock name="TSLA" value="13"/>
       </portfolio>
-    <portfolio name="portfolio1"><stock name="GOOG" value="250"/></portfolio></portfolios>
+    <portfolio name="portfolio1"><stock name="GOOG" value="250"/></portfolio><portfolio name="Portfolio1"/><portfolio name="importedPortfolio"><stock name="AAPL" value="0"/></portfolio><portfolio name="importedPortfolio"><stock name="AAPL" value="0"/></portfolio><portfolio name="importedPortfolio"><stock name="AAPL" value="0"/></portfolio><portfolio name="ppp"><stock name="KO" value="20"/></portfolio></portfolios>
 
   </user>
   <user name="aa">
