@@ -11,7 +11,9 @@ import models.*;
 
 import views.View;
 
-
+/**
+ * Controller class that would handle all the logic.
+ */
 public class Controller {
     private Scanner input;
     private int menuSelection = 0;
@@ -20,6 +22,13 @@ public class Controller {
     final Readable in;
     final Appendable out;
 
+    /**
+     * constructor for controller.
+     * @param model the model.
+     * @param view view.
+     * @param in system in.
+     * @param out system out.
+     */
     public Controller(Model model, View view, Readable in, Appendable out) {
         this.model = model;
         this.view = view;
@@ -28,7 +37,10 @@ public class Controller {
         this.input= new Scanner(this.in);
     }
 
-    // Constructor
+    /**
+     * introduction menu for user.
+     * @throws IOException IO exception to catch unexpected error.
+     */
     public void intro() throws IOException {
         String username = null;
         // Prompt user for username\
@@ -47,12 +59,20 @@ public class Controller {
         mainMenu();
     }
 
+    /**
+     * catch if main menu is correct.
+     * @throws IOException
+     */
     public void mainMenu() throws IOException {
         menuSelection = 0;
         whileTrue();
 
     }
 
+    /**
+     * show user's portfolio and their corresponding information.
+     * @throws IOException IO exception to catch unexpected error.
+     */
     private void showUserPortfolio() throws IOException {
         int portfolioAction;
 
@@ -93,6 +113,10 @@ public class Controller {
     }
 
 
+    /**
+     * view stocks information .
+     * @throws IOException IO exception to catch unexpected error.
+     */
     private void viewStocks() throws IOException {
         input = new Scanner(this.in);
         view.promptForPortfolio();
@@ -127,6 +151,11 @@ public class Controller {
         mainMenu();
     }
 
+    /**
+     * enter the date the view the actual stock.
+     * @param portfolioName name of the portfilio that will be check.
+     * @throws IOException IO exception to catch unexpected error.
+     */
     public void enterDateViewStock(String portfolioName) throws IOException {
         input = new Scanner(this.in);
         view.promptDate();
@@ -154,7 +183,6 @@ public class Controller {
                                 Company company = XMLDatabase.stockValueByGivenDate(date, stock.getCompanyName());
                                 if(company.getHasValidDate()){
                                     View.printHighLowOnGivenDate(date,company);
-//System.out.println("Date: " + date + "\nHigh: " + company.getHigh() + "\nLow: " + company.getLow());
                                 }
 
                                 double high = Double.parseDouble(model.getDatahigh()) * stock.getUserShared();
@@ -185,6 +213,12 @@ public class Controller {
         showUserPortfolio();
     }
 
+    /**
+     * check if the date is valid.
+     * @param dateStr string for date.
+     * @return true is valid.
+     * @throws IOException IO exception to catch unexpected error.
+     */
     public static boolean isValidDateFormat(String dateStr) throws IOException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
@@ -196,6 +230,13 @@ public class Controller {
         }
     }
 
+    /**
+     * menu selection dispenser.
+     * @param input input of user.
+     * @param range range of the selection.
+     * @return true if the input is valid.
+     * @throws IOException IO exception to catch unexpected error.
+     */
     public boolean validMenuSelection(int input, int range) throws IOException {
         if ((input <= 0 || input > range)) {
             view.menuSelectInvalid(range);
@@ -203,6 +244,9 @@ public class Controller {
         return input <= 0 || input > range;
     }
 
+    /**
+     * end the program.
+     */
     public void exitProgram() {
         view.goodBey();
         System.exit(0);
@@ -211,6 +255,10 @@ public class Controller {
 
     int portfolioNumber = 1;
 
+    /**
+     * Set the portfolio by 2 methods. Import or fill out form.
+     * @throws IOException IO exception to catch unexpected error.
+     */
     public void setPortfolio() throws IOException {
         menuSelection = 0;
         while (true) {
@@ -247,6 +295,10 @@ public class Controller {
         }
     }
 
+    /**
+     * import the portfolio from file.
+     * @throws IOException IO exception to catch unexpected error.
+     */
     private void importFile() throws IOException {
         input = new Scanner(this.in);
         view.promptForFileName();
@@ -271,6 +323,10 @@ public class Controller {
         }
     }
 
+    /**
+     * set the name of the portfolio.
+     * @throws IOException IO exception to catch unexpected error.
+     */
     private void setPortfolioName() throws IOException {
         input = new Scanner(this.in);
         view.fillFormPortfolioName();
@@ -282,6 +338,10 @@ public class Controller {
         model.createPortfolio(portfolioName);
     }
 
+    /**
+     * ask user to fill out the form to create a portfolio.
+     * @throws IOException IO exception to catch unexpected error.
+     */
     private void FillForm() throws IOException {
 
         String companySymbol = null;
@@ -330,6 +390,10 @@ public class Controller {
         }
     }
 
+    /**
+     * handle when user click done .
+     * @throws IOExceptionIO exception to catch unexpected error.
+     */
     private void doneCreatPortfolio() throws IOException {
         model.addPortfolioUser();
         model.addPToXML();
@@ -337,6 +401,10 @@ public class Controller {
         whileTrue();
     }
 
+    /**
+     * while the selection is true, helper method.
+     * @throws IOException IO exception to catch unexpected error.
+     */
     private void whileTrue() throws IOException {
         while (true) {
             view.mainMenu();
@@ -365,6 +433,11 @@ public class Controller {
         }
     }
 
+    /**
+     * check if the company symbol is valid.
+     * @param companySymbol
+     * @return
+     */
     private boolean CheckValidCompanySymbol(String companySymbol) {
         return XMLDatabase.companySymbolExists(companySymbol);
     }
