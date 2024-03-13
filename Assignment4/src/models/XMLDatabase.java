@@ -199,23 +199,11 @@ public class XMLDatabase {
     }
   }
 
-  // add portfolio
-  // implement each method to the program
-
-  public static void main(String[] args)  {
-    XMLDatabase xmlDatabase = new XMLDatabase();
-    Portfolio p = xmlDatabase.readImportedFile("NewUser");
-    xmlDatabase = new XMLDatabase();
-    xmlDatabase.addPortfolioXML("ada",p.name,p);
-
-  }
 
   public void createXMLbyCompanyInfo(String companyName) {
     String apiKey = "W0M1JOKC82EZEQA8";
     URL url;
     String fileName = companyName + "_StockData.xml";
-    File file = new File(fileName);
-
 
     try {
       url = new URL("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY"
@@ -283,7 +271,6 @@ public class XMLDatabase {
   public static boolean companySymbolExists( String stockSymbol) {
     String apiKey = "W0M1JOKC82EZEQA8";
     String urlTemplate = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=%s&apikey=%s";
-    String queryUrl = String.format(urlTemplate, stockSymbol, apiKey);
     URL url = null;
 
     try {

@@ -6,7 +6,7 @@ public class Stock implements StockInterface {
   private long volume;
   private long localHigh;
   private long localLow;
-  private long userShared;
+  private final long userShared;
   public Stock(String companyName,long userShared){
     this.companyName= companyName;
     this.userShared=userShared;
@@ -52,29 +52,6 @@ public class Stock implements StockInterface {
   @Override
   public double getLocalLow() {
     return localLow;
-  }
-
-
-  /**
-   * Get the open value of given date.
-   *
-   * @param date
-   * @return double value when open market by date
-   */
-  @Override
-  public double getOpenByDate(String date) {
-    return 0;
-  }
-
-  /**
-   * Get close value of given date.
-   *
-   * @param date
-   * @return double value when close market by date
-   */
-  @Override
-  public double getCloseByDate(String date) {
-    return 0;
   }
 
   public void setCompanyName(String companyName) {

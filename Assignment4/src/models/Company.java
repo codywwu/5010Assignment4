@@ -17,10 +17,6 @@ public class Company {
         return hasValidDate;
     }
 
-    public void setHasValidDate(Boolean hasValidDate) {
-        this.hasValidDate = hasValidDate;
-    }
-
     public String getDate() {
         return date;
     }

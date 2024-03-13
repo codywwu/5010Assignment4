@@ -13,7 +13,6 @@ public class StockTest {
         stock.setVolume(1000);
         stock.setLocalHigh(50);
         stock.setLocalLow(30);
-        stock.setTimeStamp("2024-03-10");
     }
 
     @Test
@@ -41,10 +40,6 @@ public class StockTest {
         assertEquals(30, stock.getLocalLow(), 0.001);
     }
 
-    @Test
-    public void testGetTimeStamp() {
-        assertEquals("2024-03-10", stock.getTimeStamp());
-    }
 
     // Test for setters
     @Test
@@ -69,11 +64,5 @@ public class StockTest {
     public void testSetLocalLow() {
         stock.setLocalLow(20);
         assertEquals(20, stock.getLocalLow(), 0.001);
-    }
-
-    @Test
-    public void testSetTimeStamp() {
-        stock.setTimeStamp("2024-03-11");
-        assertEquals("2024-03-11", stock.getTimeStamp());
     }
 }

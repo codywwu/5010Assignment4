@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -18,15 +17,10 @@ public class Controller {
     private final Model model;
     private static View view;
 
-    private XMLDatabase database = new XMLDatabase();
-
-    private User user;
-    private Portfolio portfolio;
-
 
     public Controller(Model model, View view) {
         this.model = model;
-        this.view = view;
+        Controller.view = view;
     }
 
     // Constructor
@@ -40,10 +34,9 @@ public class Controller {
         }
         if (model.checkInputName(username)) {
             view.displayWelcomeMessage(username);
-            user = new User(username, 1000);
         } else {
             view.displayNewWelcomeMessage(username);
-            user = model.creatUser(username, 1000);
+            model.creatUser(username, 1000);
         }
 
         mainMenu();
@@ -123,64 +116,68 @@ public class Controller {
                 exitProgram();
                 break;
             case 3:
-                input = new Scanner(System.in);
-                view.promptDate();
-                String date = input.nextLine();
-                while (!isValidDateFormat(date)) {
-                    date = input.nextLine();
-                }
-                //Model.displayPortfolioValueByGivenDate(model.getUserPortfolios(), date,portfolioName );
-                boolean validDate = false;
-                double totalHighValue = 0;
-                Scanner scanner = new Scanner(System.in);
-                double totalLowValue = 0;
-                while (!validDate) {
-
-                    if (Model.checkIfPortfolioEmpty(model.getUserPortfolios())) {
-                        View.userPortfolioEmpty();
-                    } else {
-                        for (Portfolio portfolio : model.getUserPortfolios()) {
-                            if (portfolio.name.equals(portfolioName)) {
-                                //View.printPortfolioName(portfolio.name);
-                                for (Stock stock : portfolio.getStocks()) {
-                                    if (database.isDateExistInXML(stock.getCompanyName(), date)) {
-                                        validDate = true;
-                                        View.printStockValueByGivenDate(stock, date);
-                                        Company company = XMLDatabase.stockValueByGivenDate(date, stock.getCompanyName());
-                                        if(company.getHasValidDate()){
-                                            View.printHighLowOnGivenDate(date,company);
-//System.out.println("Date: " + date + "\nHigh: " + company.getHigh() + "\nLow: " + company.getLow());
-                                        }
-
-                                        double high = Double.parseDouble(database.highStock.trim()) * stock.getUserShared();
-                                        View.printMaxValue(high);
-                                        totalHighValue += high; // Add to total portfolio high value
-
-                                        double low = Double.parseDouble(XMLDatabase.lowStock.trim()) * stock.getUserShared();
-                                        View.printMinValue(low);
-                                        totalLowValue += low; // Add to total portfolio low value
-
-                                        View.newLines();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    if (!validDate) {
-                        View.printDateInValid();
-                        date = scanner.nextLine(); // Read a new date from the user
-                    } else {
-                        // After validating date and calculating values, print total portfolio values
-                        View.printMaxTotalValue(totalHighValue);
-                        View.printMinTotalValue(totalLowValue);
-
-                    }
-                }
-                View.endOfYourPortfolio();
-                viewStocks();
+                enterDateViewStock(portfolioName);
                 break;
         }
         mainMenu();
+    }
+
+    public void enterDateViewStock(String portfolioName){
+        input = new Scanner(System.in);
+        view.promptDate();
+        String date = input.nextLine();
+        while (!isValidDateFormat(date)) {
+            date = input.nextLine();
+        }
+        //Model.displayPortfolioValueByGivenDate(model.getUserPortfolios(), date,portfolioName );
+        boolean validDate = false;
+        double totalHighValue = 0;
+        Scanner scanner = new Scanner(System.in);
+        double totalLowValue = 0;
+        while (!validDate) {
+
+            if (Model.checkIfPortfolioEmpty(model.getUserPortfolios())) {
+                View.userPortfolioEmpty();
+            } else {
+                for (Portfolio portfolio : model.getUserPortfolios()) {
+                    if (portfolio.name.equals(portfolioName)) {
+                        //View.printPortfolioName(portfolio.name);
+                        for (Stock stock : portfolio.getStocks()) {
+                            if (model.dataCheckExistInXML(stock, date)) {
+                                validDate = true;
+                                View.printStockValueByGivenDate(stock, date);
+                                Company company = XMLDatabase.stockValueByGivenDate(date, stock.getCompanyName());
+                                if(company.getHasValidDate()){
+                                    View.printHighLowOnGivenDate(date,company);
+//System.out.println("Date: " + date + "\nHigh: " + company.getHigh() + "\nLow: " + company.getLow());
+                                }
+
+                                double high = Double.parseDouble(model.getDatahigh()) * stock.getUserShared();
+                                View.printMaxValue(high);
+                                totalHighValue += high; // Add to total portfolio high value
+
+                                double low = Double.parseDouble(model.getDataLow()) * stock.getUserShared();
+                                View.printMinValue(low);
+                                totalLowValue += low; // Add to total portfolio low value
+
+                                View.newLines();
+                            }
+                        }
+                    }
+                }
+            }
+            if (!validDate) {
+                View.printDateInValid();
+                date = scanner.nextLine(); // Read a new date from the user
+            } else {
+                // After validating date and calculating values, print total portfolio values
+                View.printMaxTotalValue(totalHighValue);
+                View.printMinTotalValue(totalLowValue);
+
+            }
+        }
+        View.endOfYourPortfolio();
+        showUserPortfolio();
     }
 
     public static boolean isValidDateFormat(String dateStr) {
@@ -213,7 +210,7 @@ public class Controller {
         while (true) {
             //Creating new portfolio here.
             String portfolioName = "Portfolio" + portfolioNumber;
-            portfolio = model.createPortfolio(portfolioName);
+            model.createPortfolio(portfolioName);
             view.createPortfolio();
             try {
                 menuSelection = input.nextInt();
@@ -253,12 +250,12 @@ public class Controller {
             view.promptForFileName();
             fileName = input.nextLine();
         }
-        portfolio = model.readImport(fileName);
+        model.readImport(fileName);
 
-        if (portfolio != null) {
-            database = model.newXML();
-            user.addPortfolio(portfolio);
-            database.addPortfolioXML(user.getUserName(), portfolio.name, portfolio);
+        if (model.getPortfolio() != null) {
+            model.newXML();
+            model.addPortfolioUser();
+            model.addPToXML();
             view.addedImportfile();
             mainMenu();
         } else {
@@ -275,7 +272,7 @@ public class Controller {
             view.invalidPortfolio();
             portfolioName = input.nextLine();
         }
-        portfolio = model.createPortfolio(portfolioName);
+        model.createPortfolio(portfolioName);
     }
 
     private void FillForm() {
@@ -287,7 +284,7 @@ public class Controller {
             companySymbol = input.next();
             if (CheckValidCompanySymbol(companySymbol)) {
                 // Creating the company file.
-                database.createXMLbyCompanyInfo(companySymbol);
+                model.addCompanyXML(companySymbol);
                 // if valid, prompt for the quantity of purchase.
                 view.promptQuantityOfPurchase();
                 while (quantity <= 0) {
@@ -303,7 +300,7 @@ public class Controller {
                 }
                 view.successPurchase(quantity, companySymbol);
                 Stock stock = model.createStock(companySymbol, quantity);
-                portfolio.addStock(stock);
+                model.addStockPort(stock);
             } else {
                 // if not valid, prompt again for a valid company symbol.
                 view.invalidCompanySymbol();
@@ -313,7 +310,7 @@ public class Controller {
         view.addCompanyOrDone();
         menuSelection = 0;
         while (validMenuSelection(menuSelection, 2)) {
-            view.addMorePortfoiloOrDone();
+            view.addMorePortfolioOrDone();
             menuSelection = input.nextInt();
         }
         switch (menuSelection) {
@@ -327,9 +324,9 @@ public class Controller {
     }
 
     private void doneCreatPortfolio() {
-        user.addPortfolio(portfolio);
-        database.addPortfolioXML(user.getUserName(), portfolio.name, portfolio);
-        view.donePortfolioInfo(user.getPortfolioList());
+        model.addPortfolioUser();
+        model.addPToXML();
+        view.donePortfolioInfo(model.getPList());
         whileTrue();
     }
 
