@@ -204,6 +204,7 @@ public class Controller {
     }
 
     public void exitProgram() {
+        view.goodBey();
         System.exit(0);
     }
 

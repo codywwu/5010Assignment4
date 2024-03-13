@@ -243,4 +243,8 @@ public class View {
     View.out.append("\n3, View more details on one portfolio");
     View.out.append("\nPlease enter the number corresponding to your choice: ");
   }
+
+    public void goodBey() {
+    System.out.println("Good Bye");
+    }
 }

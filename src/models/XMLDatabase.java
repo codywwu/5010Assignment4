@@ -328,7 +328,7 @@ public class XMLDatabase {
   public static Company stockValueByGivenDate(String givenDate, String filePath) {
       Company company = null;
       try {
-          filePath = "../5010Assignment4/" + filePath + "_StockData.xml";
+          filePath = "../" + filePath + "_StockData.xml";
           File xmlFile = new File(filePath);
 
           DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -387,7 +387,7 @@ public class XMLDatabase {
    */
   public boolean isDateExistInXML(String filePath, String givenDate) {
     try {
-      filePath = "../5010Assignment4/"+filePath+"_StockData.xml";
+      filePath = "../"+filePath+"_StockData.xml";
       File xmlFile = new File(filePath);
       DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
       DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
