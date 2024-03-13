@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <portfolio name="importedPortfolio">
 
-  <stock name="AAPL" value="10"/>
+  <stock name="AAPL" value="0.9"/>
 
   <time value="2024-03-05"/>
 

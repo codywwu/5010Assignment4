@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -12,19 +13,23 @@ import views.View;
 
 
 public class Controller {
-    private Scanner input = new Scanner(System.in);
+    private Scanner input;
     private int menuSelection = 0;
     private final Model model;
     private static View view;
+    final Readable in;
+    final Appendable out;
 
-
-    public Controller(Model model, View view) {
+    public Controller(Model model, View view, Readable in, Appendable out) {
         this.model = model;
-        Controller.view = view;
+        this.view = view;
+        this.in=in;
+        this.out=out;
+        this.input= new Scanner(this.in);
     }
 
     // Constructor
-    public void intro() {
+    public void intro() throws IOException {
         String username = null;
         // Prompt user for username\
         while (username == null) {
@@ -42,13 +47,13 @@ public class Controller {
         mainMenu();
     }
 
-    public void mainMenu() {
+    public void mainMenu() throws IOException {
         menuSelection = 0;
         whileTrue();
 
     }
 
-    private void showUserPortfolio() {
+    private void showUserPortfolio() throws IOException {
         int portfolioAction;
 
         while (true) {
@@ -88,8 +93,8 @@ public class Controller {
     }
 
 
-    private void viewStocks() {
-        input = new Scanner(System.in);
+    private void viewStocks() throws IOException {
+        input = new Scanner(this.in);
         view.promptForPortfolio();
         String portfolioName = input.nextLine();
         while (!model.checkPortfolioName(portfolioName)) {
@@ -122,8 +127,8 @@ public class Controller {
         mainMenu();
     }
 
-    public void enterDateViewStock(String portfolioName){
-        input = new Scanner(System.in);
+    public void enterDateViewStock(String portfolioName) throws IOException {
+        input = new Scanner(this.in);
         view.promptDate();
         String date = input.nextLine();
         while (!isValidDateFormat(date)) {
@@ -132,7 +137,7 @@ public class Controller {
         //Model.displayPortfolioValueByGivenDate(model.getUserPortfolios(), date,portfolioName );
         boolean validDate = false;
         double totalHighValue = 0;
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(this.in);
         double totalLowValue = 0;
         while (!validDate) {
 
@@ -180,7 +185,7 @@ public class Controller {
         showUserPortfolio();
     }
 
-    public static boolean isValidDateFormat(String dateStr) {
+    public static boolean isValidDateFormat(String dateStr) throws IOException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
             LocalDate.parse(dateStr, formatter);
@@ -191,7 +196,7 @@ public class Controller {
         }
     }
 
-    public boolean validMenuSelection(int input, int range) {
+    public boolean validMenuSelection(int input, int range) throws IOException {
         if ((input <= 0 || input > range)) {
             view.menuSelectInvalid(range);
         }
@@ -205,7 +210,7 @@ public class Controller {
 
     int portfolioNumber = 1;
 
-    public void setPortfolio() {
+    public void setPortfolio() throws IOException {
         menuSelection = 0;
         while (true) {
             //Creating new portfolio here.
@@ -241,8 +246,8 @@ public class Controller {
         }
     }
 
-    private void importFile() {
-        input = new Scanner(System.in);
+    private void importFile() throws IOException {
+        input = new Scanner(this.in);
         view.promptForFileName();
         String fileName = input.nextLine();
         if (!model.checkFileExists(fileName)) {
@@ -264,8 +269,8 @@ public class Controller {
         }
     }
 
-    private void setPortfolioName() {
-        input = new Scanner(System.in);
+    private void setPortfolioName() throws IOException {
+        input = new Scanner(this.in);
         view.fillFormPortfolioName();
         String portfolioName = input.nextLine();
         while (model.checkPortfolioName(portfolioName)) {
@@ -275,7 +280,7 @@ public class Controller {
         model.createPortfolio(portfolioName);
     }
 
-    private void FillForm() {
+    private void FillForm() throws IOException {
 
         String companySymbol = null;
         view.fillFormIntro();
@@ -323,14 +328,14 @@ public class Controller {
         }
     }
 
-    private void doneCreatPortfolio() {
+    private void doneCreatPortfolio() throws IOException {
         model.addPortfolioUser();
         model.addPToXML();
         view.donePortfolioInfo(model.getPList());
         whileTrue();
     }
 
-    private void whileTrue() {
+    private void whileTrue() throws IOException {
         while (true) {
             view.mainMenu();
             try {
