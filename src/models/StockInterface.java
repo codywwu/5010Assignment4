@@ -1,5 +1,8 @@
 package models;
 
+/**
+ * Stock interface offer various of methods.
+ */
 public interface StockInterface {
   /**
    * Get companies name.
@@ -15,13 +18,13 @@ public interface StockInterface {
 
   /**
    * get the local high price of the company per share.
-   * @return
+   * @return get the local high price.
    */
   double getLocalHigh();
 
   /**
    * get the local low price of the company per share.
-   * @return
+   * @return get the local low price.
    */
   double getLocalLow();
 

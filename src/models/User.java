@@ -2,7 +2,9 @@ package models;
 
 import java.util.ArrayList;
 
-
+/**
+ * User class that implments the user interface class.
+ */
 public class User implements UserInterface {
   String userName;
 
@@ -10,8 +12,14 @@ public class User implements UserInterface {
 
   double buyingPower;
 
+
   ArrayList<Portfolio> portfolioList = new ArrayList<>();
 
+  /**
+   * User class that contians name and buying power.
+   * @param userName name.
+   * @param buyingPower buying power.
+   */
   public User(String userName, double buyingPower){
     this.userName = userName;
     //this.passWord = passWord;
@@ -25,15 +33,25 @@ public class User implements UserInterface {
     return userName;
   }
 
+  /**
+   * Set buying power.
+   * @param buyingPower the buying power.
+   */
   public void setBuyingPower(double buyingPower){
     this.buyingPower = buyingPower;
   }
+
+  /**
+   * Set the password
+   * @param passWord set the password.
+   */
   public void setPassWord(String passWord){
     this.passWord = passWord;
   }
 
   /**
-   * @return
+   *  get the password.
+   * @return the password.
    */
   @Override
   public String getPassWord() {
@@ -41,7 +59,8 @@ public class User implements UserInterface {
   }
 
   /**
-   * @return
+   * Get the buying power.
+   * @return buying power.
    */
   @Override
   public double getBuyingPower() {
@@ -69,6 +88,10 @@ public class User implements UserInterface {
     return portfolioList.get(i);
   }
 
+  /**
+   * Get the portfolio list.
+   * @return a list of portfolio.
+   */
   public ArrayList<Portfolio> getPortfolioList(){
     return portfolioList;
   }

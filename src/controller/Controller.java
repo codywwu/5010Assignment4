@@ -392,7 +392,6 @@ public class Controller {
 
     /**
      * handle when user click done .
-     * @throws IOExceptionIO exception to catch unexpected error.
      */
     private void doneCreatPortfolio() throws IOException {
         model.addPortfolioUser();

@@ -4,6 +4,9 @@ import java.io.InputStreamReader;
 import models.Model;
 import views.View;
 
+/**
+ * main method to run the program.
+ */
 public class Main {
   public static void main(String[] args) throws IOException {
     // Create instances of the MVC components

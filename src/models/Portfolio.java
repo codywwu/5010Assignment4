@@ -32,14 +32,26 @@ public class Portfolio {
       // Also update the constructor.
   }
 
+  /**
+   * Get the quantity of the portfolios.
+   * @return number of the portfolios.
+   */
   public int getQuantity() {
     return stockArrayList.size();
   }
 
+  /**
+   * stocks inside the portofolios.
+   * @return stocklist.
+   */
   public ArrayList<Stock> getStocks(){
     return stockArrayList;
   }
 
+  /**
+   * get the total shares from a portofolio list.
+   * @return number of all shares.
+   */
   public int getTotalShares(){
     int result = 0;
     for (Stock stock : stockArrayList) {

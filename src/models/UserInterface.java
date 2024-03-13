@@ -1,10 +1,26 @@
 package models;
 
-import java.util.ArrayList;
 
+/**
+ * User Interface that offers various of methods for users.
+ */
 interface UserInterface {
+  /**
+   * Get the user name.
+   * @return  username.
+   */
   String getUserName();
+
+  /**
+   * Get the password.
+   * @return the password.
+   */
   String getPassWord();
+
+  /**
+   * get the buying power.
+   * @return buying power.
+   */
   double getBuyingPower();
 
   /**
